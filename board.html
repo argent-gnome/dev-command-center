@@ -41,7 +41,14 @@
 </div>
 <script src="board.render.js"></script>
 <script>
-  const PROJECT_FILES = ['data/spanish-coach.json', 'data/apex.json', 'data/hims.json'];
+  const FALLBACK = ['spanish-coach', 'apex', 'hims'];
+  async function projectKeys() {
+    try {
+      const cfg = await fetch('projects.config.json').then(r => r.json());
+      const keys = Object.keys(cfg.projects || {});
+      return keys.length ? keys : FALLBACK;
+    } catch (e) { return FALLBACK; }
+  }
   async function load() {
     // Offline build path: data inlined as window.__BOARD__
     if (window.__BOARD__) {
@@ -50,7 +57,8 @@
       return;
     }
     try {
-      const projects = await Promise.all(PROJECT_FILES.map(f => fetch(f).then(r => r.json())));
+      const keys = await projectKeys();
+      const projects = await Promise.all(keys.map(k => fetch('data/' + k + '.json').then(r => r.json())));
       const attention = await fetch('data/attention.json').then(r => r.json()).catch(() => null);
       document.getElementById('root').innerHTML = DCB.renderBoard(projects, attention);
     } catch (e) {

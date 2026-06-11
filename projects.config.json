@@ -1,0 +1,15 @@
+{
+  "hub": {
+    "repoPath": "/Users/jake-edwards/projects/dev-command-center",
+    "repo": "argent-gnome/dev-command-center",
+    "ghLogin": "argent-gnome",
+    "marketplace": "jakes-dev",
+    "pagesUrl": "https://argent-gnome.github.io/dev-command-center/board.html",
+    "author": { "name": "Jake Edwards", "email": "jakec714@gmail.com" }
+  },
+  "projects": {
+    "spanish-coach": { "displayName": "Spanish Coach", "repoPath": "/Users/jake-edwards/projects/spanish-coach", "stack": "ios", "topology": "single-session" },
+    "apex": { "displayName": "APEX (moto-ride-stats)", "repoPath": "/Users/jake-edwards/projects/moto-ride-stats", "stack": "ios", "topology": "single-session" },
+    "hims": { "displayName": "HIMS Pilot Recert", "repoPath": "/Users/jake-edwards/projects/hims-pilot-recert", "stack": "web", "topology": "multi-session" }
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "project": "hims-pilot-recert",
+  "project": "hims",
   "displayName": "HIMS Pilot Recert",
   "cards": [
     { "id": "hims__slice-1", "title": "Slice 1 — first build on fixed foundation",

@@ -4,7 +4,9 @@ const path = require('path');
 const { renderBoard } = require('./board.render.js');
 
 const dir = __dirname;
-const files = ['spanish-coach', 'apex', 'hims'].map(n =>
+const cfg = JSON.parse(fs.readFileSync(path.join(dir, 'projects.config.json'), 'utf8'));
+const keys = Object.keys(cfg.projects || {});
+const files = keys.map(n =>
   JSON.parse(fs.readFileSync(path.join(dir, 'data', n + '.json'), 'utf8')));
 const attention = JSON.parse(fs.readFileSync(path.join(dir, 'data', 'attention.json'), 'utf8'));
 
