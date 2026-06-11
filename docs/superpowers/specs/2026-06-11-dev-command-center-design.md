@@ -18,6 +18,9 @@ The user runs three concurrent software projects in different industries. They w
 3. **Leverage the full Claude ecosystem.** Reuse existing skills/agents rather than re-prompting
    bespoke copies; package repeatable jobs as reusable agents/scripts so execution is uniform and
    evolvable, not pigeonholed.
+4. **Access it anywhere, and share it.** The hub lives in one Git repo published to a free GitHub Pages
+   URL, so the board is viewable on any device; the repo doubles as a shareable, version-controlled
+   statement of "how I build" for other developers.
 
 This is **encoded intent** (per `intent-first-spec-anchored`): this spec is the durable source of
 truth; the orchestrator skill, the agent, the script, and the board *realize* it.
@@ -32,7 +35,8 @@ truth; the orchestrator skill, the agent, the script, and the board *realize* it
 **Non-goals (v1):**
 - No drag-and-drop / click-to-edit board. The board is **read-mostly**; status changes flow from
   the SDLC (skill + script), not from the UI. (User will tweak the board's *visuals* live later.)
-- No hosted server, no auth, no database. The board is a single local HTML file opened from `file://`.
+- No app backend, no auth, no database. The board is static files (HTML + per-project JSON) served free
+  via GitHub Pages; status is written by the SDLC, not typed into a UI.
 - No auto-discovery of projects. Projects are explicitly registered via `project.config`.
 - No other projects from the directory are included.
 - doc-keeper CI/CD deployment is **documented but deferred** (see §6.2) — v1 runs it locally.
@@ -53,6 +57,15 @@ Synthesized from the three projects' practiced processes (see `context/*.md`). S
 For the three existing projects, Init reduces to: confirm CI exists (add if missing) + register them
 on the board at their current state.
 
+### 3.1b Onboard (one-time per already-started project)
+
+The three projects are mid-flight, so they are *onboarded*, not initialized. Onboard is a distinct,
+re-runnable path (a mode of the orchestrator, §6.1) that reconstructs current status from existing
+evidence — `git log` / branches / open PRs, the specs in `docs/superpowers/specs/`, and (richest of all)
+the project's memory entries — then writes the resulting card(s) to the board via `board-update`. It runs
+once to seed a project, and can re-run to reconcile drift from out-of-session changes. Powered by the
+`project-state-scanner` agent (§6.2a).
+
 ### 3.2 The Slice loop (repeats)
 
 Each slice is a small reviewable vertical slice on **its own branch** (all commits land there); the
@@ -68,7 +81,7 @@ slice ends with a **PR + description** and a merge. Stages and their delegated s
  5  build                        per execution topology (§3.3-A) + TDD + stack pro-skills
  6  verify (per-task)            spec-compliance reviewer ("don't trust the report") → code-quality reviewer;
                                  carry-forwards fold into later tasks
- 7  merge-gate (adversarial)     ONE whole-slice review, cross-task seams                 [Fable subagent]
+ 7  merge-gate (adversarial)     ONE whole-slice review, cross-task seams         [merge-gate-reviewer · Fable]
  8  CI green                     verified by actual `gh run view --json conclusion` (PR run AND main); never piped exit codes
  9  live/device     ⛔ GATE       Simulator (iOS) / device / staging (web); reload app on UI change
  9½ DOCS: audit                  diff implementation vs docs → drift report → patch      [doc-keeper · audit]
@@ -121,7 +134,7 @@ sequencing, gating, and tracker updates.
 | build — iOS | `superpowers:subagent-driven-development` + `superpowers:test-driven-development` + `swiftui/swiftdata/swift-testing/swift-concurrency-pro` |
 | build — web | `superpowers:executing-plans` + `superpowers:test-driven-development` + `supabase` / `vercel:*` |
 | per-task review | `superpowers:requesting-code-review` / `receiving-code-review` (+ `code-reviewer` agent); `systematic-debugging` on failures |
-| merge-gate | `superpowers:requesting-code-review` (slice scope) + a **Fable adversarial subagent** |
+| merge-gate | `merge-gate-reviewer` agent (model: Fable) — fixed cross-seam rubric |
 | CI / completion | `superpowers:verification-before-completion` |
 | PR + merge | `superpowers:finishing-a-development-branch` |
 | reconcile | memory update + `doc-keeper` + `board-update` |
@@ -174,24 +187,26 @@ Three swimlanes (one per active project). Columns = the slice loop collapsed to 
 A `blockedOn` value keeps the card in its column but flags it red. The granular `phase` chip is what
 "lines up with the UI as granularly as possible."
 
-### 5.3 Persistence
-A single self-contained **`board.html`** with an embedded JSON data island:
-```html
-<script type="application/json" id="board-data">{ ...projects, cards... }</script>
-```
-The board's JS reads the island and renders. Opens by double-click from `file://` — no server, no build,
-no dependencies. Aesthetic matches the existing `claude-dev-process.html` family (slate ink, indigo
-`#4f46e5` / teal `#0a7c66`, pill tags, card layout). The static reference doc is linked as a "Process" tab.
+### 5.3 Persistence — per-project JSON + Pages
+Board state is stored as **one JSON file per project** under `data/` (`data/spanish-coach.json`,
+`data/apex.json`, `data/hims.json`). `board.html` fetches and merges them at load and renders the three
+swimlanes. Two payoffs: (1) each session writes **only its own** project file, so concurrent multi-session
+commits **never conflict**; (2) it's static, so it serves free from **GitHub Pages** (http, where `fetch`
+works) and is viewable on any device. For offline double-click viewing, an optional tiny `build-board.js`
+inlines the JSON into a `board.local.html`. Aesthetic matches the existing `claude-dev-process.html` family
+(slate ink, indigo `#4f46e5` / teal `#0a7c66`, pill tags); the static process doc is linked as a "Process" tab.
 
 ### 5.4 Update mechanism
-`board-update` (a token-free Node script) rewrites the data island deterministically:
+`board-update` (a token-free Node script in the hub) updates **one project's data file** and syncs:
 ```
 node board-update.js --project <id> --slice <id> [--title <t>] \
   --column <c> --phase <p> --next-action <s> [--blocked <s> | --unblock] \
   [--branch <b>] [--link <kind>=<url>]
 ```
-It upserts a card by `id`, stamps `lastTouched`, and writes `board.html` back. The orchestrator calls it
-at every stage transition, so the tracker never lags the SDLC.
+It upserts the card by `id` in `data/<project>.json`, stamps `lastTouched`, then **`git add` + commit +
+push** the hub — with an automatic `pull --rebase` + retry so concurrent sessions can't collide. It's
+invoked by absolute path, so **any project's session can update the hub** without the user committing
+anything by hand. The orchestrator calls it at every stage transition, so the tracker never lags the SDLC.
 
 ## 6. Reusable architecture (3 pieces + config)
 
@@ -204,6 +219,10 @@ transition. It is a **skill, not an agent**, because it must sit in the driver's
 other skills. Composes with (never duplicates) `intent-first-spec-anchored`, `brainstorming`,
 `writing-plans`, `subagent-driven-development`/`executing-plans`, the review skills, and
 `verification-before-completion`.
+
+**Two entry modes:** `run` (drive the slice loop for an active project) and `onboard`
+(one-time/re-runnable status seed for an already-started project, via `project-state-scanner` →
+`board-update`).
 
 ### 6.2 `doc-keeper` (a reusable agent, user-level: `~/.claude/agents/doc-keeper.md`)
 Two modes:
@@ -222,6 +241,19 @@ Two modes:
   **Deferred to a documented opt-in slice** (needs a GitHub remote + API billing).
 - If a project's doc set grows large, audit may escalate to a fan-out Workflow ("ultracode" opt-in);
   defaults to a single subagent.
+
+### 6.2a `project-state-scanner` (a reusable agent, user-level: `~/.claude/agents/project-state-scanner.md`)
+Given a project (repo path + memory), scans `git log` / branches / `gh pr list` / specs / CI state and the
+project's memory to infer current board state: active slice(s), phase chip, next action, blocked-on, branch.
+Output is structured board card(s). Used by the orchestrator's `onboard` mode (seed) and, optionally, at
+session start to reconcile the board with reality. Bounded input, structured output, identical across
+projects — a textbook agent.
+
+### 6.2b `merge-gate-reviewer` (a reusable agent, user-level, model: Fable)
+The one adversarial whole-slice review (loop stage 7), as a named agent with a fixed rubric: cross-task
+seams, spec-rule citation, regression risk, gate compliance. Tiny output (a findings/reject list) on
+judgment-dense input — the canonical Fable use. Named (not ad-hoc) so every slice on every project gets the
+*same* merge-gate scrutiny.
 
 ### 6.3 `board-update` (a deterministic script)
 See §5.4. Token-free, deterministic, granular. Lives in `dev-command-center/`.
@@ -244,20 +276,40 @@ Adding a 4th project, swapping the doc-keeper, or changing a gate = a config/age
 pigeonholed.
 
 ### 6.5 Where things live
-- `dev-command-center/board.html` + `board-update.js` + `projects.config.json` + `context/` + `docs/`.
-- `~/.claude/skills/dev-orchestrator/` (the skill).
-- `~/.claude/agents/doc-keeper.md` (the agent).
+- **Hub repo** `dev-command-center/` (public, GitHub Pages): `board.html` · `data/<project>.json` ·
+  `board-update.js` · `build-board.js` · `projects.config.json` · `context/` · `docs/` · `README.md`.
+- **Tooling source (authoritative, version-controlled)** in the hub under `.claude-assets/`:
+  `skills/dev-orchestrator/`, `agents/{doc-keeper,project-state-scanner,merge-gate-reviewer}.md`, and an
+  `install.sh` that symlinks them into `~/.claude/` so the repo is self-contained + shareable.
+- **Installed (active) copies**: `~/.claude/skills/dev-orchestrator/` and
+  `~/.claude/agents/{doc-keeper,project-state-scanner,merge-gate-reviewer}.md` (symlinks to the above).
+
+### 6.6 Distribution, sync & hosting
+- **One hub repo, public, on GitHub.** Remote created with `gh`; existing spec/context/docs pushed.
+- **GitHub Pages** serves `board.html` from the hub → a stable URL, any device, $0 (free tier covers
+  public repos). Each `board-update` push redeploys Pages automatically.
+- **Auto-sync from every session.** Because `board-update` commits+pushes the hub by absolute path and the
+  orchestrator is a user-level skill, every project session keeps the hub current with **zero manual commits**.
+- **Shareable.** The repo is a coherent "how I build" artifact (README + spec + context + tooling source under
+  `.claude-assets/`). Natural end-form: package the skill+agents+board as a **Claude Code plugin** others can
+  `/plugin install`; the repo is structured to allow that later without rework.
+- **Public-repo hygiene.** No secrets/keys/tokens committed; the board's status text (project names, slice
+  descriptions) is intentionally shareable. Push auth via `gh`.
 
 ## 7. Proposed build order (vertical slices)
 
-1. **Board** — `board.html` + data island + render, seeded with the three projects' *real* current state
-   (this is the live-tweakable mockup made real).
-2. **board-update script + `projects.config.json`** — deterministic island rewrites.
-3. **dev-orchestrator skill** — conductor + delegation map + tracker hooks; then the **one Fable
+1. **Hub setup** — create the public GitHub repo + remote, push the existing spec/context/docs, enable
+   GitHub Pages.
+2. **Board (read view)** — `board.html` fetches+merges `data/<project>.json`, renders the 3 swimlanes; works on Pages.
+3. **board-update.js + projects.config.json** — per-project JSON upsert + auto add/commit/push (pull-rebase-retry).
+4. **project-state-scanner agent + `onboard` mode** — scan memory+repo for all three; seed the data files
+   with real status → pushed → live on Pages.
+5. **dev-orchestrator skill (run mode)** + `.claude-assets/` source + `install.sh`; then the **one Fable
    adversarial review** of this skill (the governing artifact).
-4. **doc-keeper agent** (author + audit), local.
-5. **Dogfood** — run one real slice of one project end-to-end through the orchestrator; reconcile.
-6. *(future, opt-in)* doc-keeper CI backstop · board visual polish · 4th-project onboarding.
+6. **doc-keeper agent** (author + audit) + **merge-gate-reviewer agent** (Fable).
+7. **Dogfood** — run one real slice of one project end-to-end through the orchestrator; reconcile.
+8. *(future, opt-in)* doc-keeper CI backstop · Claude Code plugin packaging · board visual polish ·
+   command-center as a self-referential 4th lane.
 
 The detailed implementation plan comes from `superpowers:writing-plans` after this spec is approved.
 
