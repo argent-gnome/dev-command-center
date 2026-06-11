@@ -38,9 +38,12 @@ truth; the orchestrator skill, the agent, the script, and the board *realize* it
   the SDLC (skill + script), not from the UI. (User will tweak the board's *visuals* live later.)
 - No app backend, no auth, no database. The board is static files (HTML + per-project JSON) served free
   via GitHub Pages; status is written by the SDLC, not typed into a UI.
-- No auto-discovery of projects. Projects are explicitly registered via `project.config`.
+- No auto-discovery of projects. Projects are explicitly registered via `projects.config.json`.
 - No other projects from the directory are included.
 - doc-keeper CI/CD deployment is **documented but deferred** (see §6.2) — v1 runs it locally.
+- No LLM/agent for board status writes — that's the deterministic `board-update` script by design (token-free,
+  granular, reliable). Status *inference* from a cold repo is the one judgment case, handled by
+  `project-state-scanner`.
 
 ## 3. The unified house SDLC (the model)
 
@@ -53,7 +56,7 @@ Synthesized from the three projects' practiced processes (see `context/*.md`). S
 2. Scaffold structure + a `docs/` skeleton (architecture, ADRs, features/flows, business-logic — see §4).
 3. Stand up **CI/CD (GitHub Actions)** with the stack's gate set (§3.3-B). CI exists *before* feature
    code, so gates are enforced from slice 1.
-4. Register the project as a **board swimlane** + create its `project.config` entry.
+4. Register the project as a **board swimlane** + create its `projects.config.json` entry.
 
 For the three existing projects, Init reduces to: confirm CI exists (add if missing) + register them
 on the board at their current state.
@@ -87,7 +90,7 @@ slice ends with a **PR + description** and a merge. Stages and their delegated s
  9  live/device     ⛔ GATE       Simulator (iOS) / device / staging (web); reload app on UI change
  9½ DOCS: audit                  diff implementation vs docs → drift report → patch      [doc-keeper · audit]
  10 PR + description → merge
- 11 reconcile                    memory + docs + board
+ 11 reconcile                    memory + docs + board + write `slice-retro.md` (interventions · decisions · friction)
   ▸ board-update fires at EVERY transition: column · phase-chip · next-action · blocked-on · last-touched
 ```
 
@@ -140,6 +143,22 @@ sequencing, gating, and tracker updates.
 | PR + merge | `superpowers:finishing-a-development-branch` |
 | reconcile | memory update + `doc-keeper` + `board-update` |
 
+### 3.6 Self-improvement loop (periodic, gated)
+The process improves itself from real friction, without ever silently rewriting its own rules:
+1. **Capture (every slice):** Stage 11 writes `docs/retros/<project>-<slice>-retro.md` — manual interventions,
+   decisions made, plan deviations, gate friction. Deterministic; no agent.
+2. **Audit/propose (periodic / on-demand):** the `sdlc-auditor` agent (model: Fable) ingests accumulated
+   retros and opens a **PR** to the command-center repo proposing changes to the orchestrator skill, the
+   agents, or the SDLC flow — with rationale. It **never self-merges to main.**
+3. **Gate:** the user reviews the PR alongside the reserved Fable adversarial review of the orchestrator.
+4. **Apply + re-pull:** merge → bump the plugin `version` → the next session's `/plugin marketplace update`
+   pulls the improved tooling; the orchestrator surfaces "process vX is newer" at session start.
+
+Open audit PRs also surface in the board's **Needs-Attention pane** (§5.5) with age badges, so a proposal
+can't sit stale and forgotten.
+
+Cadence: capture continuously (cheap); run the auditor every few slices or on demand — **not** per slice.
+
 ## 4. Documentation discipline
 
 Each project keeps **living documentation** in its repo, separate from code so it can't silently drift:
@@ -154,6 +173,16 @@ The exact doc set is **per-project configurable**; the above is the default. Dis
 - **Author/update** when a plan is created (Stage 4½) — docs reflect the *intended* implementation.
 - **Audit** after that plan's code lands (Stage 9½) — catch drift between implementation and docs;
   produce a drift report + proposed patches; fix before reconcile/merge.
+
+### 4.1 Operator guides (dogfooding the command-center)
+The command-center repo keeps its **own** living docs — and because it's the meta-tool, those include
+**how-to / step-by-step operating guides** so the system is never opaque or forgotten:
+- `docs/guides/operating.md` — run a session (installed `dev-orchestrator` `run` vs `onboard`), install/
+  update the plugin, read the board, and where retros + audit PRs live and how to act on them.
+- `docs/guides/new-project.md` — onboard a new project (config + swimlane + CI).
+- `docs/guides/self-improvement.md` — run the `sdlc-auditor`, review its PRs, merge + version-bump + re-pull.
+
+These are written *as each slice lands* (dogfooding), not after, and are themselves doc-audited (§3.6 / §9½).
 
 ## 5. The tracker (board)
 
@@ -206,12 +235,28 @@ node board-update.js --project <id> --slice <id> [--title <t>] \
 ```
 It upserts the card by `id` in `data/<project>.json`, stamps `lastTouched`, then **`git add` + commit +
 push** the hub — with an automatic `pull --rebase` + retry so concurrent sessions can't collide. It's
-invoked by absolute path, so **any project's session can update the hub** without the user committing
+invoked at the hub path (resolved from `hubPath`), so **any project's session can update the hub** without the user committing
 anything by hand. The orchestrator calls it at every stage transition, so the tracker never lags the SDLC.
 
-## 6. Reusable architecture (3 pieces + config)
+### 5.5 "Needs Attention" side pane
+Beyond the per-project swimlanes, the board shows a side pane aggregating **meta-actions that would
+otherwise rot** — so stale items can't hide:
+- **Open SDLC-audit PRs** (process-change proposals, §3.6) — with **age badges** (e.g. >30 days = red).
+- **Pending retros** — count since the last audit + the oldest date ("6 retros, oldest 52 days").
+- **Plugin update available** — "process v1.3 ready — `/plugin marketplace update`."
+- **Pending doc-drift patches** (§9½) and a **cross-project blocked-cards** summary.
 
-Mirrors the user's own Opus/Fable/token-free-script division, applied to tooling.
+Backed by `data/attention.json`, refreshed **deterministically** by the orchestrator at session start +
+reconcile (a small `attention-sync` step: `gh pr list` for audit PRs, a retro-dir scan, a plugin-version
+check). No agent — it's aggregation, not judgment. The staleness badges are the point: the pane exists so
+audit findings can't sit unseen for months.
+
+## 6. Reusable architecture (skill + agents + script + config)
+
+Mirrors the user's own Opus/Fable/token-free-script division, applied to tooling. The skill, all four agents,
+and any commands **ship inside the `dev-command-center` plugin** (§6.5–6.6) and install via the marketplace
+into every session — so "user-level" below means "available in every session once installed," with the
+authoritative source in the plugin (not hand-placed in `~/.claude/`).
 
 ### 6.1 `dev-orchestrator` (a skill, user-level)
 The conductor. On session start: read the board → pick project + slice + **execution topology by stack**
@@ -256,12 +301,18 @@ seams, spec-rule citation, regression risk, gate compliance. Tiny output (a find
 judgment-dense input — the canonical Fable use. Named (not ad-hoc) so every slice on every project gets the
 *same* merge-gate scrutiny.
 
+### 6.2c `sdlc-auditor` (a reusable agent, user-level, model: Fable)
+Ingests accumulated `slice-retro.md` files and audits the *process itself* (orchestrator skill, agents, SDLC
+flow). Output: a **proposal PR** to the command-center repo with rationale — never a direct commit to main
+(§3.6). Periodic / on-demand, not per-slice. Judgment-dense, tiny output → Fable. May escalate to a fan-out
+Workflow when auditing many retros at once (ultracode opt-in).
+
 ### 6.3 `board-update` (a deterministic script)
 See §5.4. Token-free, deterministic, granular. Lives at the hub repo root and operates on the local clone
 (writes `data/<project>.json`, commits + pushes). The orchestrator resolves the hub clone via `hubPath` in
 `projects.config.json`, so it works from any project's session without hardcoded paths (see §6.6 cache note).
 
-### 6.4 `project.config` (per-project descriptor — the flexibility lever)
+### 6.4 `projects.config.json` (per-project descriptor — the flexibility lever)
 Static per-project data the orchestrator reads, so behavior is config not code:
 ```jsonc
 {
@@ -290,13 +341,14 @@ dev-command-center/                         # public repo = hub + marketplace + 
 │   └── dev-command-center/                 # the distributable plugin (tooling source of truth)
 │       ├── .claude-plugin/plugin.json
 │       ├── skills/dev-orchestrator/SKILL.md
-│       ├── agents/{doc-keeper,project-state-scanner,merge-gate-reviewer}.md
+│       ├── agents/{doc-keeper,project-state-scanner,merge-gate-reviewer,sdlc-auditor}.md
 │       └── commands/{run,onboard,board}.md           # optional slash commands
 ├── board.html                              # live board, served by Pages
 ├── data/<project>.json                     # per-project board state (board-update writes these)
-├── board-update.js  build-board.js         # board machinery (run in-place in the clone)
+├── data/attention.json                     # aggregated action-items for the Needs-Attention pane
+├── board-update.js  build-board.js  attention-sync.js   # board machinery (run in-place in the clone)
 ├── projects.config.json                    # per-project config + hubPath
-├── context/  docs/  README.md
+├── context/  docs/ (incl. docs/guides/ how-tos · docs/retros/)  README.md
 ```
 
 Skills/agents/commands are **auto-discovered** from those dirs (no need to enumerate them in `plugin.json`).
@@ -330,17 +382,23 @@ Installed copies are cached under `~/.claude/plugins/cache/...` — see the §6.
 1. **Hub + marketplace setup** — create the public GitHub repo + remote; scaffold
    `.claude-plugin/marketplace.json` + the `plugins/dev-command-center/` plugin skeleton (`plugin.json`);
    push existing spec/context/docs; enable GitHub Pages.
-2. **Board (read view)** — `board.html` fetches+merges `data/<project>.json`, renders the 3 swimlanes; works on Pages.
-3. **board-update.js + projects.config.json** — per-project JSON upsert + auto add/commit/push (pull-rebase-retry); `hubPath` config.
+2. **Board (read view)** — `board.html` fetches+merges `data/<project>.json`, renders the 3 swimlanes + the
+   **Needs-Attention pane** (§5.5); works on Pages.
+3. **board-update.js + attention-sync.js + projects.config.json** — per-project JSON upsert + auto
+   add/commit/push (pull-rebase-retry); attention aggregation; `hubPath` config.
 4. **project-state-scanner agent + `onboard` mode** — scan memory+repo for all three; seed the data files
    with real status → pushed → live on Pages.
-5. **dev-orchestrator skill (run mode)**, packaged in the plugin; install via `/plugin install`; then the
-   **one Fable adversarial review** of this skill (the governing artifact).
+5. **dev-orchestrator skill (run mode)**, packaged in the plugin (includes per-slice `slice-retro` capture at
+   reconcile); install via `/plugin install`; then the **one Fable adversarial review** of this skill.
 6. **doc-keeper agent** (author + audit) + **merge-gate-reviewer agent** (Fable), in the plugin.
 7. **Dogfood** — run one real slice of one project end-to-end through the orchestrator (installed from the
    marketplace); reconcile.
-8. *(future, opt-in)* doc-keeper CI backstop · bundle board machinery into the plugin for other users ·
+8. **Self-improvement loop** — `sdlc-auditor` agent (PR-proposing, Fable) over accumulated retros; built after
+   dogfooding, once real retros exist.
+9. *(future, opt-in)* doc-keeper CI backstop · bundle board machinery into the plugin for other users ·
    board visual polish · command-center as a self-referential 4th lane.
+
+Throughout, the **operator guides (§4.1)** are written as each slice lands — dogfooding.
 
 The detailed implementation plan comes from `superpowers:writing-plans` after this spec is approved.
 
