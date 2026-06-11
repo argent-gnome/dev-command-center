@@ -7,7 +7,7 @@
       "name": "dev-command-center",
       "source": "dev-command-center",
       "description": "Unified house SDLC orchestrator + project tracker: dev-orchestrator skill and the doc-keeper / project-state-scanner / merge-gate-reviewer / sdlc-auditor agents.",
-      "version": "0.2.0"
+      "version": "0.3.0"
     }
   ]
 }
