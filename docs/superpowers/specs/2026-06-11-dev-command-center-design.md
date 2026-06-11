@@ -66,8 +66,9 @@ on the board at their current state.
 The three projects are mid-flight, so they are *onboarded*, not initialized. Onboard is a distinct,
 re-runnable path (a mode of the orchestrator, §6.1) that reconstructs current status from existing
 evidence — `git log` / branches / open PRs, the specs in `docs/superpowers/specs/`, and (richest of all)
-the project's memory entries — then writes the resulting card(s) to the board via `board-update`. It runs
-once to seed a project, and can re-run to reconcile drift from out-of-session changes. Powered by the
+the project's memory entries — then writes the resulting card(s) to `data/<key>.json` (bulk seed, committed +
+pushed); `board-update` handles incremental single-card updates thereafter. It runs once to seed a project,
+and can re-run to reconcile drift from out-of-session changes. Powered by the
 `project-state-scanner` agent (§6.2a).
 
 ### 3.2 The Slice loop (repeats)
@@ -86,7 +87,7 @@ slice ends with a **PR + description** and a merge. Stages and their delegated s
  6  verify (per-task)            spec-compliance reviewer ("don't trust the report") → code-quality reviewer;
                                  carry-forwards fold into later tasks
  7  merge-gate (adversarial)     ONE whole-slice review, cross-task seams         [merge-gate-reviewer · Fable]
- 8  CI green                     verified by actual `gh run view --json conclusion` (PR run AND main); never piped exit codes
+ 8  CI green ⛔                   PR run green via actual `gh run view --json conclusion` (post-merge main re-checked at stage 11); never piped exit codes
  9  live/device     ⛔ GATE       Simulator (iOS) / device / staging (web); reload app on UI change
  9½ DOCS: audit                  diff implementation vs docs → drift report → patch      [doc-keeper · audit]
  10 PR + description → merge
@@ -235,7 +236,7 @@ node board-update.js --project <id> --slice <id> [--title <t>] \
 ```
 It upserts the card by `id` in `data/<project>.json`, stamps `lastTouched`, then **`git add` + commit +
 push** the hub — with an automatic `pull --rebase` + retry so concurrent sessions can't collide. It's
-invoked at the hub path (resolved from `hubPath`), so **any project's session can update the hub** without the user committing
+invoked at the hub path (resolved from `hub.repoPath`), so **any project's session can update the hub** without the user committing
 anything by hand. The orchestrator calls it at every stage transition, so the tracker never lags the SDLC.
 
 ### 5.5 "Needs Attention" side pane
@@ -309,7 +310,7 @@ Workflow when auditing many retros at once (ultracode opt-in).
 
 ### 6.3 `board-update` (a deterministic script)
 See §5.4. Token-free, deterministic, granular. Lives at the hub repo root and operates on the local clone
-(writes `data/<project>.json`, commits + pushes). The orchestrator resolves the hub clone via `hubPath` in
+(writes `data/<project>.json`, commits + pushes). The orchestrator resolves the hub clone via `hub.repoPath` in
 `projects.config.json`, so it works from any project's session without hardcoded paths (see §6.6 cache note).
 
 ### 6.4 `projects.config.json` (per-project descriptor — the flexibility lever)
@@ -347,7 +348,7 @@ dev-command-center/                         # public repo = hub + marketplace + 
 ├── data/<project>.json                     # per-project board state (board-update writes these)
 ├── data/attention.json                     # aggregated action-items for the Needs-Attention pane
 ├── board-update.js  build-board.js  attention-sync.js   # board machinery (run in-place in the clone)
-├── projects.config.json                    # per-project config + hubPath
+├── projects.config.json                    # per-project config + hub.repoPath
 ├── context/  docs/ (incl. docs/guides/ how-tos · docs/retros/)  README.md
 ```
 
@@ -367,11 +368,11 @@ Installed copies are cached under `~/.claude/plugins/cache/...` — see the §6.
 - **GitHub Pages** serves `board.html` from the same repo → stable URL, any device, $0 (free for public repos).
   Each `board-update` push redeploys Pages.
 - **Auto-sync from every session, zero manual commits.** The user-level skill calls `board-update` (operating
-  on the local hub clone at `hubPath`), which writes `data/<project>.json` then commits + pushes the hub
+  on the local hub clone at `hub.repoPath`), which writes `data/<project>.json` then commits + pushes the hub
   (with `pull --rebase` + retry). Every project session keeps the hub current by itself.
 - **Plugin-cache constraint (known):** installed plugins are copied to `~/.claude/plugins/cache/...`, not run
   in-place, so bundled scripts must use `${CLAUDE_PLUGIN_ROOT}` rather than absolute repo paths, and the hub
-  clone is resolved from config (`hubPath`), never hardcoded. v1 keeps `board-update.js` at hub root (operated
+  clone is resolved from config (`hub.repoPath`), never hardcoded. v1 keeps `board-update.js` at hub root (operated
   in the clone) to sidestep this; bundling it into the plugin for other users is a later slice.
 - **Shareable & public-repo hygiene.** README + spec + context make it a coherent "how I build" artifact others
   can install. No secrets/keys committed; status text is intentionally shareable. Auth: public repos need none
@@ -385,7 +386,7 @@ Installed copies are cached under `~/.claude/plugins/cache/...` — see the §6.
 2. **Board (read view)** — `board.html` fetches+merges `data/<project>.json`, renders the 3 swimlanes + the
    **Needs-Attention pane** (§5.5); works on Pages.
 3. **board-update.js + attention-sync.js + projects.config.json** — per-project JSON upsert + auto
-   add/commit/push (pull-rebase-retry); attention aggregation; `hubPath` config.
+   add/commit/push (pull-rebase-retry); attention aggregation; `hub.repoPath` config.
 4. **project-state-scanner agent + `onboard` mode** — scan memory+repo for all three; seed the data files
    with real status → pushed → live on Pages.
 5. **dev-orchestrator skill (run mode)**, packaged in the plugin (includes per-slice `slice-retro` capture at
