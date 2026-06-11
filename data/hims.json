@@ -1,0 +1,11 @@
+{
+  "project": "hims-pilot-recert",
+  "displayName": "HIMS Pilot Recert",
+  "cards": [
+    { "id": "hims__slice-1", "title": "Slice 1 — first build on fixed foundation",
+      "column": "build", "phase": "5 · build (multi-session)",
+      "nextAction": "Resolve submission_14d over-scoping flagged at checkpoint",
+      "blockedOn": null, "branch": "slice-1", "model": "Opus build / Fable merge-gate",
+      "lastTouched": "2026-06-11", "links": {} }
+  ]
+}

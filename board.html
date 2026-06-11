@@ -5,26 +5,60 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dev Command Center — Tracker</title>
 <style>
-  :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --indigo:#4f46e5; --teal:#0a7c66; --bg:#f8fafc; }
+  :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --indigo:#4f46e5; --teal:#0a7c66; --bg:#f8fafc; --red:#dc2626; }
   * { box-sizing:border-box; }
   body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); }
-  .wrap { max-width:880px; margin:0 auto; padding:64px 24px; }
-  h1 { font-size:28px; margin:0 0 6px; }
-  .sub { color:var(--muted); margin:0 0 28px; }
-  .card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px 20px; }
-  .tag { display:inline-block; font-size:12px; font-weight:600; padding:2px 10px; border-radius:999px; background:#ede9fe; color:#6d28d9; }
-  code { background:#f1f5f9; padding:1px 6px; border-radius:6px; }
+  .wrap { max-width:1280px; margin:0 auto; padding:32px 20px 64px; }
+  h1 { font-size:24px; margin:0 0 2px; }
+  .sub { color:var(--muted); margin:0 0 24px; font-size:14px; }
+  .board { display:grid; grid-template-columns:1fr 280px; gap:20px; align-items:start; }
+  .lane { background:#fff; border:1px solid var(--line); border-radius:12px; margin-bottom:16px; overflow:hidden; }
+  .lane-h { font-weight:700; padding:10px 14px; background:#f1f5f9; border-bottom:1px solid var(--line); }
+  .cols { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; padding:10px; }
+  .col-h { font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:6px; }
+  .card { background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:8px 10px; margin-bottom:8px; }
+  .card.is-blocked { border-color:var(--red); }
+  .phase { font-size:11px; color:var(--indigo); font-weight:600; }
+  .title { font-size:13px; font-weight:600; margin:2px 0; }
+  .next { font-size:12px; color:#334155; }
+  .blk { font-size:12px; color:var(--red); margin-top:4px; }
+  .foot { display:flex; gap:8px; margin-top:6px; }
+  .meta { font-size:11px; color:var(--muted); }
+  .attn { background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; position:sticky; top:20px; }
+  .attn-h { font-weight:700; margin-bottom:8px; }
+  .attn ul { margin:0; padding-left:16px; } .attn li { font-size:13px; margin:5px 0; }
+  .attn li.stale { color:var(--red); font-weight:600; } .attn .age { color:var(--red); font-weight:600; }
+  .attn .empty { color:var(--muted); font-size:13px; } .attn-foot { color:var(--muted); font-size:11px; margin-top:10px; }
+  code { background:#f1f5f9; padding:1px 5px; border-radius:5px; }
+  .err { color:var(--red); }
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>Dev Command Center</h1>
   <p class="sub">Unified SDLC tracker — three swimlanes, live status.</p>
-  <div class="card">
-    <span class="tag">Slice 1</span>
-    <p>Hub published. The live board (swimlanes, cards, Needs-Attention pane) lands in <b>Slice 2</b>.</p>
-    <p style="color:var(--muted);font-size:14px">Process &amp; design: see <code>docs/superpowers/specs/</code>.</p>
-  </div>
+  <div id="root"><p class="sub">Loading…</p></div>
 </div>
+<script src="board.render.js"></script>
+<script>
+  const PROJECT_FILES = ['data/spanish-coach.json', 'data/apex.json', 'data/hims.json'];
+  async function load() {
+    // Offline build path: data inlined as window.__BOARD__
+    if (window.__BOARD__) {
+      document.getElementById('root').innerHTML =
+        DCB.renderBoard(window.__BOARD__.projects, window.__BOARD__.attention);
+      return;
+    }
+    try {
+      const projects = await Promise.all(PROJECT_FILES.map(f => fetch(f).then(r => r.json())));
+      const attention = await fetch('data/attention.json').then(r => r.json()).catch(() => null);
+      document.getElementById('root').innerHTML = DCB.renderBoard(projects, attention);
+    } catch (e) {
+      document.getElementById('root').innerHTML =
+        '<p class="err">Could not load board data. If opening locally, run <code>node build-board.js</code> and open board.local.html, or serve over http.</p>';
+    }
+  }
+  load();
+</script>
 </body>
 </html>

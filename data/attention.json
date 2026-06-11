@@ -1,0 +1,8 @@
+{
+  "refreshedAt": "2026-06-11",
+  "openAuditPRs": [],
+  "pendingRetros": { "count": 1, "sinceAudit": null, "dir": "docs/retros/" },
+  "pluginUpdate": null,
+  "docDriftPatches": [],
+  "blockedCards": []
+}

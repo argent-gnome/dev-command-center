@@ -1,0 +1,11 @@
+{
+  "project": "spanish-coach",
+  "displayName": "Spanish Coach",
+  "cards": [
+    { "id": "spanish-coach__slice-7", "title": "Slice 7 — conjugation-aware generation",
+      "column": "spec", "phase": "2 · spec (user-review gate)",
+      "nextAction": "Approve the Slice 7 spec", "blockedOn": null,
+      "branch": "slice-7-conjugation", "model": "Opus build / Fable merge-gate",
+      "lastTouched": "2026-06-11", "links": {} }
+  ]
+}
