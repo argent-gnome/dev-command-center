@@ -51,13 +51,13 @@ note the gap in the retro.)*
    | 2 spec | `superpowers:brainstorming` (+ intent-first) → `docs/superpowers/specs/`; `board-update --link spec=<path>` | ⛔ user review |
    | 3 mockup (UI slices) | `superpowers:brainstorming` mockup | ⛔ sign-off |
    | 4 plan | `superpowers:writing-plans` — ensure the plan carries a **model-routing note** + "NOT this slice" scope guards | — |
-   | 4½ docs author | `doc-keeper` (author) — *Slice 6; until then author inline* | — |
+   | 4½ docs author | `doc-keeper` agent (author mode) | — |
    | 5 build | `superpowers:subagent-driven-development` \| `superpowers:executing-plans` + `superpowers:test-driven-development` + stack pro-skills (`swiftui-pro`/`swiftdata-pro`/`swift-testing-pro`/`swift-concurrency-pro` or `supabase`/`vercel:*`) — enforce the stack gates below | — |
    | 6 verify (per-task) | spec-compliance reviewer THEN code-quality reviewer (`superpowers:requesting-code-review` / `superpowers:receiving-code-review` + `superpowers:code-reviewer`); fold review findings forward as later-task prerequisites; `superpowers:systematic-debugging` on failures | — |
-   | 7 merge-gate | `merge-gate-reviewer` (Fable) — *Slice 6; until then dispatch a Fable subagent with the fixed rubric: cross-task seams · spec-rule citation · regression risk · gate compliance* | — |
+   | 7 merge-gate | `merge-gate-reviewer` agent (Fable; rubric: cross-task seams · spec-rule citation · regression risk · gate compliance) | — |
    | 8 CI | `superpowers:verification-before-completion` — the **PR run** green via actual `gh run view --json conclusion` (never piped exit codes) | ⛔ PR CI green |
    | 9 live/device | Simulator (iOS) / device / staging (web); **reload the app after any UI change** | ⛔ validation |
-   | 9½ docs audit | `doc-keeper` (audit) — *Slice 6; until then diff impl-vs-docs inline* | — |
+   | 9½ docs audit | `doc-keeper` agent (audit mode) | — |
    | 10 PR + merge | `superpowers:finishing-a-development-branch`; `board-update --link pr=<url>` | — |
    | 11 reconcile | memory + docs + board + **verify post-merge main CI green** + write the slice retro | — |
 
