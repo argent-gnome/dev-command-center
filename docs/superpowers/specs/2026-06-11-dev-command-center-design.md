@@ -18,9 +18,10 @@ The user runs three concurrent software projects in different industries. They w
 3. **Leverage the full Claude ecosystem.** Reuse existing skills/agents rather than re-prompting
    bespoke copies; package repeatable jobs as reusable agents/scripts so execution is uniform and
    evolvable, not pigeonholed.
-4. **Access it anywhere, and share it.** The hub lives in one Git repo published to a free GitHub Pages
-   URL, so the board is viewable on any device; the repo doubles as a shareable, version-controlled
-   statement of "how I build" for other developers.
+4. **Access it anywhere, and share it.** The hub lives in one public Git repo: published to a free GitHub
+   Pages URL so the board is viewable on any device, *and* serving as a **Claude Code plugin marketplace**
+   so the skill + agents install into any machine/repo from one source of truth and stay updated — a
+   shareable, version-controlled statement of "how I build" for other developers.
 
 This is **encoded intent** (per `intent-first-spec-anchored`): this spec is the durable source of
 truth; the orchestrator skill, the agent, the script, and the board *realize* it.
@@ -256,7 +257,9 @@ judgment-dense input — the canonical Fable use. Named (not ad-hoc) so every sl
 *same* merge-gate scrutiny.
 
 ### 6.3 `board-update` (a deterministic script)
-See §5.4. Token-free, deterministic, granular. Lives in `dev-command-center/`.
+See §5.4. Token-free, deterministic, granular. Lives at the hub repo root and operates on the local clone
+(writes `data/<project>.json`, commits + pushes). The orchestrator resolves the hub clone via `hubPath` in
+`projects.config.json`, so it works from any project's session without hardcoded paths (see §6.6 cache note).
 
 ### 6.4 `project.config` (per-project descriptor — the flexibility lever)
 Static per-project data the orchestrator reads, so behavior is config not code:
@@ -275,41 +278,69 @@ Static per-project data the orchestrator reads, so behavior is config not code:
 Adding a 4th project, swapping the doc-keeper, or changing a gate = a config/agent edit. Nothing is
 pigeonholed.
 
-### 6.5 Where things live
-- **Hub repo** `dev-command-center/` (public, GitHub Pages): `board.html` · `data/<project>.json` ·
-  `board-update.js` · `build-board.js` · `projects.config.json` · `context/` · `docs/` · `README.md`.
-- **Tooling source (authoritative, version-controlled)** in the hub under `.claude-assets/`:
-  `skills/dev-orchestrator/`, `agents/{doc-keeper,project-state-scanner,merge-gate-reviewer}.md`, and an
-  `install.sh` that symlinks them into `~/.claude/` so the repo is self-contained + shareable.
-- **Installed (active) copies**: `~/.claude/skills/dev-orchestrator/` and
-  `~/.claude/agents/{doc-keeper,project-state-scanner,merge-gate-reviewer}.md` (symlinks to the above).
+### 6.5 Where things live — the hub repo is also a plugin marketplace
+One public repo plays three roles; Claude Code reads only the `.claude-plugin/` parts and ignores the rest,
+so the Pages board + docs coexist with the marketplace without conflict.
 
-### 6.6 Distribution, sync & hosting
-- **One hub repo, public, on GitHub.** Remote created with `gh`; existing spec/context/docs pushed.
-- **GitHub Pages** serves `board.html` from the hub → a stable URL, any device, $0 (free tier covers
-  public repos). Each `board-update` push redeploys Pages automatically.
-- **Auto-sync from every session.** Because `board-update` commits+pushes the hub by absolute path and the
-  orchestrator is a user-level skill, every project session keeps the hub current with **zero manual commits**.
-- **Shareable.** The repo is a coherent "how I build" artifact (README + spec + context + tooling source under
-  `.claude-assets/`). Natural end-form: package the skill+agents+board as a **Claude Code plugin** others can
-  `/plugin install`; the repo is structured to allow that later without rework.
-- **Public-repo hygiene.** No secrets/keys/tokens committed; the board's status text (project names, slice
-  descriptions) is intentionally shareable. Push auth via `gh`.
+```
+dev-command-center/                         # public repo = hub + marketplace + GitHub Pages
+├── .claude-plugin/
+│   └── marketplace.json                    # catalog: lists the dev-command-center plugin
+├── plugins/
+│   └── dev-command-center/                 # the distributable plugin (tooling source of truth)
+│       ├── .claude-plugin/plugin.json
+│       ├── skills/dev-orchestrator/SKILL.md
+│       ├── agents/{doc-keeper,project-state-scanner,merge-gate-reviewer}.md
+│       └── commands/{run,onboard,board}.md           # optional slash commands
+├── board.html                              # live board, served by Pages
+├── data/<project>.json                     # per-project board state (board-update writes these)
+├── board-update.js  build-board.js         # board machinery (run in-place in the clone)
+├── projects.config.json                    # per-project config + hubPath
+├── context/  docs/  README.md
+```
+
+Skills/agents/commands are **auto-discovered** from those dirs (no need to enumerate them in `plugin.json`).
+Installed copies are cached under `~/.claude/plugins/cache/...` — see the §6.6 cache note.
+
+### 6.6 Distribution, sync & hosting — marketplace + Pages
+- **The repo is a Claude Code plugin marketplace** (`.claude-plugin/marketplace.json`) hosting one plugin,
+  `dev-command-center` (the `dev-orchestrator` skill + the three agents + optional commands) — one source of
+  truth for the tooling.
+- **Install / update flow** (any machine, any of the other project repos):
+  `/plugin marketplace add jakec714/dev-command-center` → `/plugin install dev-command-center@jakes-dev`
+  (marketplace name `jakes-dev`, plugin name `dev-command-center` — finalized in the plan). Bumping the
+  plugin's `version` (or any commit, if version is omitted → SHA-versioned) propagates on
+  `/plugin marketplace update` and is auto-checked at session start. **This replaces** the earlier
+  symlink/`install.sh` idea.
+- **GitHub Pages** serves `board.html` from the same repo → stable URL, any device, $0 (free for public repos).
+  Each `board-update` push redeploys Pages.
+- **Auto-sync from every session, zero manual commits.** The user-level skill calls `board-update` (operating
+  on the local hub clone at `hubPath`), which writes `data/<project>.json` then commits + pushes the hub
+  (with `pull --rebase` + retry). Every project session keeps the hub current by itself.
+- **Plugin-cache constraint (known):** installed plugins are copied to `~/.claude/plugins/cache/...`, not run
+  in-place, so bundled scripts must use `${CLAUDE_PLUGIN_ROOT}` rather than absolute repo paths, and the hub
+  clone is resolved from config (`hubPath`), never hardcoded. v1 keeps `board-update.js` at hub root (operated
+  in the clone) to sidestep this; bundling it into the plugin for other users is a later slice.
+- **Shareable & public-repo hygiene.** README + spec + context make it a coherent "how I build" artifact others
+  can install. No secrets/keys committed; status text is intentionally shareable. Auth: public repos need none
+  to install; push uses `gh` creds.
 
 ## 7. Proposed build order (vertical slices)
 
-1. **Hub setup** — create the public GitHub repo + remote, push the existing spec/context/docs, enable
-   GitHub Pages.
+1. **Hub + marketplace setup** — create the public GitHub repo + remote; scaffold
+   `.claude-plugin/marketplace.json` + the `plugins/dev-command-center/` plugin skeleton (`plugin.json`);
+   push existing spec/context/docs; enable GitHub Pages.
 2. **Board (read view)** — `board.html` fetches+merges `data/<project>.json`, renders the 3 swimlanes; works on Pages.
-3. **board-update.js + projects.config.json** — per-project JSON upsert + auto add/commit/push (pull-rebase-retry).
+3. **board-update.js + projects.config.json** — per-project JSON upsert + auto add/commit/push (pull-rebase-retry); `hubPath` config.
 4. **project-state-scanner agent + `onboard` mode** — scan memory+repo for all three; seed the data files
    with real status → pushed → live on Pages.
-5. **dev-orchestrator skill (run mode)** + `.claude-assets/` source + `install.sh`; then the **one Fable
-   adversarial review** of this skill (the governing artifact).
-6. **doc-keeper agent** (author + audit) + **merge-gate-reviewer agent** (Fable).
-7. **Dogfood** — run one real slice of one project end-to-end through the orchestrator; reconcile.
-8. *(future, opt-in)* doc-keeper CI backstop · Claude Code plugin packaging · board visual polish ·
-   command-center as a self-referential 4th lane.
+5. **dev-orchestrator skill (run mode)**, packaged in the plugin; install via `/plugin install`; then the
+   **one Fable adversarial review** of this skill (the governing artifact).
+6. **doc-keeper agent** (author + audit) + **merge-gate-reviewer agent** (Fable), in the plugin.
+7. **Dogfood** — run one real slice of one project end-to-end through the orchestrator (installed from the
+   marketplace); reconcile.
+8. *(future, opt-in)* doc-keeper CI backstop · bundle board machinery into the plugin for other users ·
+   board visual polish · command-center as a self-referential 4th lane.
 
 The detailed implementation plan comes from `superpowers:writing-plans` after this spec is approved.
 
