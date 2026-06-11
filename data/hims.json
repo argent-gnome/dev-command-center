@@ -2,10 +2,29 @@
   "project": "hims",
   "displayName": "HIMS Pilot Recert",
   "cards": [
-    { "id": "hims__slice-1", "title": "Slice 1 — first build on fixed foundation",
-      "column": "build", "phase": "5 · build (multi-session)",
-      "nextAction": "Resolve submission_14d over-scoping flagged at checkpoint",
-      "blockedOn": null, "branch": "slice-1", "model": "Opus build / Fable merge-gate",
-      "lastTouched": "2026-06-11", "links": {} }
+    {
+      "id": "hims__slice1-pilot-detail",
+      "title": "Slice 1 — Pilot detail page (intake, real DB)",
+      "column": "build",
+      "phase": "Checkpoint A done on branch; Task 8 unblocked + plan-patched, ready to resume",
+      "nextAction": "Re-verify Checkpoint A against slice0.5's corrected verdicts, then implement Task 8 intake form + Server Action",
+      "blockedOn": null,
+      "branch": "slice1-pilot-detail",
+      "model": "Opus build / Fable merge-gate",
+      "lastTouched": "2026-06-11",
+      "links": {}
+    },
+    {
+      "id": "hims__slice2-progress-pane",
+      "title": "Slice 2 — Progress pane",
+      "column": "backlog",
+      "phase": "planned just-in-time; depends on Slice 1",
+      "nextAction": "Write the Slice 2 plan after Slice 1 merges",
+      "blockedOn": "Slice 1 not merged",
+      "branch": null,
+      "model": null,
+      "lastTouched": "2026-06-11",
+      "links": {}
+    }
   ]
 }

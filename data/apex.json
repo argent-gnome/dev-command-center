@@ -2,10 +2,29 @@
   "project": "apex",
   "displayName": "APEX (moto-ride-stats)",
   "cards": [
-    { "id": "apex__slice-3", "title": "Slice 3 — persistence + map",
-      "column": "backlog", "phase": "1 · scope",
-      "nextAction": "Write the Slice 3 plan (validate-then-proceed)", "blockedOn": null,
-      "branch": null, "model": "Opus build / Fable planning",
-      "lastTouched": "2026-06-11", "links": {} }
+    {
+      "id": "apex__slice-2-live-hud",
+      "title": "Slice 2 — Live HUD + background recording",
+      "column": "live",
+      "phase": "merged to main; first-ride device validation (T8)",
+      "nextAction": "Take the first validation ride: confirm lock-screen ≥2min CSV t-gap <1.5s, app-switch/call survival, moving-vs-total, second-ride reset",
+      "blockedOn": "awaiting real-device validation ride",
+      "branch": null,
+      "model": null,
+      "lastTouched": "2026-06-11",
+      "links": {}
+    },
+    {
+      "id": "apex__slice-3-persistence",
+      "title": "Slice 3 — Persistence + ride overview + map",
+      "column": "backlog",
+      "phase": "not yet planned; must fix I5 ~1h ride-envelope sample eviction",
+      "nextAction": "Write the Slice-3 plan (SwiftData persistence, ride overview, map; fix I5 never-evicted samples array)",
+      "blockedOn": null,
+      "branch": null,
+      "model": "Fable planning / Opus build",
+      "lastTouched": "2026-06-11",
+      "links": {}
+    }
   ]
 }

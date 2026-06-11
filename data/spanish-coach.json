@@ -2,10 +2,29 @@
   "project": "spanish-coach",
   "displayName": "Spanish Coach",
   "cards": [
-    { "id": "spanish-coach__slice-7", "title": "Slice 7 — conjugation-aware generation",
-      "column": "spec", "phase": "2 · spec (user-review gate)",
-      "nextAction": "Approve the Slice 7 spec", "blockedOn": null,
-      "branch": "slice-7-conjugation", "model": "Opus build / Fable merge-gate",
-      "lastTouched": "2026-06-11", "links": {} }
+    {
+      "id": "spanish-coach__slice-7-enrich-06-15",
+      "title": "Slice 7 — Enrich lessons 6–15 (L12 pools + sentences)",
+      "column": "build",
+      "phase": "7 · build (plan ready, Phase A prep)",
+      "nextAction": "Run Phase A prep (conjugation canon 06–15 + author harvest/sentence Workflow scripts), then request 'ultracode' opt-in for Phase B generation",
+      "blockedOn": null,
+      "branch": "slice-7-enrich-06-15",
+      "model": "Opus generators / Fable verify lenses",
+      "lastTouched": "2026-06-11",
+      "links": {}
+    },
+    {
+      "id": "spanish-coach__lessons-16-90",
+      "title": "Lessons 16–90 authoring (later tranches)",
+      "column": "backlog",
+      "phase": "backlog · scoped (all 90 transcribed)",
+      "nextAction": "Author next lesson tranche after S7 enrichment lands",
+      "blockedOn": null,
+      "branch": null,
+      "model": null,
+      "lastTouched": "2026-06-11",
+      "links": {}
+    }
   ]
 }
