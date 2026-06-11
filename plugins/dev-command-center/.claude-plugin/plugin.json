@@ -1,7 +1,7 @@
 {
   "name": "dev-command-center",
-  "description": "Unified house SDLC orchestrator + project tracker (scaffold; components land in later slices).",
-  "version": "0.1.0",
+  "description": "Unified house SDLC orchestrator + project tracker. Includes the project-state-scanner agent; orchestrator skill + more agents land in later slices.",
+  "version": "0.2.0",
   "author": { "name": "Jake Edwards", "email": "jakec714@gmail.com" },
   "homepage": "https://github.com/argent-gnome/dev-command-center",
   "keywords": ["sdlc", "orchestrator", "tracker", "kanban"]
