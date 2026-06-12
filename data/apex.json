@@ -17,9 +17,9 @@
     {
       "id": "apex__slice-3-persistence",
       "title": "Slice 3 — Persistence + ride overview + map",
-      "column": "build",
-      "phase": "stage 5 — Phase C (recorder+screens) done; Phase D fixtures+tests (Task 11/13)",
-      "nextAction": "Seed DEBUG fixtures; new XCUITest (record→save→list→reopen); gates + RideSummaryView cleanup; then merge-gate + CI",
+      "column": "verify",
+      "phase": "stage 7 — merge-gate review (Fable); all 13 tasks done, local gates green",
+      "nextAction": "Fable whole-slice merge-gate; then PR + CI green; then device validation",
       "blockedOn": null,
       "branch": "slice-3-persistence",
       "model": "Fable planning / Opus build",
