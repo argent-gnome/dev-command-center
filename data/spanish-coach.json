@@ -5,14 +5,16 @@
     {
       "id": "spanish-coach__slice-7-enrich-06-15",
       "title": "Slice 7 — Enrich lessons 6–15 (L12 pools + sentences)",
-      "column": "build",
-      "phase": "7 · build — Phase B: -idad/-oso pools merged (367→477 words, L12 browse live); conjugation-aware sentences 06–15 generating (Workflow)",
-      "nextAction": "Merge verified sentences → generated-sentences.json; coverage + sample review; then Phase C ship (tests, build+reload, ADR-0019, PR, CI, merge)",
+      "column": "verify",
+      "phase": "7 · verify — local gates green (110 tests, lint, build); PR #14 open, CI running",
+      "nextAction": "Confirm PR CI green (gh run conclusion), then live sim spot-check (lessons 6–15 sentences + L12 browse), then merge",
       "blockedOn": null,
       "branch": "slice-7-enrich-06-15",
       "model": "Opus generators / Fable verify lenses",
       "lastTouched": "2026-06-12",
-      "links": {}
+      "links": {
+        "pr": "https://github.com/argent-gnome/spanish-coach/pull/14"
+      }
     },
     {
       "id": "spanish-coach__lessons-16-90",
