@@ -49,9 +49,10 @@ function main() {
   fs.writeFileSync(dataFile, JSON.stringify(board, null, 2) + '\n');
   const author = (cfg.hub && cfg.hub.author) || { name: 'dev-orchestrator', email: 'noreply@local' };
   const ident = ['-c', `user.name=${author.name}`, '-c', `user.email=${author.email}`];
-  git(['add', path.join('data', a.project + '.json')]);
-  if (!git(['diff', '--cached', '--name-only']).trim()) { console.log('no change'); return; }
-  git([...ident, 'commit', '-q', '-m', `tracker: ${a.project} ${a.slice} → ${a.column || card.column}`]);
+  const rel = path.join('data', a.project + '.json');
+  git(['add', rel]);
+  if (!git(['diff', '--cached', '--name-only', '--', rel]).trim()) { console.log('no change'); return; }
+  git([...ident, 'commit', '-q', '-m', `tracker: ${a.project} ${a.slice} → ${a.column || card.column}`, '--', rel]);
   if (a.noPush) { console.log('committed (no push)'); return; }
   try { try { git(['pull', '--rebase', '--autostash', '-q']); } catch (e) {} git(['push', '-q']); }
   catch (e) { try { git(['pull', '--rebase', '--autostash', '-q']); git(['push', '-q']); } catch (e2) { console.error('push failed (committed locally): ' + e2.message); process.exit(1); } }

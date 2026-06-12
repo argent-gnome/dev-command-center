@@ -42,8 +42,12 @@
     const items = [];
     (a.openAuditPRs || []).forEach(pr => items.push(
       `<li class="${pr.ageDays > 30 ? 'stale' : ''}">Audit PR #${esc(pr.number)} — ${esc(pr.title)} <span class="age">${esc(pr.ageDays)}d</span></li>`));
-    if (a.pendingRetros && a.pendingRetros.count)
-      items.push(`<li>${esc(a.pendingRetros.count)} retro(s) awaiting audit${a.pendingRetros.sinceAudit ? ` (since ${esc(a.pendingRetros.sinceAudit)})` : ''}</li>`);
+    if (a.pendingRetros && a.pendingRetros.count) {
+      const pr = a.pendingRetros;
+      const since = pr.sinceAudit ? ` (since ${esc(String(pr.sinceAudit).slice(0, 10))})` : '';
+      const age = pr.oldestDays != null ? `, oldest ${esc(pr.oldestDays)}d` : '';
+      items.push(`<li class="${pr.oldestDays > 30 ? 'stale' : ''}">${esc(pr.count)} retro(s) awaiting audit${since}${age}</li>`);
+    }
     if (a.pluginUpdate) items.push(`<li class="stale">Process update ready — <code>/plugin marketplace update</code></li>`);
     (a.docDriftPatches || []).forEach(d => items.push(`<li>Doc-drift patch pending: ${esc(d)}</li>`));
     (a.blockedCards || []).forEach(b => items.push(`<li class="stale">Blocked: ${esc(b)}</li>`));

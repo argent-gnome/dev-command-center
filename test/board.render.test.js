@@ -10,7 +10,7 @@ const projects = [
   ] }
 ];
 const attention = { refreshedAt: '2026-06-11', openAuditPRs: [{ number: 14, title: 'x', url: '#', ageDays: 41 }],
-  pendingRetros: { count: 2, sinceAudit: '2026-04-20', dir: 'docs/retros/' }, pluginUpdate: null,
+  pendingRetros: { count: 2, sinceAudit: '2026-04-20T12:00:00Z', oldestDays: 52, dir: 'docs/retros/' }, pluginUpdate: null,
   docDriftPatches: [], blockedCards: [] };
 
 const html = renderBoard(projects, attention);
@@ -20,6 +20,8 @@ assert.ok(COLUMNS.length === 6, 'six columns');
 assert.ok(html.includes('do thing'), 'shows nextAction');
 assert.ok(html.includes('CI red'), 'shows blockedOn text');
 assert.ok(html.includes('41') && html.includes('Needs Attention'), 'attention pane with age');
+assert.ok(html.includes('oldest 52d'), 'renders the oldest-retro age (spec §5.5)');
+assert.ok(html.includes('since 2026-04-20') && !html.includes('2026-04-20T'), 'sinceAudit shown as date, not raw datetime');
 
 // XSS escaping check
 const evil = [{ project: 'x', displayName: '<script>alert(1)</script>', cards: [] }];

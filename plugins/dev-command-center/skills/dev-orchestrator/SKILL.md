@@ -33,11 +33,14 @@ If the user didn't say which mode/project, infer the project from cwd (match a `
 ambiguous, ask.
 
 ## Session start (both modes)
-Refresh the **Needs-Attention** pane: run `attention-sync` (deterministic — count `docs/retros/` awaiting
-audit, `gh pr list` for open SDLC-audit PRs, check the installed plugin version) and surface
-"process vX is newer — `/plugin marketplace update`" if the installed plugin lags the marketplace.
-*(`attention-sync.js` is not built yet — until it is, correct `data/attention.json` by hand at reconcile and
-note the gap in the retro.)*
+Refresh the **Needs-Attention** pane (deterministic — aggregation, not judgment):
+```
+node <hub>/attention-sync.js --installed <this-plugin's-version>
+```
+It scans `data/*.json` for blocked cards, counts retros awaiting audit across the hub + every project repo,
+lists open `sdlc-audit` PRs (`gh`), and sets `pluginUpdate` when the installed version lags the marketplace.
+Pass your running version to `--installed` (read it from `${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json`);
+surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<hub>` = `config.hub.repoPath`.)
 
 ## run — the procedure
 
@@ -118,6 +121,29 @@ the board with reality.
 STOP and get the user at: **spec review · mockup sign-off · live/device validation · CI red · any plan
 deviation or genuine ambiguity · any irreversible / outward-facing action (publish a repo, deploy to prod,
 anything destructive).** This is the plan-deviation gate — surface it, don't self-resolve.
+
+## Autonomous / supervised-remote mode (`run --autonomous --max-slices N`)
+A bounded layer over the loop for running while the user is away. It changes **only who clears _soft_
+gates** — the loop, the stack gates, the Fable merge-gate, and the verification doctrine are unchanged.
+- **HARD gates — always stop, even autonomous** = the entire "never cross silently" list above. At each,
+  **PushNotification the user** and halt for approval.
+- **SOFT gates — auto-advance, WITH a logged decision** = routine stage transitions, per-task
+  review→fix→re-review cycles, equivalent-option choices that have a sensible default, board-update calls.
+- **Fail closed.** Unsure whether a gate is hard or soft → treat it as hard and stop. Ambiguity *is* a hard gate.
+- **Self-stop** when `--max-slices N` is reached · at the first hard gate · on any unrecoverable error. On
+  stop, post a summary: what advanced, the decision log, where it halted, what it needs.
+- **Decision log.** Append every soft auto-advance to `<repoPath>/docs/autonomous/<date>-<key>-run.md`
+  ({stage · decision · why · alternatives}) so no silent correction is invisible at review.
+- **Supervised-remote setup:** `claude` remote-control + the Claude phone app + `/config` "Push when Claude
+  decides" + `caffeinate -i`; reversible work proceeds, irreversible waits for the phone approval.
+
+## Self-improvement (periodic, gated)
+Every few slices — or on demand, **not** per slice — dispatch the **`sdlc-auditor`** agent (Fable) over the
+retros accumulated since the last audit. It opens a **gated PR** proposing conductor/agent/flow changes, each
+citing the retro lines that justify it; it never commits to main. Review it alongside the reserved merge-gate,
+merge, bump the plugin `version`, and the next session's `/plugin marketplace update` pulls the improvement.
+Open `sdlc-audit` PRs + pending-retro counts ride the Needs-Attention pane (via `attention-sync`) with age
+badges, so a proposal can't rot unseen.
 
 ## Cross-cutting policies
 - **Model routing** — default **Opus** (implementation, routine review, bulk content, mechanical chores).
