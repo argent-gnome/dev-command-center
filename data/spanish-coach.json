@@ -35,8 +35,8 @@
       },
       "title": "RepEventRecord SwiftData migration guard (data-safety)",
       "column": "spec",
-      "phase": "spec written — awaiting review",
-      "nextAction": "User reviews design spec; then plan + build",
+      "phase": "spec approved — writing plan",
+      "nextAction": "Write implementation plan, then build on a branch",
       "model": "Opus (schema/migration) + Fable verify",
       "lastTouched": "2026-06-12"
     }
