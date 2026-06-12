@@ -32,9 +32,9 @@
       "id": "spanish-coach__repevent-migration-guard",
       "links": {},
       "title": "RepEventRecord SwiftData migration guard (data-safety)",
-      "column": "backlog",
-      "phase": "backlog · scoped (found during S7 live check)",
-      "nextAction": "Add an explicit lightweight migration / itemId default so a device on a pre-itemId RepEventRecord schema can't hard-crash on update (CoreData recovery wipes the store = lost rep history). Confirm real-device schema is not at risk.",
+      "column": "spec",
+      "phase": "scoping — root cause confirmed (conceptId/wordId→lessonId/itemId rename, no originalName, no migration plan)",
+      "nextAction": "Decide scope depth; write spec for ⛔ user review",
       "model": "Opus (schema/migration) + Fable verify",
       "lastTouched": "2026-06-12"
     }
