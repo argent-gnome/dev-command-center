@@ -3,7 +3,7 @@
   "openAuditPRs": [],
   "pendingRetros": {
     "count": 10,
-    "sinceAudit": null,
+    "sinceAudit": "2026-06-12T14:57:59-04:00",
     "oldest": "2026-06-11T17:36:57-04:00",
     "oldestDays": 0,
     "dir": "docs/retros/"

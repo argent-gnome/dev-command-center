@@ -49,8 +49,9 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
 2. **Reconcile the starting state & ready the repo** (the "resume cold after days away" promise, and the
    "make the repo ready before slice dev" intent). Two things, before any building:
    - **Git reality vs the board** — current branch vs `main`, uncommitted/stashed WIP, a branch that predates
-     a merge, a stranded plan-patch, open PRs. Surface any tangle and resolve it *before* building (board
-     narratives understate drift — the hims dogfood opened on exactly this).
+     a merge, a stranded plan-patch, open PRs — plus any plan-referenced artifacts that live OUTSIDE git (an
+     untracked sibling/content repo): check the disk, not just the log. Surface any tangle and resolve it
+     *before* building (board narratives understate drift — the hims dogfood opened on exactly this).
    - **Can the repo progress the house way?** — the stack's CI gate set is wired (ios: `swift test` ·
      SwiftLint · `xcodebuild` · XCUITest; web: tests · typecheck · lint · build) and the docs scaffold exists
      (`docs/superpowers/specs|plans`, an ADR dir, `docs/retros/`). **Stand up anything missing first** (the
@@ -94,6 +95,13 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
    `--link spec=<path>` at stage 2 and `--link pr=<url>` at stage 10. (`<hub>` = `config.hub.repoPath`.)
    board-update commits + pushes the hub, so the board never lags the SDLC. (The hims dogfood skipped the
    mid-slice updates and the card jumped backlog→done only at merge — that's the failure this prevents.)
+   Two lag cases the column-walk alone does NOT cover (spanish-coach Phase-A artifacts sat invisible for a
+   whole session on both):
+   - **No-commit-trail artifacts.** When a stage's artifacts land OUTSIDE the project's git (an untracked
+     sibling/content repo, a generated canon), run board-update with a `--phase` bump the moment they land —
+     git can't witness them, so the board is the only signal a later session has.
+   - **Session end.** Never end a session — slice finished or not — without board-update reflecting
+     everything that landed; the run-start reconcile (step 2) is git-based and blind to non-git work.
 7. **Reconcile (stage 11).** Update the project's memory, run the docs audit, **verify the post-merge main CI
    run is green** (`gh run view --json conclusion`), set the card to its resting column (done / live / blocked)
    with the next action via board-update, and write the slice retro **to the project's own repo**
@@ -104,7 +112,10 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
 - **ios** — `swift test` · SwiftLint · `xcodebuild` build (+ a Release-build check when DEBUG-only code is
   involved) · XCUITest against the synthetic harness · **NO DESTRUCTIVE SwiftData changes** — additive /
   migrations only. The iOS apps run on the user's real device; never drop, reset, or rewrite a store in a way
-  that loses data.
+  that loses data. **The prohibition needs verification teeth:** when any `@Model` schema changes, the stage-9
+  live gate MUST include launching against a store populated under the *previous* schema — a fresh
+  install / CI passing is *not* proof the migration is safe (twin of the web rule below; a mandatory-new-field
+  change hard-crashed a real on-device store that CI, which never runs the app, could not see).
 - **web** — unit tests · typecheck · lint · build (GitHub Actions / Vercel). **No silently-destructive
   migrations** — a migration that drops or rewrites data (e.g. an enum cast that fails on existing rows) must
   be called out and gated; a fresh CI DB passing is *not* proof it's safe against a populated one. (Mirrors
@@ -158,10 +169,15 @@ badges, so a proposal can't rot unseen.
 - **Multi-agent opt-in** — plain parallel subagents are free; **Workflows require the user's explicit
   "ultracode" opt-in** (they can spawn dozens of agents).
 
-## Rigor dial (slice type)
-Scale ceremony to the cost of a wrong-but-plausible decision: *content / mechanical* → light (plain fan-out,
-token-free checks, skip the mockup); *feature / UI* → full ceremony + mockup sign-off; *risky / novel* → add
-the stage-0 spike gate.
+## Rigor dial (stakes, not file type)
+Scale ceremony to the cost of a wrong-but-plausible decision — the *stakes*, never the slice's file type:
+*content / mechanical* → light (plain fan-out, token-free checks, skip the mockup); *feature / UI* → full
+ceremony + mockup sign-off; *risky / novel* → add the stage-0 spike gate.
+**Floor: the dial never down-rates the Fable merge-gate.** When the spec flags a high-stakes rule (e.g.
+spanish-coach BR-10) or the slice touches user data, the one adversarial merge-gate runs no matter how
+"light" the slice looks — it has repeatedly caught criticals that every other check passed (a "content-only"
+slice shipped an out-of-canon noun + cross-lesson duplicates that only the gate saw). Proposing to skip it is
+itself a hard gate: surface it to the user; never decide it from the dial.
 
 ## Compose, don't reinvent
 Every stage hands off to an existing skill. If you catch yourself writing scoping questions, a plan template,
