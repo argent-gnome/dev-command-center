@@ -36,8 +36,8 @@
       },
       "title": "RepEventRecord SwiftData migration guard (data-safety)",
       "column": "live",
-      "phase": "PR #15 open — CI running (incl. new app-test step); live-validated",
-      "nextAction": "Verify PR CI green, then merge",
+      "phase": "all gates green (merge-gate + live + PR CI incl. new app-test step) — merging",
+      "nextAction": "Merge PR #15, then reconcile + retro",
       "model": "Opus (schema/migration) + Fable verify",
       "lastTouched": "2026-06-12",
       "branch": "slice-8-repevent-migration-guard"
