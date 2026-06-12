@@ -5,9 +5,9 @@
     {
       "id": "spanish-coach__slice-7-enrich-06-15",
       "title": "Slice 7 — Enrich lessons 6–15 (L12 pools + sentences)",
-      "column": "verify",
-      "phase": "7 · verify — Fable merge-gate DONE (MERGE-WITH-NITS): 2 should-fix content findings fixed (out-of-canon vocab + 2 cross-lesson dupes), 110 tests green, final CI running",
-      "nextAction": "On user go-ahead: merge PR #14 → verify post-merge main CI → reconcile (memory + retro + board done)",
+      "column": "done",
+      "phase": "done · MERGED 2026-06-12 (PR #14, merge 4d070d0); post-merge main CI green",
+      "nextAction": "Slice complete. Live-validated; ADR-0019 + docs reconciled; retro written. Follow-ups tracked separately (repevent-migration-guard; lessons 16–90).",
       "blockedOn": null,
       "branch": "slice-7-enrich-06-15",
       "model": "Opus generators / Fable verify lenses",
