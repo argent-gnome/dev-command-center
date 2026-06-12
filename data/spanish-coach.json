@@ -6,12 +6,12 @@
       "id": "spanish-coach__slice-7-enrich-06-15",
       "title": "Slice 7 — Enrich lessons 6–15 (L12 pools + sentences)",
       "column": "build",
-      "phase": "7 · build (plan ready, Phase A prep)",
-      "nextAction": "Run Phase A prep (conjugation canon 06–15 + author harvest/sentence Workflow scripts), then request 'ultracode' opt-in for Phase B generation",
+      "phase": "7 · build — Phase A prep COMPLETE (canon 06–15 + harvest/sentences Workflow scripts ready-to-fire; Fable verify lenses)",
+      "nextAction": "GATED on user 'ultracode' opt-in: run Phase B Workflows (harvest -idad/-oso pools → cognate-pools.json; conjugation-aware sentences 06–15 → generated-sentences.json)",
       "blockedOn": null,
       "branch": "slice-7-enrich-06-15",
       "model": "Opus generators / Fable verify lenses",
-      "lastTouched": "2026-06-11",
+      "lastTouched": "2026-06-12",
       "links": {}
     },
     {
