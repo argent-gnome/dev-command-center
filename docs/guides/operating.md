@@ -6,7 +6,7 @@ Your day-to-day guide to running the house SDLC and the tracker.
 The conductor skill + agents ship as a Claude Code plugin from this repo's marketplace:
 ```
 /plugin marketplace add argent-gnome/dev-command-center   # one time
-/plugin install dev-command-center@jakes-dev               # one time
+/plugin install dev-command-center@dev-command-center      # one time
 /plugin marketplace update                                 # pull latest after a version bump
 ```
 Installs the `dev-orchestrator` skill + the agents `project-state-scanner`, `doc-keeper`,

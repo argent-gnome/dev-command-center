@@ -1,5 +1,5 @@
 {
-  "name": "jakes-dev",
+  "name": "dev-command-center",
   "owner": { "name": "Jake Edwards", "email": "jakec714@gmail.com" },
   "metadata": { "pluginRoot": "./plugins" },
   "plugins": [

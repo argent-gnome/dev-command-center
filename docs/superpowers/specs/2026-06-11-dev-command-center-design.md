@@ -360,8 +360,8 @@ Installed copies are cached under `~/.claude/plugins/cache/...` — see the §6.
   `dev-command-center` (the `dev-orchestrator` skill + the three agents + optional commands) — one source of
   truth for the tooling.
 - **Install / update flow** (any machine, any of the other project repos):
-  `/plugin marketplace add jakec714/dev-command-center` → `/plugin install dev-command-center@jakes-dev`
-  (marketplace name `jakes-dev`, plugin name `dev-command-center` — finalized in the plan). Bumping the
+  `/plugin marketplace add argent-gnome/dev-command-center` → `/plugin install dev-command-center@dev-command-center`
+  (marketplace name `dev-command-center`, plugin name `dev-command-center`). Bumping the
   plugin's `version` (or any commit, if version is omitted → SHA-versioned) propagates on
   `/plugin marketplace update` and is auto-checked at session start. **This replaces** the earlier
   symlink/`install.sh` idea.

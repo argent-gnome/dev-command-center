@@ -3,7 +3,7 @@
     "repoPath": "/Users/jake-edwards/projects/dev-command-center",
     "repo": "argent-gnome/dev-command-center",
     "ghLogin": "argent-gnome",
-    "marketplace": "jakes-dev",
+    "marketplace": "dev-command-center",
     "pagesUrl": "https://argent-gnome.github.io/dev-command-center/board.html",
     "author": { "name": "Jake Edwards", "email": "jakec714@gmail.com" }
   },

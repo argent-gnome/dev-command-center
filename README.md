@@ -12,7 +12,7 @@ Jira-style tracker, and the tooling that keeps them in sync. This repo is simult
 
 ```
 /plugin marketplace add argent-gnome/dev-command-center
-/plugin install dev-command-center@jakes-dev
+/plugin install dev-command-center@dev-command-center
 ```
 
 ## Status
