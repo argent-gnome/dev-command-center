@@ -17,15 +17,16 @@
     {
       "id": "apex__slice-3-persistence",
       "title": "Slice 3 — Persistence + ride overview + map",
-      "column": "verify",
-      "phase": "stage 8 — merge-gate GO; pushing branch + opening PR for CI",
-      "nextAction": "Verify PR CI green; then your real-device validation before merge",
-      "blockedOn": null,
+      "column": "live",
+      "phase": "stage 9 — PR #1 CI green; awaiting your real-device validation before merge",
+      "nextAction": "Validate Slice 3 on your iPhone (record→save→overview→map+climb), then approve merge",
+      "blockedOn": "awaiting real-device validation + merge approval",
       "branch": "slice-3-persistence",
       "model": "Fable planning / Opus build",
       "lastTouched": "2026-06-12",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-12-slice-3-persistence-design.md"
+        "spec": "docs/superpowers/specs/2026-06-12-slice-3-persistence-design.md",
+        "pr": "https://github.com/argent-gnome/moto-ride-stats/pull/1"
       }
     }
   ]
