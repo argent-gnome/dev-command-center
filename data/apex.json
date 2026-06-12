@@ -17,13 +17,13 @@
     {
       "id": "apex__slice-3-persistence",
       "title": "Slice 3 — Persistence + ride overview + map",
-      "column": "backlog",
-      "phase": "not yet planned; must fix I5 ~1h ride-envelope sample eviction",
-      "nextAction": "Write the Slice-3 plan (SwiftData persistence, ride overview, map; fix I5 never-evicted samples array)",
+      "column": "spec",
+      "phase": "stage 1 — scoping (brainstorming)",
+      "nextAction": "Scope Slice 3 (persistence + ride overview + map + I5 fix); then author spec for your review",
       "blockedOn": null,
       "branch": null,
       "model": "Fable planning / Opus build",
-      "lastTouched": "2026-06-11",
+      "lastTouched": "2026-06-12",
       "links": {}
     }
   ]
