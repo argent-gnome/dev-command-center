@@ -1,8 +1,17 @@
 {
-  "refreshedAt": "2026-06-11",
+  "refreshedAt": "2026-06-12",
   "openAuditPRs": [],
-  "pendingRetros": { "count": 5, "sinceAudit": null, "dir": "docs/retros/" },
+  "pendingRetros": {
+    "count": 9,
+    "sinceAudit": null,
+    "oldest": "2026-06-11T17:36:57-04:00",
+    "oldestDays": 0,
+    "dir": "docs/retros/"
+  },
   "pluginUpdate": null,
   "docDriftPatches": [],
-  "blockedCards": []
+  "blockedCards": [
+    "APEX (moto-ride-stats) · Slice 2 — Live HUD + background recording — awaiting real-device validation ride",
+    "HIMS Pilot Recert · Auth/session + per-org access hardening — Needs the auth/session slice"
+  ]
 }
