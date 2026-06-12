@@ -30,11 +30,13 @@
     },
     {
       "id": "spanish-coach__repevent-migration-guard",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-12-repevent-migration-guard-design.md"
+      },
       "title": "RepEventRecord SwiftData migration guard (data-safety)",
       "column": "spec",
-      "phase": "scoping — root cause confirmed (conceptId/wordId→lessonId/itemId rename, no originalName, no migration plan)",
-      "nextAction": "Decide scope depth; write spec for ⛔ user review",
+      "phase": "spec written — awaiting review",
+      "nextAction": "User reviews design spec; then plan + build",
       "model": "Opus (schema/migration) + Fable verify",
       "lastTouched": "2026-06-12"
     }
