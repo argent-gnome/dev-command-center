@@ -31,12 +31,13 @@
     {
       "id": "spanish-coach__repevent-migration-guard",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-12-repevent-migration-guard-design.md"
+        "spec": "docs/superpowers/specs/2026-06-12-repevent-migration-guard-design.md",
+        "pr": "https://github.com/argent-gnome/spanish-coach/pull/15"
       },
       "title": "RepEventRecord SwiftData migration guard (data-safety)",
-      "column": "verify",
-      "phase": "merge-gate (Fable) + CI",
-      "nextAction": "Adversarial merge-gate, then PR CI green, then live validation",
+      "column": "live",
+      "phase": "PR #15 open — CI running (incl. new app-test step); live-validated",
+      "nextAction": "Verify PR CI green, then merge",
       "model": "Opus (schema/migration) + Fable verify",
       "lastTouched": "2026-06-12",
       "branch": "slice-8-repevent-migration-guard"
