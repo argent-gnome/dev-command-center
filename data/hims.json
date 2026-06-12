@@ -36,6 +36,16 @@
       "model": "Opus",
       "blockedOn": "Needs auth layer (not yet built)",
       "lastTouched": "2026-06-12"
+    },
+    {
+      "id": "hims__audit-record-immutability",
+      "links": {},
+      "title": "Audit-record immutability (case_event / verdict_snapshot RLS)",
+      "column": "backlog",
+      "phase": "Slice-0 audit (medium): case_event + verdict_snapshot still FOR ALL — in-org UPDATE/DELETE of audit rows permitted",
+      "nextAction": "Split policies to SELECT-only on the audit tables (mirror fvh_select); keep append-only history",
+      "model": "Opus",
+      "lastTouched": "2026-06-12"
     }
   ]
 }
