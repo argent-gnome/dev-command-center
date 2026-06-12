@@ -18,7 +18,7 @@
       "id": "apex__slice-3-persistence",
       "title": "Slice 3 — Persistence + ride overview + map",
       "column": "spec",
-      "phase": "stage 4 — writing implementation plan (Fable)",
+      "phase": "stage 4 — writing implementation plan (Opus; Fable reserved for merge-gate)",
       "nextAction": "Author the Slice-3 implementation plan; then your review before build",
       "blockedOn": null,
       "branch": "slice-3-persistence",
