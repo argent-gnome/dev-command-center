@@ -46,6 +46,16 @@
       "nextAction": "Split policies to SELECT-only on the audit tables (mirror fvh_select); keep append-only history",
       "model": "Opus",
       "lastTouched": "2026-06-12"
+    },
+    {
+      "id": "hims__rules-version-pinning",
+      "links": {},
+      "title": "Pin evaluate() to case.rulesVersion (not latest)",
+      "column": "backlog",
+      "phase": "Merge-gate NIT (B8): detail page evaluates with latest RULES_VERSION, not the case row's pinned rulesVersion — identical today, but a rules bump would silently re-evaluate pinned cases",
+      "nextAction": "Thread case.rulesVersion into evaluate(); load the matching rules artifact",
+      "model": "Opus",
+      "lastTouched": "2026-06-12"
     }
   ]
 }
