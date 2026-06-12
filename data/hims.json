@@ -6,12 +6,12 @@
       "id": "hims__slice1-pilot-detail",
       "title": "Slice 1 — Pilot detail page (intake, real DB)",
       "column": "build",
-      "phase": "Checkpoint A done on branch; Task 8 unblocked + plan-patched, ready to resume",
-      "nextAction": "Re-verify Checkpoint A against slice0.5's corrected verdicts, then implement Task 8 intake form + Server Action",
+      "phase": "Integrating slice0.5 into branch; re-verifying Checkpoint A on corrected engine",
+      "nextAction": "Re-run build+tests on corrected engine, capture corrected verdicts, then gate Checkpoint A sign-off",
       "blockedOn": null,
       "branch": "slice1-pilot-detail",
       "model": "Opus build / Fable merge-gate",
-      "lastTouched": "2026-06-11",
+      "lastTouched": "2026-06-12",
       "links": {}
     },
     {
