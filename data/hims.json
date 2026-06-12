@@ -25,6 +25,17 @@
       "model": null,
       "lastTouched": "2026-06-11",
       "links": {}
+    },
+    {
+      "id": "hims__auth-org-context",
+      "links": {},
+      "title": "Auth/session + org-context (RLS enforcement on writes)",
+      "column": "backlog",
+      "phase": "Deferred from Slice 1 (review C1): intake write-path runs on RLS-bypassing superuser conn; app.org_id never set; caseId trusted from URL",
+      "nextAction": "Build auth/session; derive org server-side; set_config('app.org_id') in write txn + wire a non-superuser app DB role; scope writes by org",
+      "model": "Opus",
+      "blockedOn": "Needs auth layer (not yet built)",
+      "lastTouched": "2026-06-12"
     }
   ]
 }
