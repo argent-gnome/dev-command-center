@@ -41,6 +41,17 @@
       "model": "Opus (schema/migration) + Fable verify",
       "lastTouched": "2026-06-12",
       "branch": "slice-8-repevent-migration-guard"
+    },
+    {
+      "id": "spanish-coach__slice-9-hardening",
+      "links": {},
+      "title": "Slice 9 — quality hardening + Practice review tile",
+      "column": "build",
+      "phase": "built — always-visible review tile + non-blocking XCUITests CI job; branch protection pending",
+      "nextAction": "Live-validate both tile states, push/CI, enable branch protection, merge",
+      "branch": "slice-9-hardening-review-tile",
+      "model": "Opus (light slice)",
+      "lastTouched": "2026-06-12"
     }
   ]
 }
