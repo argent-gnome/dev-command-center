@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MOCKUP — Collapsible swim lanes (v2)</title>
+<style>
+  /* ---- real board.html tokens (kept identical so this reads true) ---- */
+  :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --indigo:#4f46e5; --teal:#0a7c66; --bg:#f8fafc; --red:#dc2626; --amber:#b45309; --green:#15803d; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); }
+  .wrap { max-width:2400px; margin:0 auto; padding:32px 24px 64px; }
+  h1 { font-size:24px; margin:0 0 2px; }
+  .sub { color:var(--muted); margin:0 0 18px; font-size:14px; }
+  .board { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:20px; align-items:start; }
+  .cols { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; padding:10px; }
+  .col-h { font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:6px; }
+  .card { background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:8px 10px; margin-bottom:8px; overflow-wrap:anywhere; }
+  .card.is-blocked { border-color:var(--red); }
+  .phase { font-size:11px; color:var(--indigo); font-weight:600; }
+  .title { font-size:13px; font-weight:600; margin:2px 0; }
+  .next { font-size:12px; color:#334155; }
+  .blk { font-size:12px; color:var(--red); margin-top:4px; }
+  .foot { display:flex; gap:8px; margin-top:6px; }
+  .meta { font-size:11px; color:var(--muted); }
+  .attn { background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; position:sticky; top:20px; }
+  .attn-h { font-weight:700; margin-bottom:8px; }
+  .attn ul { margin:0; padding-left:16px; } .attn li { font-size:13px; margin:5px 0; }
+  .attn li.stale { color:var(--red); font-weight:600; }
+  .attn-foot { color:var(--muted); font-size:11px; margin-top:10px; }
+  code { background:#f1f5f9; padding:1px 5px; border-radius:5px; }
+
+  /* ---- collapsible lane ---- */
+  .lane { background:#fff; border:1px solid var(--line); border-radius:12px; margin-bottom:16px; overflow:hidden; }
+  .lane > summary {
+    list-style:none; cursor:pointer; padding:10px 14px; background:#f1f5f9; border-bottom:1px solid transparent;
+    display:flex; align-items:center; gap:12px; user-select:none;
+  }
+  .lane[open] > summary { border-bottom-color:var(--line); }
+  .lane > summary::-webkit-details-marker { display:none; }
+  .caret { color:var(--muted); font-size:12px; transition:transform .12s ease; flex:none; width:10px; }
+  .lane[open] .caret { transform:rotate(90deg); }
+  .lane-name { font-weight:700; font-size:15px; white-space:nowrap; flex:none; }
+  .chip { font-size:12px; font-weight:600; padding:2px 8px; border-radius:999px; white-space:nowrap; flex:none; }
+  .chip.backlog { color:var(--muted); background:#eef2f7; }
+  .chip.spec, .chip.build { color:var(--indigo); background:#eef0ff; }
+  .chip.verify { color:var(--amber); background:#fdf3e7; }
+  .chip.live { color:var(--teal); background:#e6f4f0; }
+  .chip.done { color:var(--green); background:#e9f6ed; }
+  .spacer { flex:1 1 auto; }                 /* pushes the aligned trailing group right */
+  /* --- the fix: every lane reserves the SAME trailing slots, so pips + blocked + date line up
+         across all projects whether or not a lane has a blocker --- */
+  .pips { display:flex; gap:3px; flex:none; }
+  .pip { width:22px; height:18px; border-radius:4px; background:#eef2f7; color:var(--muted);
+         font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .pip.has { background:#dfe6f5; color:#334155; }
+  .pip.live { background:#d8efe8; color:var(--teal); }
+  .pip.done { background:#dcf0e3; color:var(--green); }
+  .pip.verify { background:#f7e9d3; color:var(--amber); }
+  .pip.spec { background:#e7e9ff; color:var(--indigo); }
+  .blk-badge { flex:none; width:34px; text-align:right; font-size:12px; font-weight:700; color:var(--red); white-space:nowrap; }
+  .touched { flex:none; width:42px; text-align:right; font-size:11px; color:var(--muted); white-space:nowrap; }
+
+  .note { background:#fffbe6; border:1px solid #f4e09a; border-radius:10px; padding:10px 14px; font-size:13px; margin:0 0 18px; color:#5b4708; line-height:1.5; }
+  .note b { color:#3f3206; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Dev Command Center <span style="font-size:13px;color:var(--muted);font-weight:400">— MOCKUP v2: collapsible lanes</span></h1>
+  <p class="sub">Unified SDLC tracker — lanes auto-collapse when idle, so the board stays short as projects grow.</p>
+  <div class="note">
+    <b>v2 changes:</b> (1) <b>aligned trailing columns</b> — every lane reserves the same slots, so the pips, ⛔ and date
+    line up down the board whether or not a lane is blocked (compare Spanish Coach vs the unblocked lanes).
+    (2) <b>auto-collapse by recency</b> — on load, a lane is open iff it was <b>touched ≤ 1 day ago</b>; idle lanes
+    collapse. You never re-open an active project by hand: working on it updates its last-touched, so it opens itself.
+    <i>(Dates here are illustrative, with "today" = 2026-06-13, to show the split: 2 active open, 3 idle collapsed.)</i>
+  </div>
+
+  <div class="board">
+    <div class="lanes">
+
+      <!-- touched today → auto-open; HAS a blocker -->
+      <details class="lane" data-lane="spanish-coach" data-touched="2026-06-13">
+        <summary>
+          <span class="caret">▶</span>
+          <span class="lane-name">Spanish Coach</span>
+          <span class="chip live">Slice 7 · Live</span>
+          <span class="spacer"></span>
+          <span class="pips">
+            <span class="pip has" title="Backlog 1">1</span><span class="pip" title="Spec 0">·</span>
+            <span class="pip" title="Build 0">·</span><span class="pip" title="Verify 0">·</span>
+            <span class="pip live" title="Live 1">1</span><span class="pip done" title="Done 1">1</span>
+          </span>
+          <span class="blk-badge" title="1 blocked">⛔ 1</span>
+          <span class="touched">06-13</span>
+        </summary>
+        <div class="cols">
+          <div class="col"><div class="col-h">Backlog</div>
+            <div class="card"><div class="phase">planned</div><div class="title">Lessons 16–90 (batch)</div><div class="next"><b>Next:</b> author next band</div></div>
+          </div>
+          <div class="col"><div class="col-h">Spec</div></div>
+          <div class="col"><div class="col-h">Build</div></div>
+          <div class="col"><div class="col-h">Verify</div></div>
+          <div class="col"><div class="col-h">Live</div>
+            <div class="card is-blocked"><div class="phase">9 · live gate</div><div class="title">RepEventRecord migration guard</div><div class="next"><b>Next:</b> populated-store launch test</div><div class="blk">⛔ data-safety: old store hard-crashes on update</div></div>
+          </div>
+          <div class="col"><div class="col-h">Done</div>
+            <div class="card"><div class="phase">merged (PR #14)</div><div class="title">Slice 7 — conjugation-aware sentences</div></div>
+          </div>
+        </div>
+      </details>
+
+      <!-- touched today → auto-open; NO blocker (note the empty ⛔ slot keeps the date aligned) -->
+      <details class="lane" data-lane="maintenance" data-touched="2026-06-13">
+        <summary>
+          <span class="caret">▶</span>
+          <span class="lane-name">Maintenance Tracker</span>
+          <span class="chip spec">Slice 1 · Spec</span>
+          <span class="spacer"></span>
+          <span class="pips">
+            <span class="pip has" title="Backlog 7">7</span><span class="pip spec" title="Spec 1">1</span>
+            <span class="pip" title="Build 0">·</span><span class="pip" title="Verify 0">·</span>
+            <span class="pip" title="Live 0">·</span><span class="pip" title="Done 0">·</span>
+          </span>
+          <span class="blk-badge"></span>
+          <span class="touched">06-13</span>
+        </summary>
+        <div class="cols"><div class="col"><div class="col-h">Spec</div><div class="card"><div class="title">Slice 1 — vehicles list</div><div class="next"><b>Next:</b> user-review gate</div></div></div></div>
+      </details>
+
+      <!-- idle 2 days → auto-collapsed; HAS blockers -->
+      <details class="lane" data-lane="hims" data-touched="2026-06-11">
+        <summary>
+          <span class="caret">▶</span>
+          <span class="lane-name">HIMS Pilot Recert</span>
+          <span class="chip done">Slice 1 · Done</span>
+          <span class="spacer"></span>
+          <span class="pips">
+            <span class="pip has" title="Backlog 4">4</span><span class="pip" title="Spec 0">·</span>
+            <span class="pip" title="Build 0">·</span><span class="pip" title="Verify 0">·</span>
+            <span class="pip" title="Live 0">·</span><span class="pip done" title="Done 1">1</span>
+          </span>
+          <span class="blk-badge" title="2 blocked">⛔ 2</span>
+          <span class="touched">06-11</span>
+        </summary>
+        <div class="cols">
+          <div class="col"><div class="col-h">Backlog</div><div class="card is-blocked"><div class="phase">deferred (C1)</div><div class="title">Auth / org-context</div><div class="blk">⛔ gates go-live</div></div></div>
+          <div class="col"><div class="col-h">Done</div><div class="card"><div class="title">Slice 1 — pilot detail</div></div></div>
+        </div>
+      </details>
+
+      <!-- idle 3 days → auto-collapsed; HAS blocker -->
+      <details class="lane" data-lane="apex" data-touched="2026-06-10">
+        <summary>
+          <span class="caret">▶</span>
+          <span class="lane-name">APEX (moto-ride-stats)</span>
+          <span class="chip live">Slice 2 · Live</span>
+          <span class="spacer"></span>
+          <span class="pips">
+            <span class="pip" title="Backlog 0">·</span><span class="pip" title="Spec 0">·</span>
+            <span class="pip" title="Build 0">·</span><span class="pip" title="Verify 0">·</span>
+            <span class="pip live" title="Live 1">1</span><span class="pip done" title="Done 2">2</span>
+          </span>
+          <span class="blk-badge" title="1 blocked">⛔ 1</span>
+          <span class="touched">06-10</span>
+        </summary>
+        <div class="cols"><div class="col"><div class="col-h">Live</div><div class="card is-blocked"><div class="title">Slice 2 — live HUD</div><div class="blk">⛔ awaiting real-device validation ride</div></div></div></div>
+      </details>
+
+      <!-- idle 5 days → auto-collapsed; NO blocker (empty ⛔ slot still aligns) -->
+      <details class="lane" data-lane="trip-vault" data-touched="2026-06-08">
+        <summary>
+          <span class="caret">▶</span>
+          <span class="lane-name">Trip Vault</span>
+          <span class="chip backlog">Slice 1 · Backlog</span>
+          <span class="spacer"></span>
+          <span class="pips">
+            <span class="pip has" title="Backlog 5">5</span><span class="pip" title="Spec 0">·</span>
+            <span class="pip" title="Build 0">·</span><span class="pip" title="Verify 0">·</span>
+            <span class="pip" title="Live 0">·</span><span class="pip" title="Done 0">·</span>
+          </span>
+          <span class="blk-badge"></span>
+          <span class="touched">06-08</span>
+        </summary>
+        <div class="cols"><div class="col"><div class="col-h">Backlog</div><div class="card"><div class="title">Slice 1 — itinerary shell</div></div></div></div>
+      </details>
+
+    </div>
+
+    <aside class="attn">
+      <div class="attn-h">Needs Attention</div>
+      <ul>
+        <li class="stale">Blocked: Spanish Coach · RepEventRecord migration guard — old store crashes</li>
+        <li class="stale">Blocked: APEX · Slice 2 — awaiting real-device validation ride</li>
+        <li class="stale">Blocked: HIMS · Auth/org-context — gates go-live</li>
+        <li>0 retro(s) awaiting audit (since 2026-06-12)</li>
+      </ul>
+      <div class="attn-foot">refreshed 2026-06-13</div>
+    </aside>
+  </div>
+</div>
+
+<script>
+  // AUTO-COLLAPSE BY RECENCY — a lane opens iff its newest card was touched within IDLE_DAYS.
+  // Real board: IDLE_DAYS is one tunable constant; "today" = new Date(); a lane's touched = max(card.lastTouched).
+  // Manual toggle still works live (native <details>); this rule re-applies on each load, so active projects
+  // (which you've just touched → recent) open themselves — no re-opening by hand.
+  const IDLE_DAYS = 1;
+  const TODAY = new Date('2026-06-13T00:00:00'); // mock reference; real board uses new Date()
+  document.querySelectorAll('details.lane').forEach(d => {
+    const touched = new Date(d.dataset.touched + 'T00:00:00');
+    const idleDays = Math.floor((TODAY - touched) / 86400000);
+    if (idleDays <= IDLE_DAYS) d.setAttribute('open', ''); else d.removeAttribute('open');
+  });
+</script>
+</body>
+</html>

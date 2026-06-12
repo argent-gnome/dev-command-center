@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dev Command Center — Tracker</title>
 <style>
-  :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --indigo:#4f46e5; --teal:#0a7c66; --bg:#f8fafc; --red:#dc2626; }
+  :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --indigo:#4f46e5; --teal:#0a7c66; --bg:#f8fafc; --red:#dc2626; --amber:#b45309; --green:#15803d; }
   * { box-sizing:border-box; }
   body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); }
   .wrap { max-width:2400px; margin:0 auto; padding:32px 24px 64px; }
@@ -13,7 +13,28 @@
   .sub { color:var(--muted); margin:0 0 24px; font-size:14px; }
   .board { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:20px; align-items:start; }
   .lane { background:#fff; border:1px solid var(--line); border-radius:12px; margin-bottom:16px; overflow:hidden; }
-  .lane-h { font-weight:700; padding:10px 14px; background:#f1f5f9; border-bottom:1px solid var(--line); }
+  .lane > summary { list-style:none; cursor:pointer; padding:10px 14px; background:#f1f5f9; border-bottom:1px solid transparent; display:flex; align-items:center; gap:12px; user-select:none; }
+  .lane[open] > summary { border-bottom-color:var(--line); }
+  .lane > summary::-webkit-details-marker { display:none; }
+  .caret { color:var(--muted); font-size:12px; transition:transform .12s ease; flex:none; width:10px; }
+  .lane[open] .caret { transform:rotate(90deg); }
+  .lane-name { font-weight:700; font-size:15px; white-space:nowrap; flex:none; }
+  .chip { font-size:12px; font-weight:600; padding:2px 8px; border-radius:999px; white-space:nowrap; flex:none; }
+  .chip.backlog { color:var(--muted); background:#eef2f7; }
+  .chip.spec, .chip.build { color:var(--indigo); background:#eef0ff; }
+  .chip.verify { color:var(--amber); background:#fdf3e7; }
+  .chip.live { color:var(--teal); background:#e6f4f0; }
+  .chip.done { color:var(--green); background:#e9f6ed; }
+  .spacer { flex:1 1 auto; }
+  .pips { display:flex; gap:3px; flex:none; }
+  .pip { width:22px; height:18px; border-radius:4px; background:#eef2f7; color:var(--muted); font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .pip.has { background:#dfe6f5; color:#334155; }
+  .pip.spec { background:#e7e9ff; color:var(--indigo); }
+  .pip.verify { background:#f7e9d3; color:var(--amber); }
+  .pip.live { background:#d8efe8; color:var(--teal); }
+  .pip.done { background:#dcf0e3; color:var(--green); }
+  .blk-badge { flex:none; width:34px; text-align:right; font-size:12px; font-weight:700; color:var(--red); white-space:nowrap; }
+  .touched { flex:none; width:42px; text-align:right; font-size:11px; color:var(--muted); white-space:nowrap; }
   .cols { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; padding:10px; }
   .col-h { font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:6px; }
   .card { background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:8px 10px; margin-bottom:8px; overflow-wrap:anywhere; }
@@ -49,11 +70,25 @@
       return keys.length ? keys : FALLBACK;
     } catch (e) { return FALLBACK; }
   }
+  // Pure recency: a lane is open iff its newest card was touched within IDLE_DAYS; re-derived every load.
+  // (Active work is recently touched, so it opens itself; no persisted overrides.) Manual toggle works live.
+  // lastTouched is a UTC date compared here against local midnight — the small skew only ever errs toward
+  // OPEN (an evening edit can read as today/tomorrow), never collapses fresh work. Acceptable.
+  const IDLE_DAYS = 1;
+  function applyRecency() {
+    const today = new Date();
+    document.querySelectorAll('details.lane').forEach(d => {
+      const t = d.dataset.touched;
+      const idle = t ? Math.floor((today - new Date(t + 'T00:00:00')) / 86400000) : Infinity;
+      if (idle <= IDLE_DAYS) d.setAttribute('open', ''); else d.removeAttribute('open');
+    });
+  }
   async function load() {
     // Offline build path: data inlined as window.__BOARD__
     if (window.__BOARD__) {
       document.getElementById('root').innerHTML =
         DCB.renderBoard(window.__BOARD__.projects, window.__BOARD__.attention);
+      applyRecency();
       return;
     }
     try {
@@ -61,6 +96,7 @@
       const projects = await Promise.all(keys.map(k => fetch('data/' + k + '.json').then(r => r.json())));
       const attention = await fetch('data/attention.json').then(r => r.json()).catch(() => null);
       document.getElementById('root').innerHTML = DCB.renderBoard(projects, attention);
+      applyRecency();
     } catch (e) {
       document.getElementById('root').innerHTML =
         '<p class="err">Could not load board data. If opening locally, run <code>node build-board.js</code> and open board.local.html, or serve over http.</p>';
