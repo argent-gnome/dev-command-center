@@ -17,9 +17,9 @@
     {
       "id": "apex__slice-3-persistence",
       "title": "Slice 3 — Persistence + ride overview + map",
-      "column": "spec",
-      "phase": "stage 4½ — plan written; awaiting your review before build",
-      "nextAction": "Review the implementation plan, then build via subagent-driven-development",
+      "column": "build",
+      "phase": "stage 5 — building (subagent-driven, Task 1/13)",
+      "nextAction": "Build Tasks 1–13 TDD with per-task spec+quality review; then merge-gate + CI + device",
       "blockedOn": null,
       "branch": "slice-3-persistence",
       "model": "Fable planning / Opus build",
