@@ -34,9 +34,9 @@
         "spec": "docs/superpowers/specs/2026-06-12-repevent-migration-guard-design.md"
       },
       "title": "RepEventRecord SwiftData migration guard (data-safety)",
-      "column": "build",
-      "phase": "building — versioned schema + migration plan + non-destructive fail-safe (TDD)",
-      "nextAction": "Implement Tasks 1–3, then docs + merge-gate",
+      "column": "verify",
+      "phase": "merge-gate (Fable) + CI",
+      "nextAction": "Adversarial merge-gate, then PR CI green, then live validation",
       "model": "Opus (schema/migration) + Fable verify",
       "lastTouched": "2026-06-12",
       "branch": "slice-8-repevent-migration-guard"
