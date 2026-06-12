@@ -1,11 +1,10 @@
 {
   "name": "dev-command-center",
   "owner": { "name": "Jake Edwards", "email": "jakec714@gmail.com" },
-  "metadata": { "pluginRoot": "./plugins" },
   "plugins": [
     {
       "name": "dev-command-center",
-      "source": "dev-command-center",
+      "source": "./plugins/dev-command-center",
       "description": "Unified house SDLC orchestrator + project tracker: dev-orchestrator skill and the project-state-scanner / doc-keeper / merge-gate-reviewer agents (sdlc-auditor planned).",
       "version": "0.4.0"
     }
