@@ -44,11 +44,13 @@
     },
     {
       "id": "spanish-coach__slice-9-hardening",
-      "links": {},
+      "links": {
+        "pr": "https://github.com/argent-gnome/spanish-coach/pull/16"
+      },
       "title": "Slice 9 — quality hardening + Practice review tile",
-      "column": "build",
-      "phase": "built — always-visible review tile + non-blocking XCUITests CI job; branch protection pending",
-      "nextAction": "Live-validate both tile states, push/CI, enable branch protection, merge",
+      "column": "verify",
+      "phase": "PR #16 open — CI running (required Build/Test/Lint + non-blocking UITests); UI live-validated both states",
+      "nextAction": "Confirm required check green, enable branch protection, merge",
       "branch": "slice-9-hardening-review-tile",
       "model": "Opus (light slice)",
       "lastTouched": "2026-06-12"
