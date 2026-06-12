@@ -13,8 +13,17 @@ tracker honest.
 `/Users/jake-edwards/projects/dev-command-center`):
 - `projects.config.json` — registry: per-project `repoPath`, `stack`, `topology`, plus hub info.
 - `board.html` + `data/<key>.json` — the live tracker (GitHub Pages).
-- `board-update.js` — the token-free updater. **Call it at EVERY stage transition.**
-- `docs/retros/` — per-slice retros.
+- `board-update.js` — the token-free updater. **Call it at EVERY stage transition** so the card walks the
+  columns live (see "Keep the tracker in lockstep" — the hims dogfood updated only at merge; don't).
+- `docs/retros/` — retros for the **hub's own** slices only. A *tracked project's* retro lives in **that
+  project's repo** (`<repoPath>/docs/retros/<key>-<slice>-retro.md`), never in the public hub.
+
+## Public-board privacy (the hub is on public Pages)
+`board.html` + `data/<key>.json` are world-readable. For any project flagged `"private": true` in config
+(e.g. **hims** — FAA medical domain), keep the card's `title`/`phase`/`nextAction` **generic**: name the slice
+and stage, and push specifics (which pilot/rule, schema/RLS internals, ADR detail, design rationale) to the
+project's private repo, referenced as "see private ADR 0001". Never paste domain data, secrets, or sensitive
+rationale into a hub data file — when in doubt, sanitize. (Public projects: full detail is fine.)
 
 ## Modes
 - **`run`** (default) — drive the next slice of one project.
@@ -34,15 +43,25 @@ note the gap in the retro.)*
 
 1. **Read the board.** Load `projects.config.json` and the project's `data/<key>.json`. Identify the active
    card (in-flight slice), its `column`/`phase`, `nextAction`, and any `blockedOn`.
-2. **Confirm the work.** State the project + active slice + nextAction, and confirm what this session will do.
-   If starting a NEW slice, scope it first (stage 1).
-3. **Set execution topology** from `config.stack`/`topology`:
+2. **Reconcile the starting state & ready the repo** (the "resume cold after days away" promise, and the
+   "make the repo ready before slice dev" intent). Two things, before any building:
+   - **Git reality vs the board** — current branch vs `main`, uncommitted/stashed WIP, a branch that predates
+     a merge, a stranded plan-patch, open PRs. Surface any tangle and resolve it *before* building (board
+     narratives understate drift — the hims dogfood opened on exactly this).
+   - **Can the repo progress the house way?** — the stack's CI gate set is wired (ios: `swift test` ·
+     SwiftLint · `xcodebuild` · XCUITest; web: tests · typecheck · lint · build) and the docs scaffold exists
+     (`docs/superpowers/specs|plans`, an ADR dir, `docs/retros/`). **Stand up anything missing first** (the
+     hims dogfood had no lint gate and bolted it on mid-slice — that belongs here). STOP for the user's
+     sign-off before changing CI config or branch protection.
+3. **Confirm the work.** State the project + active slice + nextAction, and confirm what this session will do.
+   If starting a NEW slice, scope it first (stage 1 of the loop).
+4. **Set execution topology** from `config.stack`/`topology`:
    - **single-session** (live iOS — spanish-coach, apex): work in place on a branch, no worktrees; fresh
      implementer subagent per task via `superpowers:subagent-driven-development`; 4-state report contract
      (DONE / DONE_WITH_CONCERNS / BLOCKED / NEEDS_CONTEXT).
    - **multi-session** (web monorepo — hims): window-per-unit, branch + PR per unit; the orchestrator writes
      the kickoff prompt per unit and reviews the PR; execute each unit with `superpowers:executing-plans`.
-4. **Walk the slice loop, delegating each stage** (NEVER reinvent — invoke the named skill):
+5. **Walk the slice loop, delegating each stage** (NEVER reinvent — invoke the named skill):
 
    | Stage | Delegate to | Gate |
    |---|---|---|
@@ -61,17 +80,21 @@ note the gap in the retro.)*
    | 10 PR + merge | `superpowers:finishing-a-development-branch`; `board-update --link pr=<url>` | — |
    | 11 reconcile | memory + docs + board + **verify post-merge main CI green** + write the slice retro | — |
 
-5. **Keep the tracker in lockstep.** At EVERY stage transition, run:
+6. **Keep the tracker in lockstep.** The card must **walk the columns live**, not teleport at merge:
+   `spec` (stages 0–4½) → `build` (5) → `verify` (6–8) → `live` (9–10) → `done` (11). Run board-update the
+   moment you ENTER a new column (ideally on each finer phase too):
    ```
    node <hub>/board-update.js --project <key> --slice <cardId> --column <col> \
      --phase "<finer step>" --next-action "<next action>" [--blocked "<why>" | --unblock] [--branch <b>]
    ```
    The FIRST upsert of a new slice card also passes `--title "<title>"` and `--model "<routing>"`; add
    `--link spec=<path>` at stage 2 and `--link pr=<url>` at stage 10. (`<hub>` = `config.hub.repoPath`.)
-   board-update commits + pushes the hub, so the board never lags the SDLC.
-6. **Reconcile (stage 11).** Update the project's memory, run the docs audit, **verify the post-merge main CI
+   board-update commits + pushes the hub, so the board never lags the SDLC. (The hims dogfood skipped the
+   mid-slice updates and the card jumped backlog→done only at merge — that's the failure this prevents.)
+7. **Reconcile (stage 11).** Update the project's memory, run the docs audit, **verify the post-merge main CI
    run is green** (`gh run view --json conclusion`), set the card to its resting column (done / live / blocked)
-   with the next action via board-update, and write `docs/retros/<key>-<slice>-retro.md`
+   with the next action via board-update, and write the slice retro **to the project's own repo**
+   (`<repoPath>/docs/retros/<key>-<slice>-retro.md` — only the hub's *own* retros live in the hub)
    (manual interventions · decisions · **plan deviations** · gate friction).
 
 ## Stack gates (by `config.stack` — enforce at stages 5 & 8)
@@ -79,13 +102,17 @@ note the gap in the retro.)*
   involved) · XCUITest against the synthetic harness · **NO DESTRUCTIVE SwiftData changes** — additive /
   migrations only. The iOS apps run on the user's real device; never drop, reset, or rewrite a store in a way
   that loses data.
-- **web** — unit tests · typecheck · lint · build (GitHub Actions / Vercel).
+- **web** — unit tests · typecheck · lint · build (GitHub Actions / Vercel). **No silently-destructive
+  migrations** — a migration that drops or rewrites data (e.g. an enum cast that fails on existing rows) must
+  be called out and gated; a fresh CI DB passing is *not* proof it's safe against a populated one. (Mirrors
+  the iOS SwiftData rule above.)
 
 ## onboard — the procedure
-For each project to onboard: dispatch the **`project-state-scanner`** agent with its `repoPath` + memory file
-→ take the returned JSON cards → write `data/<key>.json` (bulk seed), **then commit + push the hub** so the
-status reaches Pages. For incremental single-card changes, use `board-update` instead. Re-run any time to
-reconcile the board with reality.
+For each project to onboard: ready the repo first (the readiness check in run-step 2 — CI gate set + docs
+scaffold), then dispatch the **`project-state-scanner`** agent with its `repoPath` + memory file → take the
+returned JSON cards → write `data/<key>.json` (bulk seed), **then commit + push the hub** so the status
+reaches Pages. For incremental single-card changes, use `board-update` instead. Re-run any time to reconcile
+the board with reality.
 
 ## Gates — never cross silently
 STOP and get the user at: **spec review · mockup sign-off · live/device validation · CI red · any plan

@@ -10,6 +10,6 @@
   "projects": {
     "spanish-coach": { "displayName": "Spanish Coach", "repoPath": "/Users/jake-edwards/projects/spanish-coach", "stack": "ios", "topology": "single-session" },
     "apex": { "displayName": "APEX (moto-ride-stats)", "repoPath": "/Users/jake-edwards/projects/moto-ride-stats", "stack": "ios", "topology": "single-session" },
-    "hims": { "displayName": "HIMS Pilot Recert", "repoPath": "/Users/jake-edwards/projects/hims-pilot-recert", "stack": "web", "topology": "multi-session" }
+    "hims": { "displayName": "HIMS Pilot Recert", "repoPath": "/Users/jake-edwards/projects/hims-pilot-recert", "stack": "web", "topology": "multi-session", "private": true }
   }
 }
