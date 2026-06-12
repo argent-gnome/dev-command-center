@@ -20,13 +20,15 @@
       "id": "hims__slice2-progress-pane",
       "title": "Slice 2 — Progress pane",
       "column": "spec",
-      "phase": "Scoping: pane exists from S1 (placeholder); deciding enrich-now vs engine-derived boundary",
-      "nextAction": "Confirm scope boundary, then write Slice 2 spec",
+      "phase": "Spec written; building mockup for sign-off",
+      "nextAction": "Mockup sign-off, then plan",
       "blockedOn": null,
       "branch": null,
       "model": "Opus build / Fable merge-gate",
       "lastTouched": "2026-06-12",
-      "links": {}
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-12-slice2-progress-pane.md"
+      }
     },
     {
       "id": "hims__auth-org-context",
