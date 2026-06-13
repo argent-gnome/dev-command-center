@@ -2,13 +2,16 @@
   "refreshedAt": "2026-06-13",
   "openAuditPRs": [],
   "pendingRetros": {
-    "count": 0,
+    "count": 1,
     "sinceAudit": "2026-06-12T19:28:01-04:00",
-    "oldest": null,
-    "oldestDays": null,
+    "oldest": "2026-06-12T20:25:08-04:00",
+    "oldestDays": 0,
     "dir": "docs/retros/"
   },
-  "pluginUpdate": null,
+  "pluginUpdate": {
+    "from": "0.7.0",
+    "to": "0.8.0"
+  },
   "docDriftPatches": [],
   "blockedCards": [
     "APEX (moto-ride-stats) · Slice 2 — Live HUD + background recording — awaiting real-device validation ride",
