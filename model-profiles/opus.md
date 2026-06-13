@@ -25,11 +25,11 @@ drained it ~2×), so the extra Opus passes are affordable. The window is still t
 | Driver / implementation | Opus 4.8 | single (the session main loop) |
 | Spec / plan authoring | Opus 4.8 | single, with full repo context (the modeling judgment already lands in the approved spec) |
 | Per-task verify (stage 6) | Opus 4.8 | spec-compliance reviewer THEN code-quality reviewer (already two independent passes) |
-| **Merge-gate (stage 7)** | Opus 4.8 | **single Opus reviewer now → PLANNED upgrade: 3–4-lens adversarial panel** (correctness · data-safety · spec-compliance · cross-seam, each refute-biased, majority-vote) via a Workflow. This is where independence-of-perspective replaces independence-of-architecture; until the panel lands, a single Opus reviewer holds the gate. |
+| **Merge-gate (stage 7)** | Opus 4.8 | **adversarial PANEL (BUILT)** — `workflows/merge-gate-panel.js`: 4 refute-biased lenses (correctness · data-safety · spec-compliance · cross-seam) → 3 independent refuters per critical/should-fix finding (majority-refute kills it) → GO/NO-GO. Independence-of-perspective replacing the lost independence-of-architecture. Every lens/refuter reuses the `merge-gate-reviewer` agent (read-only, refute-biased). |
 | Process audit (`sdlc-auditor`) | Opus 4.8 | single (synthesis, not adversarial refutation — a panel buys little here) |
 | `doc-keeper` / `project-state-scanner` | Opus 4.8 (inherited) | single |
 
 ## Notes
 - Agents carry **no `model:` frontmatter** — they inherit the dispatching session's model (Opus). The profile,
   not the agent file, decides the model and whether a role fans out into a panel.
-- The merge-gate panel is the one remaining build to realize this profile fully; everything else is live.
+- The merge-gate panel is **BUILT** (`workflows/merge-gate-panel.js`) — this profile is fully realized. Its first real exercise is the next slice's stage-7; until then it is syntax-validated and logic-reviewed, not yet run against a live slice.
