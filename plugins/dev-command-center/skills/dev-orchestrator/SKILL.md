@@ -76,12 +76,12 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
    | 4 plan | `superpowers:writing-plans` — ensure the plan carries a **model-routing note** + "NOT this slice" scope guards; **order tasks so the build/test target compiles at every task boundary** (a signature change to a shared type updates its call sites in the SAME task — never leave the app target uncompilable for a later test task) and **merge compile-coupled tasks into one implementer unit** ("mostly independent" is an assumption, not a guarantee — APEX's nav trio only compiled together; a required-arg change there broke the app target two tasks before its fix) | — |
    | 4½ docs author | `doc-keeper` agent (author mode) | — |
    | 5 build | `superpowers:subagent-driven-development` \| `superpowers:executing-plans` + `superpowers:test-driven-development` + stack pro-skills (`swiftui-pro`/`swiftdata-pro`/`swift-testing-pro`/`swift-concurrency-pro` or `supabase`/`vercel:*`) — enforce the stack gates below | — |
-   | 6 verify (per-task) | spec-compliance reviewer THEN code-quality reviewer (`superpowers:requesting-code-review` / `superpowers:receiving-code-review` + `superpowers:code-reviewer`); fold review findings forward as later-task prerequisites; `superpowers:systematic-debugging` on failures | — |
+   | 6 verify (per-task) | spec-compliance reviewer THEN code-quality reviewer (`superpowers:requesting-code-review` / `superpowers:receiving-code-review` + `superpowers:code-reviewer`); fold review findings forward as later-task prerequisites; **require a discriminating test per spec rule** — at least one input where the spec's rule and the nearest plausible-wrong implementation *disagree* (non-monotone / divergent / boundary cases); a suite that only exercises inputs where right and wrong agree is a coverage gap, not coverage (APEX's elevation tests covered only monotone climbs and a 2× undercount sailed through per-task review; the hub's chip-rule tests only covered cases where the buggy and correct rules agree — both CRITICALs survived to the merge-gate); `superpowers:systematic-debugging` on failures | — |
    | 7 merge-gate | `merge-gate-reviewer` agent (Fable; rubric: cross-task seams · spec-rule citation · regression risk · gate compliance) | — |
    | 8 CI | `superpowers:verification-before-completion` — the **PR run** green via actual `gh run view --json conclusion` (never piped exit codes) | ⛔ PR CI green |
    | 9 live/device | Simulator (iOS) / device / staging (web); **reload the app after any UI change** | ⛔ validation |
    | 9½ docs audit | `doc-keeper` agent (audit mode) | — |
-   | 10 PR + merge | `superpowers:finishing-a-development-branch`; `board-update --link pr=<url>` | — |
+   | 10 PR + merge | `superpowers:finishing-a-development-branch`; `board-update --link pr=<url>`; **the slice's spec, plan, and any approved mockup ship IN the slice PR** — they are the cited design authority (spec-anchored audit trail), never "throwaway"; commit them deliberately, not via a stray `git add -A` | — |
    | 11 reconcile | memory + docs + board + **verify post-merge main CI green** + write the slice retro | — |
 
 6. **Keep the tracker in lockstep.** The card must **walk the columns live**, not teleport at merge:
@@ -118,7 +118,11 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
   that loses data. **The prohibition needs verification teeth:** when any `@Model` schema changes, the stage-9
   live gate MUST include launching against a store populated under the *previous* schema — a fresh
   install / CI passing is *not* proof the migration is safe (twin of the web rule below; a mandatory-new-field
-  change hard-crashed a real on-device store that CI, which never runs the app, could not see).
+  change hard-crashed a real on-device store that CI, which never runs the app, could not see). The
+  live-repro runbook's named previous-schema commit must be a **known-good merge commit, verified to build
+  before relying on it — never a mid-refactor intermediate** (same class as the sim-existence rule above:
+  every concrete artifact a plan/runbook names gets verified resolvable before dispatch; spanish-coach S8's
+  runbook named a mid-rename commit that didn't compile and the live-gate agent had to substitute).
 - **web** — unit tests · typecheck · lint · build (GitHub Actions / Vercel). **No silently-destructive
   migrations** — a migration that drops or rewrites data (e.g. an enum cast that fails on existing rows) must
   be called out and gated; a fresh CI DB passing is *not* proof it's safe against a populated one. (Mirrors
