@@ -5,13 +5,13 @@
     {
       "id": "apex__slice-2-live-hud",
       "title": "Slice 2 — Live HUD + background recording",
-      "column": "live",
-      "phase": "merged to main; first-ride device validation (T8)",
-      "nextAction": "Take the first validation ride: confirm lock-screen ≥2min CSV t-gap <1.5s, app-switch/call survival, moving-vs-total, second-ride reset",
-      "blockedOn": "awaiting real-device validation ride",
+      "column": "done",
+      "phase": "merged + device-validated: T8 screen-lock survival CONFIRMED (Jun 12 ride — continuous 50Hz, zero CSV t-gaps)",
+      "nextAction": "Validated. Done.",
+      "blockedOn": null,
       "branch": null,
       "model": null,
-      "lastTouched": "2026-06-11",
+      "lastTouched": "2026-06-13",
       "links": {}
     },
     {
