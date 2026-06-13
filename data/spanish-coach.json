@@ -77,11 +77,12 @@
         "spec": "docs/superpowers/specs/2026-06-13-slice-11-enrich-16-25-design.md"
       },
       "title": "Slice 11 — enrich lessons 16–25 (sentences)",
-      "column": "spec",
-      "phase": "spec written (sentences-only; Opus voting) — awaiting review",
-      "nextAction": "User reviews spec; then build the generation Workflow",
+      "column": "build",
+      "phase": "building — Canon→Generate(Opus)→Verify(3-lens voting) Workflow, ~30-35/lesson",
+      "nextAction": "Run generation Workflow, deep audit, merge into generated-sentences.json",
       "model": "Opus (Fable suspended; multi-lens voting)",
-      "lastTouched": "2026-06-13"
+      "lastTouched": "2026-06-13",
+      "branch": "slice-11-enrich-16-25"
     }
   ]
 }
