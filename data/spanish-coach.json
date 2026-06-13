@@ -55,6 +55,16 @@
       "model": "Opus (light slice)",
       "lastTouched": "2026-06-13",
       "blockedOn": null
+    },
+    {
+      "id": "spanish-coach__slice-10-lessons-16-25",
+      "links": {},
+      "title": "Slice 10 — author lessons 16–25",
+      "column": "spec",
+      "phase": "scoping — mapping the lesson 16–25 curriculum arc from transcripts",
+      "nextAction": "Derive moving-line canon, write spec for ⛔ review",
+      "model": "Opus (Fable suspended; multi-lens voting pipeline)",
+      "lastTouched": "2026-06-13"
     }
   ]
 }
