@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { renderBoard, mergeProjects, COLUMNS, representativeCard, laneTouched } = require('../board.render.js');
+const { renderBoard, mergeProjects, COLUMNS, representativeCard, laneTouched, doneChipHtml } = require('../board.render.js');
 
 const projects = [
   { project: 'p1', displayName: 'Proj One', cards: [
@@ -53,5 +53,25 @@ const evil = [{ project: 'x', displayName: '<script>alert(1)</script>', cards: [
 const safe = renderBoard(evil, null);
 assert.ok(!safe.includes('<script>alert(1)</script>'), 'escapes user text');
 assert.ok(safe.includes('&lt;script&gt;'), 'escaped form present');
+
+// --- done column collapses to a chip (Slice 10, variant B) ---
+const dproj = [{ project: 'd1', displayName: 'Done Heavy', cards: [
+  { id: 'd__1', title: 'Slice 1', column: 'done', lastTouched: '2026-06-01' },
+  { id: 'd__2', title: 'Slice 2', column: 'done', lastTouched: '2026-06-03' },
+  { id: 'd__3', title: 'Slice 3', column: 'done', lastTouched: '2026-06-05' },
+  { id: 'd__4', title: 'Slice 4', column: 'done', lastTouched: '2026-06-07' },
+  { id: 'd__5', title: 'Slice 5', column: 'done', lastTouched: '2026-06-09' },
+  { id: 'd__6', title: 'Slice 6', column: 'build', phase: '5 · build', nextAction: 'go', blockedOn: null, lastTouched: '2026-06-10' }
+] }];
+const dhtml = renderBoard(dproj, null);
+assert.ok(dhtml.includes('done-collapsed'), 'done collapses to a chip');
+assert.ok(dhtml.includes('✓ 5 shipped'), 'chip shows the shipped count');
+assert.ok(dhtml.includes('latest Slice 5'), 'chip names the newest-shipped slice');
+assert.ok(!/<details class="done-collapsed"[^>]*\sopen/.test(dhtml), 'done chip starts collapsed');
+assert.equal((dhtml.match(/class="done-row"/g) || []).length, 5, '5 shipped → 5 compact rows (3 visible + 2 under "earlier")');
+assert.ok(dhtml.includes('+2 earlier'), 'older shipped go behind a "+N earlier" expander');
+assert.equal((dhtml.match(/class="card"/g) || []).length, 1, 'only the active build card is a full card — done is not');
+assert.ok(dhtml.indexOf('Slice 5') < dhtml.indexOf('Slice 1'), 'done rows newest-shipped-first');
+assert.equal(doneChipHtml([]), '', 'no done cards → no chip');
 
 console.log('PASS board.render');

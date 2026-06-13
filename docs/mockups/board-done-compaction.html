@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board — done-column compaction (mockup)</title>
+<style>
+  :root { --ink:#0f172a; --muted:#64748b; --line:#e2e8f0; --indigo:#4f46e5; --teal:#0a7c66; --bg:#f8fafc; --red:#dc2626; --amber:#b45309; --green:#15803d; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); }
+  .wrap { max-width:2200px; margin:0 auto; padding:28px 24px 64px; }
+  h1 { font-size:22px; margin:0 0 4px; }
+  .sub { color:var(--muted); margin:0 0 18px; font-size:13px; max-width:900px; }
+  .controls { display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 16px; margin-bottom:8px; position:sticky; top:0; z-index:5; }
+  .controls b { font-size:13px; }
+  .controls label { font-size:13px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; padding:4px 8px; border-radius:8px; }
+  .controls label:hover { background:#f1f5f9; }
+  .controls .rec { color:var(--green); font-weight:600; }
+  .note { font-size:12px; color:var(--muted); margin:8px 2px 20px; }
+  .note code { background:#f1f5f9; padding:1px 5px; border-radius:5px; }
+
+  .lane { background:#fff; border:1px solid var(--line); border-radius:12px; margin-bottom:16px; overflow:hidden; }
+  .lane-head { padding:10px 14px; background:#f1f5f9; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:10px; }
+  .lane-name { font-weight:700; font-size:15px; }
+  .lane-meta { font-size:12px; color:var(--muted); }
+  .cols { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; padding:10px; align-items:start; }
+  .col-h { font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+  .col-h .ct { color:#94a3b8; }
+
+  .card { background:var(--bg); border:1px solid var(--line); border-radius:8px; padding:8px 10px; margin-bottom:8px; overflow-wrap:anywhere; }
+  .phase { font-size:11px; color:var(--indigo); font-weight:600; }
+  .phase.done { color:var(--green); }
+  .title { font-size:13px; font-weight:600; margin:2px 0; }
+  .next { font-size:12px; color:#334155; }
+  .foot { margin-top:6px; }
+  .meta { font-size:11px; color:var(--muted); }
+
+  /* compact done rows (modes A + B) */
+  .done-row { display:flex; align-items:center; gap:8px; padding:4px 8px; border-radius:6px; font-size:12px; line-height:1.3; }
+  .done-row + .done-row { margin-top:2px; }
+  .done-row:hover { background:#eef6f0; }
+  .done-row .chk { color:var(--green); font-weight:800; flex:none; }
+  .done-row .dslice { font-weight:600; color:var(--ink); white-space:nowrap; flex:none; }
+  .done-row .dtitle { color:#475569; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .done-row .ddate { margin-left:auto; color:var(--muted); font-size:11px; flex:none; }
+
+  details.earlier { margin-top:2px; }
+  details.earlier > summary { list-style:none; cursor:pointer; font-size:11px; color:var(--indigo); padding:4px 8px; user-select:none; border-radius:6px; }
+  details.earlier > summary::-webkit-details-marker { display:none; }
+  details.earlier > summary:hover { background:#eef0ff; }
+  details.earlier[open] > summary { color:var(--muted); }
+
+  /* collapsed done chip (mode B) */
+  details.done-collapsed > summary { list-style:none; cursor:pointer; display:flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid #dcf0e3; background:#e9f6ed; border-radius:8px; font-size:12px; font-weight:600; color:var(--green); user-select:none; }
+  details.done-collapsed > summary::-webkit-details-marker { display:none; }
+  details.done-collapsed > summary .latest { color:#475569; font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  details.done-collapsed > summary .car { margin-left:auto; color:var(--green); transition:transform .12s ease; }
+  details.done-collapsed[open] > summary .car { transform:rotate(90deg); }
+  details.done-collapsed > .body { padding-top:6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Board — done-column compaction</h1>
+  <p class="sub">The done column grows unboundedly (every merged slice = one card, forever) and renders full card chrome that's meaningless once shipped — so it's both the tallest and least useful part of an open lane. Toggle the three treatments below. Lanes shown open (the problem only exists when a lane is expanded); the attention pane is omitted for focus.</p>
+  <div class="controls">
+    <b>Treatment:</b>
+    <label><input type="radio" name="mode" value="before"> Before — full cards <span class="meta">(the problem)</span></label>
+    <label><input type="radio" name="mode" value="A" checked> A — compact rows + cap-to-3 <span class="rec">(recommended)</span></label>
+    <label><input type="radio" name="mode" value="B"> B — collapsed done chip</label>
+  </div>
+  <p class="note">In <b>A</b> and <b>B</b>, click <code>+N earlier</code> to expand older shipped slices; in <b>B</b>, click the green chip to open the done list. Done is sorted newest-shipped-first.</p>
+  <div id="board"></div>
+</div>
+
+<script>
+const COLUMNS = [['backlog','Backlog'],['spec','Spec'],['build','Build'],['verify','Verify'],['live','Live'],['done','Done']];
+
+// Realistic-ish seed: spanish-coach (9 done) is the worst case; apex (3) + hims (4) show the pattern at other scales.
+const DATA = [
+  { name:'Spanish Coach', cards: [
+    { col:'backlog', slice:'Batch', title:'Lessons 16–90 (batch track)', phase:'0 · backlog', next:'author next lesson set' },
+    ...['App foundation','Lesson model + item review','LT re-foundation (lessons 1–5)','Audio-gated lesson locking','Practice hub (Smart Mix + streak)','Sentences + word pools','Lessons 6–15','Conjugation-aware sentences','Needs-Review tile + XCUITests']
+      .map((t,i)=>({ col:'done', slice:'Slice '+(i+1), title:t, date:'06-'+String(12-i).padStart(2,'0') })),
+  ]},
+  { name:'APEX (moto-ride-stats)', cards: [
+    { col:'build', slice:'Slice 4', title:'Turn detection (lap-aware)', phase:'5 · build', next:'segment turns from heading deltas' },
+    ...['Live HUD foundation','Background recording + screen-lock survival','Persistence + Ride Overview (map/climb)']
+      .map((t,i)=>({ col:'done', slice:'Slice '+(i+1), title:t, date:'06-'+String(11-i*2).padStart(2,'0') })),
+  ]},
+  { name:'HIMS Pilot Recert', cards: [
+    { col:'spec', slice:'Slice 3', title:'State-by-state event capture', phase:'2 · spec (user-review)', next:'approve the spec' },
+    ...['Monorepo scaffold','Schema + engine primitives','Pilot detail + intake write-path','Progress pane (clock/SLA badges)']
+      .map((t,i)=>({ col:'done', slice:(['Slice 0','Slice 0.5','Slice 1','Slice 2'][i]), title:t, date:'06-'+String(10-i).padStart(2,'0') })),
+  ]},
+];
+
+const CAP = 3;
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function fullCard(c, done){
+  return `<div class="card">
+    <div class="phase${done?' done':''}">${esc(done?'merged':c.phase)}</div>
+    <div class="title">${esc(c.slice)} · ${esc(c.title)}</div>
+    ${done?'':`<div class="next"><b>Next:</b> ${esc(c.next)}</div>`}
+    <div class="foot"><span class="meta">${esc(c.date||'')}</span></div>
+  </div>`;
+}
+function doneRow(c){
+  return `<div class="done-row" title="${esc(c.slice+' · '+c.title)}">
+    <span class="chk">✓</span><span class="dslice">${esc(c.slice)}</span>
+    <span class="dtitle">${esc(c.title)}</span><span class="ddate">${esc(c.date)}</span>
+  </div>`;
+}
+function compactDone(done){
+  const sorted = done.slice().sort((a,b)=> String(b.date).localeCompare(String(a.date)));  // newest first
+  const head = sorted.slice(0, CAP).map(doneRow).join('');
+  const rest = sorted.slice(CAP);
+  const more = rest.length
+    ? `<details class="earlier"><summary>+${rest.length} earlier ▾</summary><div>${rest.map(doneRow).join('')}</div></details>`
+    : '';
+  return head + more;
+}
+
+function renderDone(done, mode){
+  if (!done.length) return '';
+  if (mode === 'before') return done.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(c=>fullCard(c,true)).join('');
+  if (mode === 'A') return compactDone(done);
+  // mode B — collapsed chip
+  const latest = done.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)))[0];
+  return `<details class="done-collapsed">
+    <summary>✓ ${done.length} shipped <span class="latest">· latest ${esc(latest.slice)}</span><span class="car">▶</span></summary>
+    <div class="body">${compactDone(done)}</div>
+  </details>`;
+}
+
+function render(mode){
+  const board = DATA.map(lane => {
+    const cols = COLUMNS.map(([key,label]) => {
+      const cards = lane.cards.filter(c => c.col === key);
+      let inner;
+      if (key === 'done') inner = renderDone(cards, mode);
+      else inner = cards.map(c=>fullCard(c,false)).join('');
+      const count = cards.length ? `<span class="ct">${cards.length}</span>` : '';
+      return `<div class="col"><div class="col-h"><span>${label}</span>${count}</div>${inner}</div>`;
+    }).join('');
+    const doneN = lane.cards.filter(c=>c.col==='done').length;
+    return `<div class="lane">
+      <div class="lane-head"><span class="lane-name">${esc(lane.name)}</span><span class="lane-meta">${doneN} shipped</span></div>
+      <div class="cols">${cols}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('board').innerHTML = board;
+}
+
+document.querySelectorAll('input[name=mode]').forEach(r => r.addEventListener('change', e => render(e.target.value)));
+render('A');
+</script>
+</body>
+</html>

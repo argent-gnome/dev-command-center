@@ -72,10 +72,38 @@
       + `<span class="blk-badge"${nBlocked ? ` title="${nBlocked} blocked"` : ''}>${blk}</span>`
       + `<span class="touched">${esc(fmtMMDD(laneTouched(cards)))}</span>`;
   }
+  function doneSorted(cards) {
+    return (cards || []).slice().sort((a, b) => String(b.lastTouched || '').localeCompare(String(a.lastTouched || '')));
+  }
+  function doneRowHtml(c) {
+    return `<div class="done-row" title="${esc(c.title)}"><span class="chk">✓</span>`
+      + `<span class="dtitle">${esc(c.title)}</span>`
+      + `<span class="ddate">${esc(fmtMMDD(c.lastTouched))}</span></div>`;
+  }
+  // Compact shipped list: the latest 3 as dense rows, the rest behind a "+N earlier" expander.
+  function compactDone(cards) {
+    const sorted = doneSorted(cards);
+    const head = sorted.slice(0, 3).map(doneRowHtml).join('');
+    const rest = sorted.slice(3);
+    const more = rest.length
+      ? `<details class="earlier"><summary>+${rest.length} earlier ▾</summary><div>${rest.map(doneRowHtml).join('')}</div></details>`
+      : '';
+    return head + more;
+  }
+  // The done column collapses to a single chip ("✓ N shipped · latest <slice>"); it expands to the compact list,
+  // so unbounded shipped history stays one click away without setting the lane's height. (Approved mock: variant B.)
+  function doneChipHtml(cards) {
+    if (!cards || !cards.length) return '';
+    const latest = doneSorted(cards)[0];
+    return `<details class="done-collapsed">`
+      + `<summary>✓ ${cards.length} shipped <span class="latest">· latest ${esc(shortSlice(latest.title))}</span><span class="car">▶</span></summary>`
+      + `<div class="body">${compactDone(cards)}</div></details>`;
+  }
   function laneHtml(p) {
     const cols = COLUMNS.map(([key, label]) => {
-      const cards = (p.cards || []).filter(c => c.column === key).map(cardHtml).join('');
-      return `<div class="col" data-col="${key}"><div class="col-h">${label}</div>${cards}</div>`;
+      const colCards = (p.cards || []).filter(c => c.column === key);
+      const inner = key === 'done' ? doneChipHtml(colCards) : colCards.map(cardHtml).join('');
+      return `<div class="col" data-col="${key}"><div class="col-h">${label}</div>${inner}</div>`;
     }).join('');
     // No `open` attribute → lanes render collapsed by default; recency (board.html) opens recent ones.
     return `<details class="lane" data-lane="${esc(p.project)}" data-touched="${esc(laneTouched(p.cards))}">
@@ -105,5 +133,5 @@
     const lanes = mergeProjects(projects).map(laneHtml).join('');
     return `<div class="board"><div class="lanes">${lanes}</div>${attentionHtml(attention)}</div>`;
   }
-  return { renderBoard, mergeProjects, COLUMNS, esc, representativeCard, laneTouched };
+  return { renderBoard, mergeProjects, COLUMNS, esc, representativeCard, laneTouched, doneChipHtml };
 });
