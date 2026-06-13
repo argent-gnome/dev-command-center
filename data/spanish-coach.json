@@ -73,11 +73,13 @@
     },
     {
       "id": "spanish-coach__slice-11-enrich-16-25",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-13-slice-11-enrich-16-25-design.md"
+      },
       "title": "Slice 11 — enrich lessons 16–25 (sentences)",
       "column": "spec",
-      "phase": "scoping — sentences-only (no new pools); reusing S7 Canon→Generate→Verify pattern",
-      "nextAction": "Write spec for ⛔ review",
+      "phase": "spec written (sentences-only; Opus voting) — awaiting review",
+      "nextAction": "User reviews spec; then build the generation Workflow",
       "model": "Opus (Fable suspended; multi-lens voting)",
       "lastTouched": "2026-06-13"
     }
