@@ -19,9 +19,9 @@
     {
       "id": "hims__slice2-progress-pane",
       "title": "Slice 2 — Progress pane",
-      "column": "live",
-      "phase": "PR #6 CI green (verify+db); doc audit running, awaiting merge approval",
-      "nextAction": "Doc audit → merge to main",
+      "column": "done",
+      "phase": "Merged to main (PR #6, squash c4cb3e2); post-merge CI green",
+      "nextAction": "Slice 3 (state-by-state event capture) or the auth/org-context slice",
       "blockedOn": null,
       "branch": "slice-2-progress-pane",
       "model": "Opus build / Fable merge-gate",
