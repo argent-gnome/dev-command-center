@@ -48,12 +48,13 @@
         "pr": "https://github.com/argent-gnome/spanish-coach/pull/16"
       },
       "title": "Slice 9 — quality hardening + Practice review tile",
-      "column": "verify",
-      "phase": "PR #16 open — CI running (required Build/Test/Lint + non-blocking UITests); UI live-validated both states",
-      "nextAction": "Confirm required check green, enable branch protection, merge",
+      "column": "live",
+      "phase": "tile + non-blocking UITests-CI MERGED (PR #16, a2d6dbe); required CI check green",
+      "nextAction": "Branch protection blocked: private free-plan repo needs public/Pro — user decision",
       "branch": "slice-9-hardening-review-tile",
       "model": "Opus (light slice)",
-      "lastTouched": "2026-06-12"
+      "lastTouched": "2026-06-13",
+      "blockedOn": "Branch protection needs the repo public or GitHub Pro (currently private/free)"
     }
   ]
 }
