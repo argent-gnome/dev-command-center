@@ -64,11 +64,12 @@
       },
       "title": "Slice 10 — author lessons 16–25",
       "column": "verify",
-      "phase": "PR #17 open — CI running",
-      "nextAction": "CI green → live validation → merge",
+      "phase": "merge-gate APPROVE + live-validated; PR #17 CI BLOCKED by GitHub Actions billing (job couldn't start)",
+      "nextAction": "User: fix GitHub Actions billing/spending limit; then re-run CI → merge",
       "model": "Opus (Fable suspended; multi-lens voting pipeline)",
       "lastTouched": "2026-06-13",
-      "branch": "slice-10-lessons-16-25"
+      "branch": "slice-10-lessons-16-25",
+      "blockedOn": "GitHub Actions billing — payment failed / spending limit; CI jobs won't start"
     }
   ]
 }
