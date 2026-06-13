@@ -18,12 +18,12 @@
       "id": "apex__slice-3-persistence",
       "title": "Slice 3 — Persistence + ride overview + map",
       "column": "done",
-      "phase": "MERGED to main (7044a51); post-merge CI green; reconciled (memory + retro)",
-      "nextAction": "PENDING: real-device validation of slices 2 (T8) + 3; then Slice 4 (turn segmentation + Turn Detail)",
+      "phase": "MERGED (7044a51); CI green; device-validated Jun 12 (altitude/grav/GPS all clean, top speed 87.6mph)",
+      "nextAction": "Validated. Slice 4 turn detection in progress.",
       "blockedOn": null,
       "branch": "slice-3-persistence",
       "model": "Fable planning / Opus build",
-      "lastTouched": "2026-06-12",
+      "lastTouched": "2026-06-13",
       "links": {
         "spec": "docs/superpowers/specs/2026-06-12-slice-3-persistence-design.md",
         "pr": "https://github.com/argent-gnome/moto-ride-stats/pull/1"
