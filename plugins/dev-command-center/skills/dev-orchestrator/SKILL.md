@@ -77,7 +77,7 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
    | 4½ docs author | `doc-keeper` agent (author mode) | — |
    | 5 build | `superpowers:subagent-driven-development` \| `superpowers:executing-plans` + `superpowers:test-driven-development` + stack pro-skills (`swiftui-pro`/`swiftdata-pro`/`swift-testing-pro`/`swift-concurrency-pro` or `supabase`/`vercel:*`) — enforce the stack gates below | — |
    | 6 verify (per-task) | spec-compliance reviewer THEN code-quality reviewer (`superpowers:requesting-code-review` / `superpowers:receiving-code-review` + `superpowers:code-reviewer`); fold review findings forward as later-task prerequisites; **require a discriminating test per spec rule** — at least one input where the spec's rule and the nearest plausible-wrong implementation *disagree* (non-monotone / divergent / boundary cases); a suite that only exercises inputs where right and wrong agree is a coverage gap, not coverage (APEX's elevation tests covered only monotone climbs and a 2× undercount sailed through per-task review; the hub's chip-rule tests only covered cases where the buggy and correct rules agree — both CRITICALs survived to the merge-gate); `superpowers:systematic-debugging` on failures | — |
-   | 7 merge-gate | `merge-gate-reviewer` agent (Fable; rubric: cross-task seams · spec-rule citation · regression risk · gate compliance) | — |
+   | 7 merge-gate | `merge-gate-reviewer` agent (active profile's reviewer — **Opus** while Fable is suspended; rubric: cross-task seams · spec-rule citation · regression risk · gate compliance) | — |
    | 8 CI | `superpowers:verification-before-completion` — the **PR run** green via actual `gh run view --json conclusion` (never piped exit codes) | ⛔ PR CI green |
    | 9 live/device | Simulator (iOS) / device / staging (web); **reload the app after any UI change** | ⛔ validation |
    | 9½ docs audit | `doc-keeper` agent (audit mode) | — |
@@ -146,7 +146,7 @@ anything destructive).** This is the plan-deviation gate — surface it, don't s
 
 ## Autonomous / supervised-remote mode (`run --autonomous --max-slices N`)
 A bounded layer over the loop for running while the user is away. It changes **only who clears _soft_
-gates** — the loop, the stack gates, the Fable merge-gate, and the verification doctrine are unchanged.
+gates** — the loop, the stack gates, the merge-gate, and the verification doctrine are unchanged.
 - **HARD gates — always stop, even autonomous** = the entire "never cross silently" list above. At each,
   **PushNotification the user** and halt for approval.
 - **SOFT gates — auto-advance, WITH a logged decision** = routine stage transitions, per-task
@@ -160,7 +160,7 @@ gates** — the loop, the stack gates, the Fable merge-gate, and the verificatio
   decides" + `caffeinate -i`; reversible work proceeds, irreversible waits for the phone approval.
 
 ## Self-improvement (periodic, gated)
-Every few slices — or on demand, **not** per slice — dispatch the **`sdlc-auditor`** agent (Fable) over the
+Every few slices — or on demand, **not** per slice — dispatch the **`sdlc-auditor`** agent (active profile's model) over the
 retros accumulated since the last audit. It opens a **gated PR** proposing conductor/agent/flow changes, each
 citing the retro lines that justify it; it never commits to main. Review it alongside the reserved merge-gate,
 merge, bump the plugin `version`, and the next session's `/plugin marketplace update` pulls the improvement.
@@ -168,11 +168,16 @@ Open `sdlc-audit` PRs + pending-retro counts ride the Needs-Attention pane (via 
 badges, so a proposal can't rot unseen.
 
 ## Cross-cutting policies
-- **Model routing** — default **Opus** (implementation, routine review, bulk content, mechanical chores).
-  **Fable** in surgical bursts: slice planning/architecture, the ONE merge-gate review per slice,
-  sensor-math/data-synthesis, vision. Decide **per task** via the Agent `model:` override. The binding
-  constraint is the **5-hour usage window, not $** — Fable drains it ~2×, so spend it where judgment is
-  densest and output is smallest.
+- **Model routing — profile-driven.** The SDLC defines *roles* (driver · merge-gate reviewer · spec/plan
+  author · per-task verifier · process auditor); a **model profile** at `<hub>/model-profiles/<name>.md` maps
+  each role → (model, topology). The active profile is named by `config.modelProfile`; switch models by
+  pointing it at a different profile + bumping `version` — the *practices* (this whole skill) stay fixed, only
+  the model layer swaps. **Active profile: `opus`** — every role on Opus 4.8 (`claude-opus-4-8`). **`fable` is a
+  frozen, dormant snapshot** (Fable 5 suspended 2026-06-12 by a US-gov export-control directive — verified
+  unavailable; reactivate only if/when restored). The binding constraint is still the **5-hour usage window,
+  not $**; with Fable gone (it drained the window ~2×) there is more headroom — spend it on **Opus fan-out
+  (multiple independent lenses)** where the `fable` profile would have spent a single Fable pass. Read the
+  active profile file for per-role model + topology.
 - **Verification doctrine** — "don't trust the report": reviewers independently re-run builds/tests;
   cross-check with two independent reviewers; confirm with a token-free script where possible; ONE adversarial
   merge-gate per slice (rubric: cross-task seams · spec-rule citation · regression risk · gate compliance) —
@@ -184,7 +189,7 @@ badges, so a proposal can't rot unseen.
 Scale ceremony to the cost of a wrong-but-plausible decision — the *stakes*, never the slice's file type:
 *content / mechanical* → light (plain fan-out, token-free checks, skip the mockup); *feature / UI* → full
 ceremony + mockup sign-off; *risky / novel* → add the stage-0 spike gate.
-**Floor: the dial never down-rates the Fable merge-gate.** When the spec flags a high-stakes rule (e.g.
+**Floor: the dial never down-rates the merge-gate.** When the spec flags a high-stakes rule (e.g.
 spanish-coach BR-10) or the slice touches user data, the one adversarial merge-gate runs no matter how
 "light" the slice looks — it has repeatedly caught criticals that every other check passed (a "content-only"
 slice shipped an out-of-canon noun + cross-lesson duplicates that only the gate saw). Proposing to skip it is

@@ -1,7 +1,6 @@
 ---
 name: merge-gate-reviewer
-description: The ONE adversarial whole-slice merge-gate review (SDLC stage 7), run once per slice right before the PR/merge. Read-only, refute-biased. Reviews the completed slice across its cross-task seams with a fixed rubric. Runs on Fable (judgment-dense input, tiny output).
-model: fable
+description: The ONE adversarial whole-slice merge-gate review (SDLC stage 7), run once per slice right before the PR/merge. Read-only, refute-biased. Reviews the completed slice across its cross-task seams with a fixed rubric. Runs on the active model profile's reviewer model (Opus while Fable is suspended — judgment-dense input, tiny output).
 tools: Bash, Read, Grep, Glob
 ---
 

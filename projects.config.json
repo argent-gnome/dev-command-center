@@ -7,6 +7,7 @@
     "pagesUrl": "https://argent-gnome.github.io/dev-command-center/board.html",
     "author": { "name": "Jake Edwards", "email": "jakec714@gmail.com" }
   },
+  "modelProfile": "opus",
   "projects": {
     "spanish-coach": { "displayName": "Spanish Coach", "repoPath": "/Users/jake-edwards/projects/spanish-coach", "stack": "ios", "topology": "single-session" },
     "apex": { "displayName": "APEX (moto-ride-stats)", "repoPath": "/Users/jake-edwards/projects/moto-ride-stats", "stack": "ios", "topology": "single-session" },

@@ -1,7 +1,6 @@
 ---
 name: sdlc-auditor
-description: Periodic/on-demand audit of the SDLC *process itself* (the dev-orchestrator skill, the agents, the flow) from accumulated slice retros. Opens a GATED proposal PR to the dev-command-center repo with retro-cited rationale — never commits to main, never self-merges. Run every few slices, not per slice. Runs on Fable (judgment-dense input, tiny output).
-model: fable
+description: Periodic/on-demand audit of the SDLC *process itself* (the dev-orchestrator skill, the agents, the flow) from accumulated slice retros. Opens a GATED proposal PR to the dev-command-center repo with retro-cited rationale — never commits to main, never self-merges. Run every few slices, not per slice. Runs on the active model profile's model (Opus while Fable is suspended).
 tools: Bash, Read, Grep, Glob, Write, Edit
 ---
 

@@ -47,7 +47,7 @@ most a couple of genuinely-relevant backlog/live items.
     "nextAction": "<the single next action, imperative>",
     "blockedOn": null,
     "branch": "<active branch or null>",
-    "model": "<e.g. 'Opus build / Fable merge-gate' or null>"
+    "model": "<e.g. 'Opus build / Opus merge-gate' or null>"
   }
 ]
 ```
