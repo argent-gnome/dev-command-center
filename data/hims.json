@@ -19,16 +19,17 @@
     {
       "id": "hims__slice2-progress-pane",
       "title": "Slice 2 — Progress pane",
-      "column": "verify",
-      "phase": "Reviews + Fable merge-gate (caught 1 MAJOR) + fixes + re-verify all green; pushing for PR CI",
-      "nextAction": "Open PR, confirm CI green, then merge gate",
+      "column": "live",
+      "phase": "PR #6 CI green (verify+db); doc audit running, awaiting merge approval",
+      "nextAction": "Doc audit → merge to main",
       "blockedOn": null,
       "branch": "slice-2-progress-pane",
       "model": "Opus build / Fable merge-gate",
       "lastTouched": "2026-06-13",
       "links": {
         "spec": "docs/superpowers/specs/2026-06-12-slice2-progress-pane.md",
-        "plan": "docs/superpowers/plans/2026-06-12-slice2-progress-pane.md"
+        "plan": "docs/superpowers/plans/2026-06-12-slice2-progress-pane.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/6"
       }
     },
     {
