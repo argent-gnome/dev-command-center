@@ -19,13 +19,13 @@
     {
       "id": "hims__slice2-progress-pane",
       "title": "Slice 2 — Progress pane",
-      "column": "build",
-      "phase": "Plan written; building on branch slice-2-progress-pane",
-      "nextAction": "Implement Tasks 1-6 (TDD), then per-task review",
+      "column": "verify",
+      "phase": "Build complete (5 commits, gates green); two independent reviews running",
+      "nextAction": "Reviews → Fable merge-gate → PR CI",
       "blockedOn": null,
       "branch": "slice-2-progress-pane",
       "model": "Opus build / Fable merge-gate",
-      "lastTouched": "2026-06-12",
+      "lastTouched": "2026-06-13",
       "links": {
         "spec": "docs/superpowers/specs/2026-06-12-slice2-progress-pane.md",
         "plan": "docs/superpowers/plans/2026-06-12-slice2-progress-pane.md"
