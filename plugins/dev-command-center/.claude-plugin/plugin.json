@@ -1,7 +1,7 @@
 {
   "name": "dev-command-center",
   "description": "Unified house SDLC orchestrator + project tracker. The dev-orchestrator conductor skill + agents: project-state-scanner, doc-keeper, merge-gate-reviewer, sdlc-auditor.",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "author": { "name": "Jake Edwards", "email": "jakec714@gmail.com" },
   "homepage": "https://github.com/argent-gnome/dev-command-center",
   "keywords": ["sdlc", "orchestrator", "tracker", "kanban"]

@@ -113,7 +113,11 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
   involved) · XCUITest against the synthetic harness · **the `xcodebuild` destination simulator must exist**
   (`xcrun simctl list devices available`; derive the device from what's installed, never hardcode a device
   generation in the plan/test commands — verify at the readiness gate, step 2, not at test time; APEX's plan
-  named an iPhone 16 the machine didn't have) · **NO DESTRUCTIVE SwiftData changes** — additive /
+  named an iPhone 16 the machine didn't have) · **CI must EXECUTE the app-target test bundle, not merely
+  build it** — assert tests actually ran (a real test count), and keep the test-target's deployment target ≤
+  the runner's installed-simulator OS ceiling, else the bundle silently never launches and the job exits 0 on
+  untested code (spanish-coach S8: app-target tests had never run in CI — test-target deployment target 26.5
+  over the runner's 17.6 ceiling) · **NO DESTRUCTIVE SwiftData changes** — additive /
   migrations only. The iOS apps run on the user's real device; never drop, reset, or rewrite a store in a way
   that loses data. **The prohibition needs verification teeth:** when any `@Model` schema changes, the stage-9
   live gate MUST include launching against a store populated under the *previous* schema — a fresh
