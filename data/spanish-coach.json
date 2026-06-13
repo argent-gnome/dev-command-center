@@ -63,13 +63,13 @@
         "pr": "https://github.com/argent-gnome/spanish-coach/pull/17"
       },
       "title": "Slice 10 — author lessons 16–25",
-      "column": "verify",
-      "phase": "merge-gate APPROVE + live-validated; PR #17 CI BLOCKED by GitHub Actions billing (job couldn't start)",
-      "nextAction": "User: fix GitHub Actions billing/spending limit; then re-run CI → merge",
+      "column": "done",
+      "phase": "done · MERGED 2026-06-13 (PR #17, merge 38b06a3)",
+      "nextAction": "+285 items → 25 lessons; Opus voting + deep audit + merge-gate APPROVE; L21 live-validated. CI was GitHub-Actions-billing-blocked → merged through with authorization + local verification. Next tranche: lessons 26–90.",
       "model": "Opus (Fable suspended; multi-lens voting pipeline)",
       "lastTouched": "2026-06-13",
       "branch": "slice-10-lessons-16-25",
-      "blockedOn": "GitHub Actions billing — payment failed / spending limit; CI jobs won't start"
+      "blockedOn": null
     }
   ]
 }
