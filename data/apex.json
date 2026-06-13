@@ -32,14 +32,16 @@
     {
       "id": "apex__slice-4-turn-detection",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-13-slice-4-turn-detection-design.md"
+        "spec": "docs/superpowers/specs/2026-06-13-slice-4-turn-detection-design.md",
+        "plan": "docs/superpowers/plans/2026-06-13-slice-4a-turn-engine.md"
       },
       "title": "Slice 4 — Turn detection + Turn Detail (Street)",
-      "column": "spec",
-      "phase": "spec approved + committed; writing 4a implementation plan",
+      "column": "build",
+      "phase": "4a-engine plan written (ApexCore TurnSegmenter); spec §6 refined to live-accumulator",
       "branch": "slice-4-turn-detection",
       "model": "Opus (Fable suspended)",
-      "lastTouched": "2026-06-13"
+      "lastTouched": "2026-06-13",
+      "nextAction": "Implement 4a-engine Tasks 1–12, then validate detection on the real CSV before UI"
     }
   ]
 }
