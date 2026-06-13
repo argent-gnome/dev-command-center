@@ -78,12 +78,13 @@
         "pr": "https://github.com/argent-gnome/spanish-coach/pull/18"
       },
       "title": "Slice 11 — enrich lessons 16–25 (sentences)",
-      "column": "verify",
-      "phase": "merge-gate APPROVE-WITH-FIXES (all fixes applied+re-verified); live-validated; PR #18",
-      "nextAction": "Check CI; merge (through billing-red if Actions still budget-blocked)",
+      "column": "done",
+      "phase": "done · MERGED 2026-06-13 (PR #18, merge 6e09f34)",
+      "nextAction": "+288 sentences → 772; deep audit + merge-gate caught untaught-vocab + 11 function-word leaks (fixed+re-verified); live-validated. CI billing-blocked → merged through. Next: lessons 26–90.",
       "model": "Opus (Fable suspended; multi-lens voting)",
       "lastTouched": "2026-06-13",
-      "branch": "slice-11-enrich-16-25"
+      "branch": "slice-11-enrich-16-25",
+      "blockedOn": null
     }
   ]
 }
