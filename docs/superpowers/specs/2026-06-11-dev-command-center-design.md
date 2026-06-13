@@ -86,7 +86,7 @@ slice ends with a **PR + description** and a merge. Stages and their delegated s
  5  build                        per execution topology (§3.3-A) + TDD + stack pro-skills
  6  verify (per-task)            spec-compliance reviewer ("don't trust the report") → code-quality reviewer;
                                  carry-forwards fold into later tasks
- 7  merge-gate (adversarial)     ONE whole-slice review, cross-task seams         [merge-gate-reviewer · Fable]
+ 7  merge-gate (adversarial)     active profile's merge-gate role; `opus` → the panel  [merge-gate-panel · Opus]
  8  CI green ⛔                   PR run green via actual `gh run view --json conclusion` (post-merge main re-checked at stage 11); never piped exit codes
  9  live/device     ⛔ GATE       Simulator (iOS) / device / staging (web); reload app on UI change
  9½ DOCS: audit                  diff implementation vs docs → drift report → patch      [doc-keeper · audit]
@@ -116,13 +116,23 @@ slice ends with a **PR + description** and a merge. Stages and their delegated s
 
 ### 3.4 Cross-cutting policies (global)
 
-- **Model routing** — *Fable where the judgment is, Opus where the volume is.* Default Opus
-  (implementation, routine review, bulk, mechanical); Fable in **surgical bursts** (planning/architecture,
-  the one merge-gate review, synthesis, vision). Decided **per task via the Agent `model:` override**, not
-  per session. **Binding constraint = the 5-hour usage window, not $.** (Canonical: `feedback_fable_opus_routing`.)
+- **Model routing — profile-driven** (see §6.7; **ADR [0001](../../adr/0001-swappable-model-profiles.md)**). The SDLC
+  defines *roles* (driver · spec/plan author · per-task verifier · merge-gate reviewer · process auditor); a
+  **model profile** at `model-profiles/<name>.md` maps each `role → (model, topology)`, and
+  `config.modelProfile` names the active one. The *practices* (the whole skill) stay fixed; only the model
+  layer swaps — a model change is a new profile doc + a config flip + a `version` bump, not a per-agent edit.
+  **Active profile: [`opus`](../../../model-profiles/opus.md)** — every role on **Opus 4.8** (`claude-opus-4-8`),
+  now the top tier. The prior [`fable`](../../../model-profiles/fable.md) profile is **frozen/dormant** (Fable 5
+  was suspended 2026-06-12 by a US-government export-control directive — verified unavailable). **Binding
+  constraint = the 5-hour usage window, not $**; with Fable gone (it drained the window ~2×) there is more
+  headroom, spent on **Opus fan-out** where `fable` would have spent a single Fable pass. (Canonical:
+  `feedback_fable_opus_routing`.)
 - **Verification doctrine** — "don't trust the report"; cross-check with two independent reviewers; confirm
   with a token-free script where possible; one adversarial merge-gate per slice (empirically catches
-  criticals that per-task review + CI miss).
+  criticals that per-task review + CI miss). Under the `opus` profile the merge-gate is the **adversarial
+  panel** (`workflows/merge-gate-panel.js`): 4 refute-biased Opus lenses → 3 independent refuters per finding
+  (majority-refute kills it) → GO/NO-GO — **independence-of-perspective** replacing the lost
+  **independence-of-architecture** (a different model checking Opus's work).
 - **Multi-agent opt-in** — plain parallel subagents are free; **Workflows require explicit "ultracode" opt-in.**
 - **Plan-deviation gate** — stop and surface; never silently self-resolve.
 
@@ -139,7 +149,7 @@ sequencing, gating, and tracker updates.
 | build — iOS | `superpowers:subagent-driven-development` + `superpowers:test-driven-development` + `swiftui/swiftdata/swift-testing/swift-concurrency-pro` |
 | build — web | `superpowers:executing-plans` + `superpowers:test-driven-development` + `supabase` / `vercel:*` |
 | per-task review | `superpowers:requesting-code-review` / `receiving-code-review` (+ `code-reviewer` agent); `systematic-debugging` on failures |
-| merge-gate | `merge-gate-reviewer` agent (model: Fable) — fixed cross-seam rubric |
+| merge-gate | active profile's merge-gate role — `opus` → `workflows/merge-gate-panel.js` (4 Opus lenses + 3-refuter verify); degrades to a single `merge-gate-reviewer` dispatch if a Workflow can't run |
 | CI / completion | `superpowers:verification-before-completion` |
 | PR + merge | `superpowers:finishing-a-development-branch` |
 | reconcile | memory update + `doc-keeper` + `board-update` |
@@ -148,10 +158,11 @@ sequencing, gating, and tracker updates.
 The process improves itself from real friction, without ever silently rewriting its own rules:
 1. **Capture (every slice):** Stage 11 writes `docs/retros/<project>-<slice>-retro.md` — manual interventions,
    decisions made, plan deviations, gate friction. Deterministic; no agent.
-2. **Audit/propose (periodic / on-demand):** the `sdlc-auditor` agent (model: Fable) ingests accumulated
-   retros and opens a **PR** to the command-center repo proposing changes to the orchestrator skill, the
-   agents, or the SDLC flow — with rationale. It **never self-merges to main.**
-3. **Gate:** the user reviews the PR alongside the reserved Fable adversarial review of the orchestrator.
+2. **Audit/propose (periodic / on-demand):** the `sdlc-auditor` agent (model per active profile — `opus` → Opus
+   4.8) ingests accumulated retros and opens a **PR** to the command-center repo proposing changes to the
+   orchestrator skill, the agents, or the SDLC flow — with rationale. It **never self-merges to main.**
+3. **Gate:** the user reviews the PR alongside the reserved adversarial review of the orchestrator (the active
+   profile's merge-gate role).
 4. **Apply + re-pull:** merge → bump the plugin `version` → the next session's `/plugin marketplace update`
    pulls the improved tooling; the orchestrator surfaces "process vX is newer" at session start.
 
@@ -210,7 +221,7 @@ Three swimlanes (one per active project). Columns = the slice loop collapsed to 
   "nextAction": "Approve the Slice 7 spec",
   "blockedOn": null,
   "branch": "slice-7-conjugation",
-  "model": "Opus build / Fable merge-gate",
+  "model": "opus profile (Opus build · Opus merge-gate panel)",
   "lastTouched": "2026-06-11",
   "links": { "spec": "docs/...", "pr": null }
 }
@@ -296,17 +307,21 @@ Output is structured board card(s). Used by the orchestrator's `onboard` mode (s
 session start to reconcile the board with reality. Bounded input, structured output, identical across
 projects — a textbook agent.
 
-### 6.2b `merge-gate-reviewer` (a reusable agent, user-level, model: Fable)
+### 6.2b `merge-gate-reviewer` (a reusable agent, user-level, model-agnostic)
 The one adversarial whole-slice review (loop stage 7), as a named agent with a fixed rubric: cross-task
 seams, spec-rule citation, regression risk, gate compliance. Tiny output (a findings/reject list) on
-judgment-dense input — the canonical Fable use. Named (not ad-hoc) so every slice on every project gets the
-*same* merge-gate scrutiny.
+judgment-dense input. Named (not ad-hoc) so every slice on every project gets the *same* merge-gate scrutiny.
+The agent carries **no `model:` frontmatter** — the active model profile (§6.7) decides its model and topology.
+Under the `opus` profile it is the reused unit inside the **adversarial panel** (`workflows/merge-gate-panel.js`):
+each of the 4 lenses and each of the 3 per-finding refuters is a dispatch of this same read-only agent. It also
+serves as the single-dispatch **degrade path** when a Workflow can't run.
 
-### 6.2c `sdlc-auditor` (a reusable agent, user-level, model: Fable)
+### 6.2c `sdlc-auditor` (a reusable agent, user-level, model-agnostic)
 Ingests accumulated `slice-retro.md` files and audits the *process itself* (orchestrator skill, agents, SDLC
 flow). Output: a **proposal PR** to the command-center repo with rationale — never a direct commit to main
-(§3.6). Periodic / on-demand, not per-slice. Judgment-dense, tiny output → Fable. May escalate to a fan-out
-Workflow when auditing many retros at once (ultracode opt-in).
+(§3.6). Periodic / on-demand, not per-slice. Judgment-dense, tiny output. Carries **no `model:` frontmatter** —
+the active profile decides its model (`opus` → Opus 4.8, single; synthesis, not adversarial refutation, so no
+panel). May escalate to a fan-out Workflow when auditing many retros at once (ultracode opt-in).
 
 ### 6.3 `board-update` (a deterministic script)
 See §5.4. Token-free, deterministic, granular. Lives at the hub repo root and operates on the local clone
@@ -348,8 +363,10 @@ dev-command-center/                         # public repo = hub + marketplace + 
 ├── data/<project>.json                     # per-project board state (board-update writes these)
 ├── data/attention.json                     # aggregated action-items for the Needs-Attention pane
 ├── board-update.js  build-board.js  attention-sync.js   # board machinery (run in-place in the clone)
-├── projects.config.json                    # per-project config + hub.repoPath
-├── context/  docs/ (incl. docs/guides/ how-tos · docs/retros/)  README.md
+├── model-profiles/<name>.md                # role → (model, topology) maps; opus.md active, fable.md frozen (§6.7)
+├── workflows/merge-gate-panel.js           # opus-profile stage-7 adversarial panel (lenses + refuters)
+├── projects.config.json                    # per-project config + hub.repoPath + modelProfile
+├── context/  docs/ (incl. docs/adr/ · docs/guides/ how-tos · docs/retros/)  README.md
 ```
 
 Skills/agents/commands are **auto-discovered** from those dirs (no need to enumerate them in `plugin.json`).
@@ -377,6 +394,33 @@ Installed copies are cached under `~/.claude/plugins/cache/...` — see the §6.
 - **Shareable & public-repo hygiene.** README + spec + context make it a coherent "how I build" artifact others
   can install. No secrets/keys committed; status text is intentionally shareable. Auth: public repos need none
   to install; push uses `gh` creds.
+
+### 6.7 Model profiles — the swappable model layer (ADR [0001](../../adr/0001-swappable-model-profiles.md))
+The model layer is **decoupled from the practices** so a model change is config, not code. The skill (§6.2/§6.1)
+defines the *roles*; a **model profile** at `model-profiles/<name>.md` maps each `role → (model, topology)`, and
+`projects.config.json → "modelProfile"` names the active one. The stages, gates, slice loop, board lockstep, and
+stack gates never change with the model — only this layer swaps. **Swap procedure:** write a new profile doc →
+point `config.modelProfile` at it → bump the plugin `version`; `/plugin marketplace update` propagates it.
+
+- **`model-profiles/opus.md` — ACTIVE.** Every role on **Opus 4.8** (`claude-opus-4-8`), the top tier. Became
+  active **2026-06-12** when Claude Fable 5 was suspended for all customers by a US-government export-control
+  directive (verified unavailable). The merge-gate role is the **adversarial panel** (`workflows/merge-gate-panel.js`):
+  4 refute-biased Opus lenses (correctness · data-safety · spec-compliance · cross-seam) → 3 independent Opus
+  refuters per critical/should-fix finding (majority-refute kills it) → **NO-GO iff ≥1 confirmed critical, else
+  GO**. This is **independence-of-perspective** (diverse lenses) standing in for the lost
+  **independence-of-architecture** (a different model checking Opus's work). The panel is syntax-validated as of
+  plugin 0.10.0; first live exercise is the next slice's stage-7.
+- **`model-profiles/fable.md` — FROZEN / DORMANT.** A snapshot of the pre-suspension routing (driver Opus;
+  spec/plan author + merge-gate + auditor on Fable). Reactivates only if Fable is restored: flip
+  `config.modelProfile` back to `fable`, restore `model: fable` on the `merge-gate-reviewer` and `sdlc-auditor`
+  agents, bump `version`.
+
+The two adversarial agents (`merge-gate-reviewer`, `sdlc-auditor`) and `project-state-scanner` carry **no
+`model:` frontmatter** — they inherit the dispatching session's model; the profile, not the agent file, owns the
+model and the topology (single vs. panel). **Why a profile and not a runtime "try Fable → fall back to Opus":**
+the outage is *categorical* (a government order), so a Fable probe is guaranteed to fail, and a model-string
+fallback can't express the panel topology — runtime fallback fits only *intermittent* refusals. See ADR
+[0001](../../adr/0001-swappable-model-profiles.md).
 
 ## 7. Proposed build order (vertical slices)
 
