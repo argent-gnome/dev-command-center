@@ -62,9 +62,9 @@
         "spec": "docs/superpowers/specs/2026-06-12-slice-10-lessons-16-25-design.md"
       },
       "title": "Slice 10 — author lessons 16–25",
-      "column": "build",
-      "phase": "building — canon + Opus extract→3-lens-vote→fix Workflow",
-      "nextAction": "Run authoring Workflow, assemble Swift, fidelity check, merge-gate",
+      "column": "verify",
+      "phase": "Opus merge-gate APPROVE (clean); pushing for PR CI",
+      "nextAction": "PR CI green, then live validation, then merge",
       "model": "Opus (Fable suspended; multi-lens voting pipeline)",
       "lastTouched": "2026-06-13",
       "branch": "slice-10-lessons-16-25"
