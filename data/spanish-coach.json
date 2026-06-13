@@ -70,6 +70,16 @@
       "lastTouched": "2026-06-13",
       "branch": "slice-10-lessons-16-25",
       "blockedOn": null
+    },
+    {
+      "id": "spanish-coach__slice-11-enrich-16-25",
+      "links": {},
+      "title": "Slice 11 — enrich lessons 16–25 (sentences)",
+      "column": "spec",
+      "phase": "scoping — sentences-only (no new pools); reusing S7 Canon→Generate→Verify pattern",
+      "nextAction": "Write spec for ⛔ review",
+      "model": "Opus (Fable suspended; multi-lens voting)",
+      "lastTouched": "2026-06-13"
     }
   ]
 }
