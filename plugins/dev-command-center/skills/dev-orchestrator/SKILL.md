@@ -73,7 +73,7 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
    | 1 scope | `superpowers:brainstorming` + `intent-first-spec-anchored` | — |
    | 2 spec | `superpowers:brainstorming` (+ intent-first) → `docs/superpowers/specs/`; `board-update --link spec=<path>` | ⛔ user review |
    | 3 mockup (UI slices) | `superpowers:brainstorming` mockup | ⛔ sign-off |
-   | 4 plan | `superpowers:writing-plans` — ensure the plan carries a **model-routing note** + "NOT this slice" scope guards | — |
+   | 4 plan | `superpowers:writing-plans` — ensure the plan carries a **model-routing note** + "NOT this slice" scope guards; **order tasks so the build/test target compiles at every task boundary** (a signature change to a shared type updates its call sites in the SAME task — never leave the app target uncompilable for a later test task) and **merge compile-coupled tasks into one implementer unit** ("mostly independent" is an assumption, not a guarantee — APEX's nav trio only compiled together; a required-arg change there broke the app target two tasks before its fix) | — |
    | 4½ docs author | `doc-keeper` agent (author mode) | — |
    | 5 build | `superpowers:subagent-driven-development` \| `superpowers:executing-plans` + `superpowers:test-driven-development` + stack pro-skills (`swiftui-pro`/`swiftdata-pro`/`swift-testing-pro`/`swift-concurrency-pro` or `supabase`/`vercel:*`) — enforce the stack gates below | — |
    | 6 verify (per-task) | spec-compliance reviewer THEN code-quality reviewer (`superpowers:requesting-code-review` / `superpowers:receiving-code-review` + `superpowers:code-reviewer`); fold review findings forward as later-task prerequisites; `superpowers:systematic-debugging` on failures | — |
@@ -110,7 +110,10 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
 
 ## Stack gates (by `config.stack` — enforce at stages 5 & 8)
 - **ios** — `swift test` · SwiftLint · `xcodebuild` build (+ a Release-build check when DEBUG-only code is
-  involved) · XCUITest against the synthetic harness · **NO DESTRUCTIVE SwiftData changes** — additive /
+  involved) · XCUITest against the synthetic harness · **the `xcodebuild` destination simulator must exist**
+  (`xcrun simctl list devices available`; derive the device from what's installed, never hardcode a device
+  generation in the plan/test commands — verify at the readiness gate, step 2, not at test time; APEX's plan
+  named an iPhone 16 the machine didn't have) · **NO DESTRUCTIVE SwiftData changes** — additive /
   migrations only. The iOS apps run on the user's real device; never drop, reset, or rewrite a store in a way
   that loses data. **The prohibition needs verification teeth:** when any `@Model` schema changes, the stage-9
   live gate MUST include launching against a store populated under the *previous* schema — a fresh
