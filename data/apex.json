@@ -28,6 +28,18 @@
         "spec": "docs/superpowers/specs/2026-06-12-slice-3-persistence-design.md",
         "pr": "https://github.com/argent-gnome/moto-ride-stats/pull/1"
       }
+    },
+    {
+      "id": "apex__slice-4-turn-detection",
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-13-slice-4-turn-detection-design.md"
+      },
+      "title": "Slice 4 — Turn detection + Turn Detail (Street)",
+      "column": "spec",
+      "phase": "spec approved + committed; writing 4a implementation plan",
+      "branch": "slice-4-turn-detection",
+      "model": "Opus (Fable suspended)",
+      "lastTouched": "2026-06-13"
     }
   ]
 }
