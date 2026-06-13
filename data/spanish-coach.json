@@ -58,11 +58,13 @@
     },
     {
       "id": "spanish-coach__slice-10-lessons-16-25",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-12-slice-10-lessons-16-25-design.md"
+      },
       "title": "Slice 10 — author lessons 16–25",
       "column": "spec",
-      "phase": "scoping — mapping the lesson 16–25 curriculum arc from transcripts",
-      "nextAction": "Derive moving-line canon, write spec for ⛔ review",
+      "phase": "spec written (canon + Opus-voting pipeline) — awaiting review",
+      "nextAction": "User reviews spec; then build the authoring Workflow",
       "model": "Opus (Fable suspended; multi-lens voting pipeline)",
       "lastTouched": "2026-06-13"
     }
