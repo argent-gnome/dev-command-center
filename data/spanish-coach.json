@@ -59,12 +59,13 @@
     {
       "id": "spanish-coach__slice-10-lessons-16-25",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-12-slice-10-lessons-16-25-design.md"
+        "spec": "docs/superpowers/specs/2026-06-12-slice-10-lessons-16-25-design.md",
+        "pr": "https://github.com/argent-gnome/spanish-coach/pull/17"
       },
       "title": "Slice 10 — author lessons 16–25",
       "column": "verify",
-      "phase": "Opus merge-gate APPROVE (clean); pushing for PR CI",
-      "nextAction": "PR CI green, then live validation, then merge",
+      "phase": "PR #17 open — CI running",
+      "nextAction": "CI green → live validation → merge",
       "model": "Opus (Fable suspended; multi-lens voting pipeline)",
       "lastTouched": "2026-06-13",
       "branch": "slice-10-lessons-16-25"
