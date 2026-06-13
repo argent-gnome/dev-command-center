@@ -74,12 +74,13 @@
     {
       "id": "spanish-coach__slice-11-enrich-16-25",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-13-slice-11-enrich-16-25-design.md"
+        "spec": "docs/superpowers/specs/2026-06-13-slice-11-enrich-16-25-design.md",
+        "pr": "https://github.com/argent-gnome/spanish-coach/pull/18"
       },
       "title": "Slice 11 — enrich lessons 16–25 (sentences)",
-      "column": "build",
-      "phase": "building — Canon→Generate(Opus)→Verify(3-lens voting) Workflow, ~30-35/lesson",
-      "nextAction": "Run generation Workflow, deep audit, merge into generated-sentences.json",
+      "column": "verify",
+      "phase": "merge-gate APPROVE-WITH-FIXES (all fixes applied+re-verified); live-validated; PR #18",
+      "nextAction": "Check CI; merge (through billing-red if Actions still budget-blocked)",
       "model": "Opus (Fable suspended; multi-lens voting)",
       "lastTouched": "2026-06-13",
       "branch": "slice-11-enrich-16-25"
