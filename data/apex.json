@@ -37,11 +37,11 @@
       },
       "title": "Slice 4 — Turn detection + Turn Detail (Street)",
       "column": "build",
-      "phase": "4a-engine plan written (ApexCore TurnSegmenter); spec §6 refined to live-accumulator",
+      "phase": "4a-engine DONE: TurnSegmenter (84 tests, lint clean); review caught+fixed a merge-gate-class bug (post-corner brake contaminating min-speed); real-ride=5 sane turns",
       "branch": "slice-4-turn-detection",
       "model": "Opus (Fable suspended)",
-      "lastTouched": "2026-06-13",
-      "nextAction": "Implement 4a-engine Tasks 1–12, then validate detection on the real CSV before UI"
+      "lastTouched": "2026-06-14",
+      "nextAction": "Build 4a-ui: recorder live-feed + turnsBlob/turnCount persistence + Overview turns list/count/map-highlight (so turns render on the map for visual verification)"
     }
   ]
 }
