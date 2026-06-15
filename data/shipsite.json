@@ -16,13 +16,16 @@
     },
     {
       "id": "shipsite__marketing-site-spec",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-15-marketing-site-design.md"
+      },
       "title": "Marketing-site spec (IA + copy)",
       "column": "spec",
-      "phase": "scoping (stage 1) — IA + copy derived from business-model v2",
-      "nextAction": "Scope IA + page/section copy; draft spec for review",
+      "phase": "stage 2 — spec drafted & committed (slice-1 branch); awaiting user review",
+      "nextAction": "User reviews spec, then mockup sign-off (stage 3)",
       "model": "Opus (all roles)",
-      "lastTouched": "2026-06-15"
+      "lastTouched": "2026-06-15",
+      "branch": "slice-1-marketing-site"
     }
   ]
 }
