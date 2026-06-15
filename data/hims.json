@@ -131,6 +131,16 @@
       "phase": "Merged (PR #10 / b7303f0); post-merge main re-verified green",
       "nextAction": "Next slice: intake discontinue edge / on-med-3-months / auth-org-context slice; sdlc-auditor pass over 7+ retros; top up Actions budget",
       "lastTouched": "2026-06-15"
+    },
+    {
+      "id": "slice-3e",
+      "links": {},
+      "title": "Off-meds terminus: block-60-deferred → regular-issuance-eligible",
+      "column": "spec",
+      "phase": "Scoping — grounded in state model; stable-mood report = new field+rule (rules-as-data, engine untouched), thin clock+report-gated advance to terminal success",
+      "nextAction": "User scope decisions (report modeling + boundary) → write spec",
+      "model": "all-Opus (Fable suspended)",
+      "lastTouched": "2026-06-15"
     }
   ]
 }
