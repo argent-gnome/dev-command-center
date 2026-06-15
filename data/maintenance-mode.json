@@ -7,8 +7,8 @@
       "links": {},
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "spec",
-      "phase": "Owners manuals received (Bronco + CBR, local); slice-1 scope/brainstorm starting",
-      "nextAction": "Brainstorm scope → extract cited schedules into spec → UI mockup sign-off",
+      "phase": "Scope locked (last-serviced-per-item, vehicle switcher, miles); multi-agent schedule extraction running; presenting Slice 1 design",
+      "nextAction": "Approve Slice 1 design → write spec w/ extracted data → mockup sign-off → plan",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15"
     }
