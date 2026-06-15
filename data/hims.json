@@ -67,12 +67,13 @@
       "id": "hims__slice3-event-capture",
       "links": {
         "spec": "docs/superpowers/specs/2026-06-15-slice3-contact-hims-ame.md",
-        "plan": "docs/superpowers/plans/2026-06-15-slice3-contact-hims-ame.md"
+        "plan": "docs/superpowers/plans/2026-06-15-slice3-contact-hims-ame.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/7"
       },
       "title": "Slice 3 — State-by-state event capture",
       "column": "verify",
-      "phase": "Reviews + Opus merge-gate + 2nd lens + fixes; live-validated end-to-end (capture→advance→event); pushing for PR CI",
-      "nextAction": "PR CI → doc audit → merge gate",
+      "phase": "PR #7 open; CI billing-blocked (infra: 0-step startup fail, deterministic, workflow untouched); local gates all green + live-validated end-to-end; awaiting merge-through authorization",
+      "nextAction": "User: merge through billing-blocked CI (per apex/spanish-coach precedent) or hold",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3-contact-hims-ame"
