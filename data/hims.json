@@ -68,8 +68,8 @@
       "links": {},
       "title": "Slice 3 — State-by-state event capture",
       "column": "spec",
-      "phase": "Scoping: state-by-state event capture (engine extension past intake)",
-      "nextAction": "Research scope, then confirm boundary with user",
+      "phase": "Stage-0 design spike: locking transition/persistence/primitive choices",
+      "nextAction": "GO/NO-GO + design decisions, then spec + mockup",
       "model": "Opus build / Fable merge-gate",
       "lastTouched": "2026-06-15"
     }
