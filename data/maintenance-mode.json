@@ -11,12 +11,12 @@
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "verify",
-      "phase": "Merge-gate NO-GO: 1 confirmed critical (CBR coolant Inspect spuriously OVERDUE — date-primary recency + odo-0 phantom fixture record via BR-11 pooling); fixing",
-      "nextAction": "Merge-gate panel -> address findings -> finish branch (remote/merge decision w/ user)",
+      "phase": "Critical FIXED (CBR coolant Inspect now .ok; 45 tests green: 26 core + 16 app + 3 UI; visual regression clean); re-running merge-gate",
+      "nextAction": "Merge-gate re-run -> GO -> create private remote + push branch",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15",
       "branch": "slice-1-schedule-list",
-      "blockedOn": "merge-gate critical: recency tiebreak + since-new fixture seam"
+      "blockedOn": null
     }
   ]
 }
