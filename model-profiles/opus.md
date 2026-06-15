@@ -24,12 +24,14 @@ drained it ~2×), so the extra Opus passes are affordable. The window is still t
 |---|---|---|
 | Driver / implementation | Opus 4.8 | single (the session main loop) |
 | Spec / plan authoring | Opus 4.8 | single, with full repo context (the modeling judgment already lands in the approved spec) |
+| **Plan review (stage 4¼)** | Opus 4.8 | **fan-out panel (BUILT)** — `workflows/plan-check.js`: 5 lenses (arch-fit · spec-coverage · risk/sequencing · testability · simpler-path) critique the plan vs the app + spec; criticals refute-verified → must-fix-before-build + advisory. Soft checkpoint — catches design flaws while still a doc edit (the cheapest place). |
 | Per-task verify (stage 6) | Opus 4.8 | spec-compliance reviewer THEN code-quality reviewer (already two independent passes) |
 | **Merge-gate (stage 7)** | Opus 4.8 | **adversarial PANEL (BUILT)** — `workflows/merge-gate-panel.js`: 4 refute-biased lenses (correctness · data-safety · spec-compliance · cross-seam) → 3 independent refuters per critical/should-fix finding (majority-refute kills it) → GO/NO-GO. Independence-of-perspective replacing the lost independence-of-architecture. Every lens/refuter reuses the `merge-gate-reviewer` agent (read-only, refute-biased). |
+| **Code-health (stage 7½)** | Opus 4.8 | **fan-out sweep (BUILT, ADVISORY — non-blocking)** — `workflows/code-health-sweep.js`: whole-app lenses (architecture · swiftui · swiftdata · concurrency · refactor) → deduped, ledger-filtered, value-ranked health backlog → `docs/health/`. Keeps the codebase clean slice-by-slice; deferred findings live in `docs/health/accepted.md` so they don't re-surface. |
 | Process audit (`sdlc-auditor`) | Opus 4.8 | single (synthesis, not adversarial refutation — a panel buys little here) |
 | `doc-keeper` / `project-state-scanner` | Opus 4.8 (inherited) | single |
 
 ## Notes
 - Agents carry **no `model:` frontmatter** — they inherit the dispatching session's model (Opus). The profile,
   not the agent file, decides the model and whether a role fans out into a panel.
-- The merge-gate panel is **BUILT** (`workflows/merge-gate-panel.js`) — this profile is fully realized. Its first real exercise is the next slice's stage-7; until then it is syntax-validated and logic-reviewed, not yet run against a live slice.
+- Three review workflows realize this profile's fan-out: `workflows/merge-gate-panel.js` (stage 7, blocking), `workflows/plan-check.js` (stage 4¼, soft), `workflows/code-health-sweep.js` (stage 7½, advisory). All are syntax-validated + logic-reviewed; each gets its first live exercise at the corresponding stage of the next slice.
