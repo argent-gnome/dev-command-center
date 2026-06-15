@@ -96,14 +96,16 @@
     {
       "id": "hims__slice3c-wait-judgment",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-15-slice3c-wait-judgment.md"
+        "spec": "docs/superpowers/specs/2026-06-15-slice3c-wait-judgment.md",
+        "plan": "docs/superpowers/plans/2026-06-15-slice3c-wait-judgment.md"
       },
       "title": "Slice 3c — under-3mo-wait → judgment entry",
-      "column": "spec",
-      "phase": "Spec approved (reused mockup); plan written; running stage-4¼ plan-check",
-      "nextAction": "Fold must-fix, then build",
+      "column": "build",
+      "phase": "Plan-check PROCEED (0 must-fix); folding test-coverage nits; building on branch",
+      "nextAction": "Build Task 1 (compile-coupled core) + fixture + gate",
       "model": "all-Opus (profile opus)",
-      "lastTouched": "2026-06-15"
+      "lastTouched": "2026-06-15",
+      "branch": "slice-3c-wait-judgment"
     }
   ]
 }
