@@ -86,8 +86,8 @@
       },
       "title": "Slice 3b — next-state judgment capture",
       "column": "verify",
-      "phase": "2 reviews + fix (MAJOR latent re-entry crash → upsert); running stage-7 merge-gate panel (4 Opus lenses)",
-      "nextAction": "Merge-gate → CI → live",
+      "phase": "Merge-gate panel GO (0 criticals); nit pruned; running 7½ health-sweep (advisory)",
+      "nextAction": "Health-sweep → CI → live → merge",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3b-nature-of-diagnosis"
