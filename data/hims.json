@@ -139,10 +139,11 @@
       },
       "title": "Off-meds terminus: block-60-deferred → regular-issuance-eligible",
       "column": "spec",
-      "phase": "Spec written (single bool stable-mood fact + clock+report-gated thin transition to terminal; adds 1 field+1 rule, engine untouched) — awaiting review",
-      "nextAction": "User spec review → mockup sign-off",
+      "phase": "Spec approved + mockup reused; plan written (3 tasks); running stage-4¼ plan-check",
+      "nextAction": "Plan-check → build",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-15"
+      "lastTouched": "2026-06-15",
+      "branch": "slice-3e-regular-issuance"
     }
   ]
 }
