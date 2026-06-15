@@ -58,9 +58,9 @@
       "id": "apex__slice-4b-turn-detail",
       "links": {},
       "title": "Slice 4b — Turn Detail card",
-      "column": "verify",
-      "phase": "BUILT & green (TurnProfile loader + TurnDetailView + tap-to-detail nav); Batch-1 review APPROVED + accel-sign guard; XCUITest green; visual check passed; merge-gate running",
-      "nextAction": "On merge-gate GO: merge 4b + install to device (real rides render the graph)",
+      "column": "done",
+      "phase": "MERGED (PR #4, 8f14019) — merge-gate caught a Release-only @MainActor-inference critical (archive parse ran on main); fixed nonisolated; re-review GO; installed to device",
+      "nextAction": "Turn-detection arc COMPLETE (4/4a/4a.1/4b). Next: Slice 5+ — Track mode fork / auto-zero per roadmap",
       "branch": "slice-4b-turn-detail",
       "model": "Opus (Fable suspended)",
       "lastTouched": "2026-06-15"
