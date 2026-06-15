@@ -38,11 +38,11 @@
       },
       "title": "Slice 4 — Turn detection + Turn Detail (Street)",
       "column": "build",
-      "phase": "4a-engine DONE; UI mockup signed off (browser, data-accurate); 4a-ui plan written",
+      "phase": "4a-engine + 4a-ui BUILT & green (pkg 85 / app-unit / full XCUITest; Debug+Release; lint 0 serious); portrait-locked; UI merge-gate caught+fixed C1; visual check passed",
       "branch": "slice-4-turn-detection",
       "model": "Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
-      "nextAction": "Build 4a-ui Tasks 1–10 subagent-driven (data/wiring → Overview UI → fixtures/XCUITest → gates+device)"
+      "nextAction": "Whole-slice merge-gate (engine+ui) → device install for on-device map check → merge 4a; then 4b Turn Detail card"
     }
   ]
 }
