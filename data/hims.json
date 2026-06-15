@@ -85,11 +85,12 @@
         "plan": "docs/superpowers/plans/2026-06-15-slice3b-nature-of-diagnosis.md"
       },
       "title": "Slice 3b — next-state judgment capture",
-      "column": "spec",
-      "phase": "Mockup signed off; plan written; running stage-4¼ plan-check (5 Opus lenses)",
-      "nextAction": "Fold any must-fix, then build",
+      "column": "build",
+      "phase": "Plan-check REVISE folded (must-fix: under-3mo rejection discriminating test); building on branch",
+      "nextAction": "Build Tasks 1-5 (TDD)",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-15"
+      "lastTouched": "2026-06-15",
+      "branch": "slice-3b-nature-of-diagnosis"
     }
   ]
 }
