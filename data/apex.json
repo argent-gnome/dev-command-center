@@ -43,6 +43,16 @@
       "model": "Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "nextAction": "Confirm app launches with existing rides intact (live data-safety); then 4a.1 backfill + 4b Turn Detail"
+    },
+    {
+      "id": "apex__slice-4a1-backfill",
+      "links": {},
+      "title": "Slice 4a.1 — backfill turns onto existing rides",
+      "column": "spec",
+      "phase": "lined up; design captured (reprocess archive CSVs via parseCSV + TurnSegmenter → additive turnsBlob/turnCount)",
+      "nextAction": "Decide lazy-on-open vs eager-on-launch; skip rides w/ missing archive; spec+plan then build",
+      "model": "Opus (Fable suspended)",
+      "lastTouched": "2026-06-15"
     }
   ]
 }
