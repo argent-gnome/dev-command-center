@@ -121,6 +121,14 @@
       "model": "all-Opus (profile opus)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3d-discontinue"
+    },
+    {
+      "id": "slice-3d",
+      "links": {},
+      "column": "verify",
+      "phase": "Two Opus reviews GREEN (spec COMPLIANT + code LGTM); running stage-7 merge-gate panel",
+      "nextAction": "Merge-gate panel → billing-blocked CI → user merge authorization",
+      "lastTouched": "2026-06-15"
     }
   ]
 }
