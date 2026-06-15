@@ -71,8 +71,8 @@
       },
       "title": "Slice 3 — State-by-state event capture",
       "column": "verify",
-      "phase": "2 reviews + fixes (BLOCKER atomic transition, 2 MAJORs) green; Opus merge-gate + 2nd lens running",
-      "nextAction": "Merge-gate → PR CI → live validation",
+      "phase": "Reviews + Opus merge-gate + 2nd lens + fixes; live-validated end-to-end (capture→advance→event); pushing for PR CI",
+      "nextAction": "PR CI → doc audit → merge gate",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3-contact-hims-ame"
