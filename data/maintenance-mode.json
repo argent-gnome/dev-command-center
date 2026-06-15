@@ -5,12 +5,13 @@
     {
       "id": "maintenance-mode__slice-1-schedule-list",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-14-slice-1-schedule-list-design.md"
+        "spec": "docs/superpowers/specs/2026-06-14-slice-1-schedule-list-design.md",
+        "mockup": "docs/mockups/main-screen.html"
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "spec",
-      "phase": "Custom intervals finalized (10 seeded); ready for final spec review + UI mockup",
-      "nextAction": "Final spec review -> UI mockup sign-off -> writing-plans -> build",
+      "phase": "Main-screen mockup built + self-verified (both vehicles); opened for sign-off",
+      "nextAction": "User signs off mockup -> writing-plans -> build",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15"
     }
