@@ -72,15 +72,15 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
    | 0 spike (risky/novel only) | `superpowers:brainstorming` → write a GO/NO-GO verdict doc | — |
    | 1 scope | `superpowers:brainstorming` + `intent-first-spec-anchored` | — |
    | 2 spec | `superpowers:brainstorming` (+ intent-first) → `docs/superpowers/specs/`; `board-update --link spec=<path>` | ⛔ user review |
-   | 3 mockup (UI slices) | `superpowers:brainstorming` mockup | ⛔ sign-off |
+   | 3 mockup (UI slices) | `superpowers:brainstorming` mockup. **Reusing an already-signed-off mockup is a legitimate option** for a *component-reuse / placement-only* slice (the UI was approved in a prior slice; only where it appears is new — hims S3c/S3d reused the DiagnosisForm/off-ramp mockups). It is not a free skip: state the no-fresh-mockup decision and get the user's explicit OK — the sign-off gate still fires, on "reuse the approved mockup here" rather than on a new render. Author a fresh mockup whenever the slice introduces genuinely new UI. | ⛔ sign-off (fresh **or** reuse-approval) |
    | 4 plan | `superpowers:writing-plans` — ensure the plan carries a **model-routing note** + "NOT this slice" scope guards; **order tasks so the build/test target compiles at every task boundary** (a signature change to a shared type updates its call sites in the SAME task — never leave the app target uncompilable for a later test task) and **merge compile-coupled tasks into one implementer unit** ("mostly independent" is an assumption, not a guarantee — APEX's nav trio only compiled together; a required-arg change there broke the app target two tasks before its fix) | — |
    | 4¼ plan-check | active profile's **plan-review** role. `opus`: `Workflow({scriptPath: "<hub>/workflows/plan-check.js", args: {project, repoPath, planPath, specGlobs, stack, sliceId}})` — 5 Opus lenses (arch-fit · spec-coverage · risk/sequencing · testability · simpler-path) critique the plan vs the app + spec; each critical is refute-verified → **must-fix-before-build** + advisory recs. **Soft checkpoint:** fold must-fix into the plan (re-run `writing-plans` on the deltas) before building; advisory at the author's discretion. The stage-4¼ instruction is the standing Workflow opt-in. Catching a design flaw here is the cheapest — it's still a doc edit. | ⚠️ revise if critical |
    | 4½ docs author | `doc-keeper` agent (author mode) | — |
    | 5 build | `superpowers:subagent-driven-development` \| `superpowers:executing-plans` + `superpowers:test-driven-development` + stack pro-skills (`swiftui-pro`/`swiftdata-pro`/`swift-testing-pro`/`swift-concurrency-pro` or `supabase`/`vercel:*`) — enforce the stack gates below | — |
    | 6 verify (per-task) | spec-compliance reviewer THEN code-quality reviewer (`superpowers:requesting-code-review` / `superpowers:receiving-code-review` + `superpowers:code-reviewer`); fold review findings forward as later-task prerequisites; **require a discriminating test per spec rule** — at least one input where the spec's rule and the nearest plausible-wrong implementation *disagree* (non-monotone / divergent / boundary cases); a suite that only exercises inputs where right and wrong agree is a coverage gap, not coverage (APEX's elevation tests covered only monotone climbs and a 2× undercount sailed through per-task review; the hub's chip-rule tests only covered cases where the buggy and correct rules agree — both CRITICALs survived to the merge-gate); `superpowers:systematic-debugging` on failures | — |
    | 7 merge-gate | active profile's merge-gate role. **`opus` profile → the adversarial PANEL:** `Workflow({scriptPath: "<hub>/workflows/merge-gate-panel.js", args: {project, repoPath, baseRef, headRef, sliceId, specGlobs, stack, highStakes}})` — 4 refute-biased Opus lenses (cross-task seams · spec-rule citation · regression/data-safety · gate compliance) → 3-refuter verify → GO/NO-GO. **This stage-7 instruction is the standing Workflow opt-in** for the gate. Degrade to a single `merge-gate-reviewer` dispatch only if a Workflow can't run. | — |
-   | 7½ health-sweep | active profile's **code-health** role — ADVISORY, never blocks the merge. `opus`: `Workflow({scriptPath: "<hub>/workflows/code-health-sweep.js", args: {project, repoPath, stack, sliceId, scope}})` — whole-app Opus lenses → deduped, ledger-filtered, value-ranked **health backlog**. Write it to `<repoPath>/docs/health/<date>-<slice>.md`; deferred items → `<repoPath>/docs/health/accepted.md` (the suppression ledger that stops findings re-surfacing every slice). Surface the top items; triage into future slices. `scope` = whole-app (default) \| blast-radius (shift to blast-radius as the app grows, so it's not redundant re-review). | — |
-   | 8 CI | `superpowers:verification-before-completion` — the **PR run** green via actual `gh run view --json conclusion` (never piped exit codes) | ⛔ PR CI green |
+   | 7½ health-sweep | active profile's **code-health** role — ADVISORY, never blocks the merge. `opus`: `Workflow({scriptPath: "<hub>/workflows/code-health-sweep.js", args: {project, repoPath, stack, sliceId, scope}})` — whole-app Opus lenses → deduped, ledger-filtered, value-ranked **health backlog**. Write it to `<repoPath>/docs/health/<date>-<slice>.md`; deferred items → `<repoPath>/docs/health/accepted.md` (the suppression ledger that stops findings re-surfacing every slice). Surface the top items; triage into future slices. `scope` = whole-app (default) \| blast-radius (shift to blast-radius as the app grows, so it's not redundant re-review). **Skip is legitimate** on a *small extension slice* (a handful of files, reusing patterns) that lands **right after a recent whole-app sweep whose backlog is still open** — a fresh whole-app sweep would only re-surface the carried-forward `docs/health/accepted.md` items and add ~nothing (hims S3c/S3d both correctly skipped on ~6–9-file extensions after S3b's sweep). When you skip, **carry that slice's own merge-gate nits into the open health backlog** so nothing is dropped, and prefer `blast-radius` over an outright skip whenever the slice touched genuinely new surface. Skipping is advisory-stage housekeeping, never a merge gate — it needs no user sign-off. | — |
+   | 8 CI | `superpowers:verification-before-completion` — the **PR run** green via actual `gh run view --json conclusion` (never piped exit codes). **Infra-only CI failure → the documented merge-through path** (see "Infra-only CI failures" below): if the run failed because it **never started** (billing/budget block, runner outage — `conclusion` is `null`/`startup_failure`, **0 steps**), not because code went red, the slice may merge on local verification standing in for the run — but only as a **HARD-gated, user-authorized** exception, never a soft default. | ⛔ PR CI green **or** authorized infra-only merge-through |
    | 9 live/device | Simulator (iOS) / device / staging (web); **reload the app after any UI change** | ⛔ validation |
    | 9½ docs audit | `doc-keeper` agent (audit mode) | — |
    | 10 PR + merge | `superpowers:finishing-a-development-branch`; `board-update --link pr=<url>`; **the slice's spec, plan, and any approved mockup ship IN the slice PR** — they are the cited design authority (spec-anchored audit trail), never "throwaway"; commit them deliberately, not via a stray `git add -A` | — |
@@ -134,6 +134,31 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
   be called out and gated; a fresh CI DB passing is *not* proof it's safe against a populated one. (Mirrors
   the iOS SwiftData rule above.)
 
+### Infra-only CI failures — the documented merge-through path (stage 8)
+The PR CI gate is "⛔ PR CI green." But CI can fail for reasons that are **not the code** — most often the
+`argent-gnome` org's **GitHub Actions budget exhausted** (jobs never start: `conclusion` `null`/`startup_failure`,
+**0 steps**), or a runner/registry outage. This recurred across **≥6 slices in 2 projects** (spanish-coach S10/S11,
+hims S3/S3b/S3c/S3d), each improvising the same workaround under ad-hoc authorization. Standardize it:
+1. **Diagnose infra vs code-red, mechanically.** Read the run with `gh run view --json conclusion,status` and
+   the jobs with `gh api .../jobs`. **Infra-only = the job never executed** (0 steps / `startup_failure` /
+   the budget-block message). If any step *ran and went red*, it is **code-red — NOT infra**: fix it, never
+   merge through. When unsure, treat as code-red (fail closed).
+2. **Local verification stands in for the run — in full.** Re-run the entire stack gate set locally and record
+   the result in the retro (iOS: `swift test` actually executing the app-target bundle · SwiftLint · `xcodebuild`
+   build · XCUITest; web: tests · typecheck · lint · build, + DB-integration tests against a real DB where the
+   slice has them). The merge-gate (stage 7) must have GO'd. Confirm the merge content is byte-identical to the
+   verified branch HEAD.
+3. **It is a HARD gate — always get explicit user authorization.** Merging past a red/blocked required check is
+   an irreversible action on the default branch → it sits on the "never cross silently" list. Surface it, name
+   it as infra-only, show the local-verification evidence, and merge only on the user's explicit OK. **Never a
+   soft auto-advance, even in autonomous mode.**
+4. **It presumes no branch protection** requiring the check (the house repos are private/unprotected today). If
+   a required-status-check rule is ever added, infra-only merge-through is blocked until the check clears or the
+   user lifts the rule — do not attempt to bypass branch protection.
+5. **Flag the root cause every time.** An infra-only merge-through is a workaround, not a fix; note "Actions
+   budget needs topping up" (or the outage) to the user in the session summary so the dependency gets resolved
+   rather than normalized. Post-merge main CI will be blocked too; re-verify main locally and say so.
+
 ## onboard — the procedure
 For each project to onboard: ready the repo first (the readiness check in run-step 2 — CI gate set + docs
 scaffold), then dispatch the **`project-state-scanner`** agent with its `repoPath` + memory file → take the
@@ -149,7 +174,8 @@ anything destructive).** This is the plan-deviation gate — surface it, don't s
 ## Autonomous / supervised-remote mode (`run --autonomous --max-slices N`)
 A bounded layer over the loop for running while the user is away. It changes **only who clears _soft_
 gates** — the loop, the stack gates, the merge-gate, and the verification doctrine are unchanged.
-- **HARD gates — always stop, even autonomous** = the entire "never cross silently" list above. At each,
+- **HARD gates — always stop, even autonomous** = the entire "never cross silently" list above, **plus any
+  infra-only CI merge-through** (a red/blocked required check is never cleared by the agent alone). At each,
   **PushNotification the user** and halt for approval.
 - **SOFT gates — auto-advance, WITH a logged decision** = routine stage transitions, per-task
   review→fix→re-review cycles, equivalent-option choices that have a sensible default, board-update calls.
