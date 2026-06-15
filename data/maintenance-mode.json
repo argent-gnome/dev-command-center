@@ -11,8 +11,8 @@
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "build",
-      "phase": "Tasks 1-5 DONE+verified (12 app tests + 23 core tests pass); building Task 6 SwiftUI views",
-      "nextAction": "Task 6: RowStyle/MaintenanceRowView/RootView -> orchestrator launch+screenshot visual check vs mockup",
+      "phase": "Task 6 views DONE + visual check PASSED (real app matches mockup); building Task 7 XCUITests",
+      "nextAction": "Task 7: XCUITests (accessibility ids, -uiTestSeed) -> Task 8 CI -> merge-gate",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15",
       "branch": "slice-1-schedule-list"
