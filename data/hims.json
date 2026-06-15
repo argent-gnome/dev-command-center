@@ -111,12 +111,13 @@
     {
       "id": "hims__slice3d-discontinue",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-15-slice3d-discontinue.md"
+        "spec": "docs/superpowers/specs/2026-06-15-slice3d-discontinue.md",
+        "plan": "docs/superpowers/plans/2026-06-15-slice3d-discontinue.md"
       },
       "title": "Slice 3d — elect-to-discontinue → block-60-deferred",
       "column": "spec",
-      "phase": "Spec written; mockup for sign-off (DiscontinueForm + block_60_deferred destination)",
-      "nextAction": "Sign-off, then plan + 4¼ plan-check",
+      "phase": "Mockup signed off; plan written; running stage-4¼ plan-check",
+      "nextAction": "Fold must-fix, then build",
       "model": "all-Opus (profile opus)",
       "lastTouched": "2026-06-15"
     }
