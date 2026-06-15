@@ -80,11 +80,13 @@
     },
     {
       "id": "hims__slice3b-judgment",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-15-slice3b-nature-of-diagnosis.md"
+      },
       "title": "Slice 3b — next-state judgment capture",
       "column": "spec",
-      "phase": "Scoping: nature-of-diagnosis judgment (dx_acceptability) + multi-outcome routing",
-      "nextAction": "Confirm scope boundary + ENUM approach, then spec",
+      "phase": "Spec written; mockup for sign-off (judgment form + both outcomes)",
+      "nextAction": "Mockup sign-off, then plan + 4¼ plan-check",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15"
     }
