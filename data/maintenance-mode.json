@@ -11,8 +11,8 @@
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "build",
-      "phase": "Plan written (8 tasks); starting subagent-driven build on branch slice-1-schedule-list",
-      "nextAction": "Task 1: scaffold XcodeGen project + MaintenanceCore (compiling)",
+      "phase": "Plan written; running multi-agent plan review (gaps/architecture/quality/practices) BEFORE build",
+      "nextAction": "Review plan -> fold amendments -> start Task 1 build",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15",
       "branch": "slice-1-schedule-list"
