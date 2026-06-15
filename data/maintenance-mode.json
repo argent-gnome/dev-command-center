@@ -9,8 +9,8 @@
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "spec",
-      "phase": "Schedules extracted + verified + committed; Slice 1 spec written & self-reviewed; awaiting user spec review",
-      "nextAction": "User reviews spec → UI mockup sign-off → writing-plans",
+      "phase": "Spec written; running community-vs-manual interval research (workflow) to source candidate custom intervals before finalizing",
+      "nextAction": "Review interval research → user picks custom intervals → spec review → mockup → plan",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15"
     }
