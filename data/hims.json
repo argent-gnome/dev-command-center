@@ -110,11 +110,13 @@
     },
     {
       "id": "hims__slice3d-discontinue",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-15-slice3d-discontinue.md"
+      },
       "title": "Slice 3d — elect-to-discontinue → block-60-deferred",
       "column": "spec",
-      "phase": "Scoping: discontinue branch (Path-I switch) from the wait state",
-      "nextAction": "Confirm scope boundary, then spec + mockup",
+      "phase": "Spec written; mockup for sign-off (DiscontinueForm + block_60_deferred destination)",
+      "nextAction": "Sign-off, then plan + 4¼ plan-check",
       "model": "all-Opus (profile opus)",
       "lastTouched": "2026-06-15"
     }
