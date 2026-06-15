@@ -135,12 +135,13 @@
     {
       "id": "slice-3e",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-15-slice3e-regular-issuance.md"
+        "spec": "docs/superpowers/specs/2026-06-15-slice3e-regular-issuance.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/11"
       },
       "title": "Off-meds terminus: block-60-deferred → regular-issuance-eligible",
-      "column": "verify",
-      "phase": "Two Opus reviews resolved (code LGTM; spec gap [advisory-#3 action test] closed); running stage-7 merge-gate panel",
-      "nextAction": "Merge-gate panel → CI → merge authorization",
+      "column": "done",
+      "phase": "Merged (PR #11 / 0e89944); post-merge main re-verified green; off-meds Path-I arc COMPLETE",
+      "nextAction": "Next: on-meds arc (AMCD package states) / intake discontinue edge / auth-org-context slice; sdlc-auditor pass over 8+ retros; top up Actions budget",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3e-regular-issuance"
