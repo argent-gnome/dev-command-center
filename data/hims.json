@@ -107,6 +107,16 @@
       "model": "all-Opus (profile opus)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3c-wait-judgment"
+    },
+    {
+      "id": "hims__slice3d-discontinue",
+      "links": {},
+      "title": "Slice 3d — elect-to-discontinue → block-60-deferred",
+      "column": "spec",
+      "phase": "Scoping: discontinue branch (Path-I switch) from the wait state",
+      "nextAction": "Confirm scope boundary, then spec + mockup",
+      "model": "all-Opus (profile opus)",
+      "lastTouched": "2026-06-15"
     }
   ]
 }
