@@ -11,8 +11,8 @@
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "build",
-      "phase": "Task 1 scaffold DONE + independently verified (build/lint/git green); building Task 2 core due-date math",
-      "nextAction": "Task 2: MaintenanceCore DueMath TDD (BR-1..6,10,11) -> spec review",
+      "phase": "Tasks 1-2 DONE+verified (15/15 core tests pass); building Task 3 SeedBuilder",
+      "nextAction": "Task 3: SeedBuilder merge (overrides/exclusions/added) tested vs real JSON",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15",
       "branch": "slice-1-schedule-list"
