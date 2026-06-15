@@ -25,3 +25,10 @@ schema design, first-pass spec + plan authoring, the one merge-gate review per s
 binding constraint was the **5-hour usage window** (Fable drained it ~2×), not dollars — so Fable being free on
 the plan did *not* relieve window-maxing. The merge-gate's distinctive value was **cross-architecture
 independence**, which the `opus` profile replaces with multi-lens fan-out.
+
+## Roles added after this snapshot (post-2026-06-12)
+The rest of the **review spine** beyond the single merge-gate — `plan-check` (stage 4¼) and
+`code-health-sweep` (stage 7½) — was built *after* the suspension, as Opus multi-lens fan-outs (see `opus.md`
++ ADR 0002). They have no pre-suspension Fable routing. **If Fable returns, decide then** whether they stay
+Opus fan-outs (the fan-out already supplies the independence Fable's single-reviewer gave) or route a
+lens/pass to Fable. Until then they run per `opus.md`.

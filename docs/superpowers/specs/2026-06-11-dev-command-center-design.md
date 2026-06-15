@@ -82,11 +82,15 @@ slice ends with a **PR + description** and a merge. Stages and their delegated s
  2  spec            ⛔ GATE       behavior & rules, numbered + cited, durable markdown → user review
  3  mockup          ⛔ GATE       (UI slices only) HTML mockup sign-off before code
  4  plan                         success criteria · architecture · checkboxed tasks · model-routing note
+ 4¼ plan-check  ⚠️ SOFT          design review of the PLAN vs app+spec, before code  [plan-check · Opus]
+                                 5 lenses → must-fix-before-build + advisory; fold must-fix in, then build
  4½ DOCS: author/update          create/update project docs from spec + plan      [doc-keeper · author]
  5  build                        per execution topology (§3.3-A) + TDD + stack pro-skills
  6  verify (per-task)            spec-compliance reviewer ("don't trust the report") → code-quality reviewer;
                                  carry-forwards fold into later tasks
  7  merge-gate (adversarial)     active profile's merge-gate role; `opus` → the panel  [merge-gate-panel · Opus]
+ 7½ code-health  (advisory)      whole-app health sweep AFTER the GO; never blocks    [code-health-sweep · Opus]
+                                 lenses → deduped, ledger-filtered backlog → docs/health/; triage into future slices
  8  CI green ⛔                   PR run green via actual `gh run view --json conclusion` (post-merge main re-checked at stage 11); never piped exit codes
  9  live/device     ⛔ GATE       Simulator (iOS) / device / staging (web); reload app on UI change
  9½ DOCS: audit                  diff implementation vs docs → drift report → patch      [doc-keeper · audit]
@@ -94,6 +98,11 @@ slice ends with a **PR + description** and a merge. Stages and their delegated s
  11 reconcile                    memory + docs + board + write `slice-retro.md` (interventions · decisions · friction)
   ▸ board-update fires at EVERY transition: column · phase-chip · next-action · blocked-on · last-touched
 ```
+
+Stages **4¼**, **7**, and **7½** form the **three-stage review spine** — three Opus fan-outs at three
+scopes/times, each at the cheapest point for its concern: the **plan** before code (soft), the **slice**
+before merge (hard), the **whole app** after merge (advisory). See §3.4 and **ADR
+[0002](../../adr/0002-three-stage-review-spine.md)**.
 
 ### 3.3 Variation axes (parameterized per project, not hardcoded)
 
@@ -133,6 +142,26 @@ slice ends with a **PR + description** and a merge. Stages and their delegated s
   panel** (`workflows/merge-gate-panel.js`): 4 refute-biased Opus lenses → 3 independent refuters per finding
   (majority-refute kills it) → GO/NO-GO — **independence-of-perspective** replacing the lost
   **independence-of-architecture** (a different model checking Opus's work).
+- **Three-stage review spine** (**ADR [0002](../../adr/0002-three-stage-review-spine.md)**). The merge-gate is
+  the middle of **three Opus fan-outs at three scopes/times**, each placed at the cheapest point for its
+  concern, with distinct blocking semantics:
+  1. **Stage 4¼ — plan-check** (`workflows/plan-check.js`) — a **pre-build design review** of the freshly-written
+     plan vs the existing app + spec. 5 lenses (arch-fit · spec-coverage · risk/sequencing · testability ·
+     simpler-path); each critical is refute-verified so the must-fix list is trustworthy. Returns REVISE/PROCEED
+     + must-fix-before-build + advisory. **SOFT checkpoint** — fold must-fix into the plan, then build. Shift-left:
+     a design flaw in a markdown plan is the cheapest place to catch it.
+  2. **Stage 7 — merge-gate panel** (`workflows/merge-gate-panel.js`, ADR 0001) — adversarial defect/seam/regression
+     review of the completed **slice**. **HARD gate** (GO/NO-GO).
+  3. **Stage 7½ — code-health-sweep** (`workflows/code-health-sweep.js`) — an **advisory whole-app code-health**
+     review run AFTER the merge-gate GO. Stack lenses (ios: architecture · swiftui · swiftdata · concurrency ·
+     refactor; web: architecture · quality · data · refactor) → synthesis dedupes, drops anything in the
+     suppression ledger `docs/health/accepted.md`, ranks by value/effort → a health backlog in
+     `<repoPath>/docs/health/`. **NEVER blocks.** `scope` = whole-app (default) | blast-radius (shift as the app
+     grows). Calibrated against over-engineering (flag real/imminent debt, not speculative redesigns).
+
+  All three are reviewer roles in the active `opus` profile ([`model-profiles/opus.md`](../../../model-profiles/opus.md))
+  and are standard conductor stages for every project — not piloted. A model swap re-routes all three together
+  (profile + `version` bump), with no workflow or skill edit.
 - **Multi-agent opt-in** — plain parallel subagents are free; **Workflows require explicit "ultracode" opt-in.**
 - **Plan-deviation gate** — stop and surface; never silently self-resolve.
 
@@ -146,10 +175,12 @@ sequencing, gating, and tracker updates.
 | scope / spec | `superpowers:brainstorming` + `intent-first-spec-anchored` lens |
 | mockup | brainstorming's mockup pattern |
 | plan | `superpowers:writing-plans` |
+| plan-check | active profile's plan-review role — `opus` → `workflows/plan-check.js` (5 Opus lenses + refute-verify); soft checkpoint (spine stage 1 of 3, ADR 0002) |
 | build — iOS | `superpowers:subagent-driven-development` + `superpowers:test-driven-development` + `swiftui/swiftdata/swift-testing/swift-concurrency-pro` |
 | build — web | `superpowers:executing-plans` + `superpowers:test-driven-development` + `supabase` / `vercel:*` |
 | per-task review | `superpowers:requesting-code-review` / `receiving-code-review` (+ `code-reviewer` agent); `systematic-debugging` on failures |
-| merge-gate | active profile's merge-gate role — `opus` → `workflows/merge-gate-panel.js` (4 Opus lenses + 3-refuter verify); degrades to a single `merge-gate-reviewer` dispatch if a Workflow can't run |
+| merge-gate | active profile's merge-gate role — `opus` → `workflows/merge-gate-panel.js` (4 Opus lenses + 3-refuter verify); degrades to a single `merge-gate-reviewer` dispatch if a Workflow can't run (spine stage 2 of 3, ADR 0002) |
+| code-health | active profile's code-health role — `opus` → `workflows/code-health-sweep.js` (whole-app/blast-radius lenses + synthesis → ledger-filtered backlog); advisory, never blocks (spine stage 3 of 3, ADR 0002) |
 | CI / completion | `superpowers:verification-before-completion` |
 | PR + merge | `superpowers:finishing-a-development-branch` |
 | reconcile | memory update + `doc-keeper` + `board-update` |
@@ -364,7 +395,9 @@ dev-command-center/                         # public repo = hub + marketplace + 
 ├── data/attention.json                     # aggregated action-items for the Needs-Attention pane
 ├── board-update.js  build-board.js  attention-sync.js   # board machinery (run in-place in the clone)
 ├── model-profiles/<name>.md                # role → (model, topology) maps; opus.md active, fable.md frozen (§6.7)
-├── workflows/merge-gate-panel.js           # opus-profile stage-7 adversarial panel (lenses + refuters)
+├── workflows/plan-check.js                 # opus-profile stage-4¼ plan-review fan-out (review spine, ADR 0002)
+├── workflows/merge-gate-panel.js           # opus-profile stage-7 adversarial panel (lenses + refuters; ADR 0001)
+├── workflows/code-health-sweep.js          # opus-profile stage-7½ advisory health sweep (review spine, ADR 0002)
 ├── projects.config.json                    # per-project config + hub.repoPath + modelProfile
 ├── context/  docs/ (incl. docs/adr/ · docs/guides/ how-tos · docs/retros/)  README.md
 ```
