@@ -138,9 +138,9 @@
         "spec": "docs/superpowers/specs/2026-06-15-slice3e-regular-issuance.md"
       },
       "title": "Off-meds terminus: block-60-deferred → regular-issuance-eligible",
-      "column": "build",
-      "phase": "Plan-check PROCEED (0 must-fix); 3 should-fix + nits folded; building Task 1 (schema fact+rule)",
-      "nextAction": "Task 1 schema → Task 2 transition → Task 3 web",
+      "column": "verify",
+      "phase": "Build complete (3 tasks, gates green: schema 16/engine 26/db 19/assembler 4/web 54, build, engine untouched); two independent Opus reviews running",
+      "nextAction": "Reviews → merge-gate panel → CI → merge authorization",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3e-regular-issuance"
