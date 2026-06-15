@@ -53,6 +53,17 @@
       "nextAction": "Open app → backfill fills existing rides (Jun-12 → 5 turns on the map); then 4b Turn Detail card",
       "model": "Opus (Fable suspended)",
       "lastTouched": "2026-06-15"
+    },
+    {
+      "id": "apex__slice-4b-turn-detail",
+      "links": {},
+      "title": "Slice 4b — Turn Detail card",
+      "column": "verify",
+      "phase": "BUILT & green (TurnProfile loader + TurnDetailView + tap-to-detail nav); Batch-1 review APPROVED + accel-sign guard; XCUITest green; visual check passed; merge-gate running",
+      "nextAction": "On merge-gate GO: merge 4b + install to device (real rides render the graph)",
+      "branch": "slice-4b-turn-detail",
+      "model": "Opus (Fable suspended)",
+      "lastTouched": "2026-06-15"
     }
   ]
 }
