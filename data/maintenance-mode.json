@@ -1,0 +1,16 @@
+{
+  "project": "maintenance-mode",
+  "displayName": "Maintenance Mode",
+  "cards": [
+    {
+      "id": "maintenance-mode__slice-1-schedule-list",
+      "links": {},
+      "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
+      "column": "backlog",
+      "phase": "Project scaffolded + registered; awaiting brainstorm/spec + owners manuals",
+      "nextAction": "Stage 1 scope: extract schedules from owners manuals; design the 3-column item/every/when row",
+      "model": "Opus (all roles — opus profile)",
+      "lastTouched": "2026-06-15"
+    }
+  ]
+}
