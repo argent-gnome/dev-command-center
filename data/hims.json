@@ -82,9 +82,9 @@
       "id": "hims__slice3b-judgment",
       "links": {},
       "title": "Slice 3b — next-state judgment capture",
-      "column": "backlog",
-      "phase": "Deferred from Slice 3 (over-the-gate branch). Adds the clinical judgment capture + its routing; likely the first ENUM rule primitive. Specifics in the private repo.",
-      "nextAction": "Plan Slice 3b after Slice 3",
+      "column": "spec",
+      "phase": "Scoping: nature-of-diagnosis judgment (dx_acceptability) + multi-outcome routing",
+      "nextAction": "Confirm scope boundary + ENUM approach, then spec",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15"
     }
