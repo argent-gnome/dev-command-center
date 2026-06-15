@@ -138,9 +138,9 @@
         "spec": "docs/superpowers/specs/2026-06-15-slice3e-regular-issuance.md"
       },
       "title": "Off-meds terminus: block-60-deferred → regular-issuance-eligible",
-      "column": "spec",
-      "phase": "Spec approved + mockup reused; plan written (3 tasks); running stage-4¼ plan-check",
-      "nextAction": "Plan-check → build",
+      "column": "build",
+      "phase": "Plan-check PROCEED (0 must-fix); 3 should-fix + nits folded; building Task 1 (schema fact+rule)",
+      "nextAction": "Task 1 schema → Task 2 transition → Task 3 web",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3e-regular-issuance"
