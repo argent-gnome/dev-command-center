@@ -92,6 +92,16 @@
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3b-nature-of-diagnosis"
+    },
+    {
+      "id": "hims__slice3c-wait-judgment",
+      "links": {},
+      "title": "Slice 3c — under-3mo-wait → judgment entry",
+      "column": "spec",
+      "phase": "Scoping: 2nd entry into nature-of-diagnosis (from the wait state once 3mo elapses)",
+      "nextAction": "Confirm scope boundary, then spec",
+      "model": "all-Opus (profile opus)",
+      "lastTouched": "2026-06-15"
     }
   ]
 }
