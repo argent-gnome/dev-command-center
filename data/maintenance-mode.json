@@ -10,9 +10,9 @@
         "plan": "docs/superpowers/plans/2026-06-15-slice-1-schedule-list.md"
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
-      "column": "build",
-      "phase": "Tasks 1-7 DONE+verified (38 tests: 23 core + 15 app/UI green); building Task 8 CI",
-      "nextAction": "Task 8: CI workflow (Test run with N + Executed N guards) -> merge-gate panel",
+      "column": "verify",
+      "phase": "All 8 build tasks DONE+verified (38 tests green, app visual check passed, CI wired); running stage-7 merge-gate panel",
+      "nextAction": "Merge-gate panel -> address findings -> finish branch (remote/merge decision w/ user)",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15",
       "branch": "slice-1-schedule-list"
