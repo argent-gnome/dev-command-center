@@ -95,11 +95,13 @@
     },
     {
       "id": "hims__slice3c-wait-judgment",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-15-slice3c-wait-judgment.md"
+      },
       "title": "Slice 3c — under-3mo-wait → judgment entry",
       "column": "spec",
-      "phase": "Scoping: 2nd entry into nature-of-diagnosis (from the wait state once 3mo elapses)",
-      "nextAction": "Confirm scope boundary, then spec",
+      "phase": "Spec approved (reused mockup); plan written; running stage-4¼ plan-check",
+      "nextAction": "Fold must-fix, then build",
       "model": "all-Opus (profile opus)",
       "lastTouched": "2026-06-15"
     }
