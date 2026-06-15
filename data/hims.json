@@ -115,11 +115,12 @@
         "plan": "docs/superpowers/plans/2026-06-15-slice3d-discontinue.md"
       },
       "title": "Slice 3d — elect-to-discontinue → block-60-deferred",
-      "column": "spec",
-      "phase": "Mockup signed off; plan written; running stage-4¼ plan-check",
-      "nextAction": "Fold must-fix, then build",
+      "column": "build",
+      "phase": "Plan-check PROCEED; folding should-fix (clock-anchor test) + simpler-path; building on branch",
+      "nextAction": "Build Tasks 1-4 (TDD)",
       "model": "all-Opus (profile opus)",
-      "lastTouched": "2026-06-15"
+      "lastTouched": "2026-06-15",
+      "branch": "slice-3d-discontinue"
     }
   ]
 }
