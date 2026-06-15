@@ -21,8 +21,8 @@
       },
       "title": "Marketing-site spec (IA + copy)",
       "column": "spec",
-      "phase": "stage 3 — homepage mockup (spec APPROVED); awaiting mockup sign-off",
-      "nextAction": "Produce homepage mockup → user sign-off → plan → build → deploy to shipsite.io",
+      "phase": "stage 3 — homepage mockup BUILT; awaiting sign-off",
+      "nextAction": "User reviews mockup → sign off → plan → build → deploy",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-15",
       "branch": "slice-1-marketing-site"
