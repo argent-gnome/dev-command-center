@@ -71,9 +71,9 @@
         "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/7"
       },
       "title": "Slice 3 — State-by-state event capture",
-      "column": "verify",
-      "phase": "PR #7 open; CI billing-blocked (infra: 0-step startup fail, deterministic, workflow untouched); local gates all green + live-validated end-to-end; awaiting merge-through authorization",
-      "nextAction": "User: merge through billing-blocked CI (per apex/spanish-coach precedent) or hold",
+      "column": "done",
+      "phase": "Merged to main (PR #7, squash f8effee); first state-transition slice; CI billing-blocked (infra) → merged w/ comprehensive local + live verification per user auth; post-merge re-verified locally",
+      "nextAction": "Slice 3b (next-state judgment) and/or the auth/org-context slice",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3-contact-hims-ame"
