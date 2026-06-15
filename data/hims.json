@@ -101,8 +101,8 @@
       },
       "title": "Slice 3c — under-3mo-wait → judgment entry",
       "column": "verify",
-      "phase": "2 reviews clean (COMPLIANT + LGTM, 0 findings); running stage-7 merge-gate panel",
-      "nextAction": "Merge-gate → CI → live → merge",
+      "phase": "Merge-gate GO (0 criticals); skipping 7½ (3b backlog stands); doc-keeper audit (04-surfaces should-fix)",
+      "nextAction": "Doc audit → push → CI → merge",
       "model": "all-Opus (profile opus)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3c-wait-judgment"
