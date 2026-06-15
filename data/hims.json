@@ -82,12 +82,13 @@
       "id": "hims__slice3b-judgment",
       "links": {
         "spec": "docs/superpowers/specs/2026-06-15-slice3b-nature-of-diagnosis.md",
-        "plan": "docs/superpowers/plans/2026-06-15-slice3b-nature-of-diagnosis.md"
+        "plan": "docs/superpowers/plans/2026-06-15-slice3b-nature-of-diagnosis.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/8"
       },
       "title": "Slice 3b — next-state judgment capture",
       "column": "verify",
-      "phase": "Merge-gate panel GO (0 criticals); nit pruned; running 7½ health-sweep (advisory)",
-      "nextAction": "Health-sweep → CI → live → merge",
+      "phase": "Merge-gate GO; live-validated; CI billing-blocked (infra); docs+health reconciled; awaiting merge-through authorization",
+      "nextAction": "User: merge through (per Slice 3 precedent) or hold",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3b-nature-of-diagnosis"
