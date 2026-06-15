@@ -9,8 +9,8 @@
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "spec",
-      "phase": "Custom intervals updated per user (9 seeded incl. air filters); CBR brake fluid shown, pending user call",
-      "nextAction": "User confirms brake-fluid + any final tweaks -> final spec review -> UI mockup sign-off -> writing-plans",
+      "phase": "Custom intervals finalized (10 seeded); ready for final spec review + UI mockup",
+      "nextAction": "Final spec review -> UI mockup sign-off -> writing-plans -> build",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15"
     }
