@@ -37,12 +37,12 @@
         "uiplan": "docs/superpowers/plans/2026-06-14-slice-4a-ui-turns-overview.md"
       },
       "title": "Slice 4 — Turn detection + Turn Detail (Street)",
-      "column": "build",
-      "phase": "4a-engine + 4a-ui BUILT & green (pkg 85 / app-unit / full XCUITest; Debug+Release; lint 0 serious); portrait-locked; UI merge-gate caught+fixed C1; visual check passed",
+      "column": "done",
+      "phase": "4a MERGED (PR #2, cea4740) — merge-gate GO; merged through billing-blocked CI w/ local verification (user-authorized); portrait-locked; installed to device",
       "branch": "slice-4-turn-detection",
       "model": "Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
-      "nextAction": "Whole-slice merge-gate (engine+ui) → device install for on-device map check → merge 4a; then 4b Turn Detail card"
+      "nextAction": "Confirm app launches with existing rides intact (live data-safety); then 4a.1 backfill + 4b Turn Detail"
     }
   ]
 }
