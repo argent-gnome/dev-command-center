@@ -101,9 +101,9 @@
         "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/9"
       },
       "title": "Slice 3c — under-3mo-wait → judgment entry",
-      "column": "verify",
-      "phase": "Merge-gate GO; live-validated; docs reconciled; CI billing-blocked (infra); awaiting merge-through authorization",
-      "nextAction": "User: merge through (per S3/S3b precedent) or hold",
+      "column": "done",
+      "phase": "Merged to main (PR #9, squash e00b7a7); cleanest run (plan-check PROCEED, 2 reviews clean, merge-gate GO); CI billing-blocked → merged w/ local+live verification",
+      "nextAction": "Discontinue branch / on-med-3-months / auth slice / sdlc-auditor pass",
       "model": "all-Opus (profile opus)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3c-wait-judgment"
