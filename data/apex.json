@@ -33,15 +33,16 @@
       "id": "apex__slice-4-turn-detection",
       "links": {
         "spec": "docs/superpowers/specs/2026-06-13-slice-4-turn-detection-design.md",
-        "plan": "docs/superpowers/plans/2026-06-13-slice-4a-turn-engine.md"
+        "plan": "docs/superpowers/plans/2026-06-13-slice-4a-turn-engine.md",
+        "uiplan": "docs/superpowers/plans/2026-06-14-slice-4a-ui-turns-overview.md"
       },
       "title": "Slice 4 — Turn detection + Turn Detail (Street)",
       "column": "build",
-      "phase": "4a-engine DONE: TurnSegmenter (84 tests, lint clean); review caught+fixed a merge-gate-class bug (post-corner brake contaminating min-speed); real-ride=5 sane turns",
+      "phase": "4a-engine DONE; UI mockup signed off (browser, data-accurate); 4a-ui plan written",
       "branch": "slice-4-turn-detection",
       "model": "Opus (Fable suspended)",
-      "lastTouched": "2026-06-14",
-      "nextAction": "Build 4a-ui: recorder live-feed + turnsBlob/turnCount persistence + Overview turns list/count/map-highlight (so turns render on the map for visual verification)"
+      "lastTouched": "2026-06-15",
+      "nextAction": "Build 4a-ui Tasks 1–10 subagent-driven (data/wiring → Overview UI → fixtures/XCUITest → gates+device)"
     }
   ]
 }
