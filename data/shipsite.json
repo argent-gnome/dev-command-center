@@ -13,6 +13,16 @@
       "nextAction": "Done — source of truth for the offer",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-15"
+    },
+    {
+      "id": "shipsite__marketing-site-spec",
+      "links": {},
+      "title": "Marketing-site spec (IA + copy)",
+      "column": "spec",
+      "phase": "scoping (stage 1) — IA + copy derived from business-model v2",
+      "nextAction": "Scope IA + page/section copy; draft spec for review",
+      "model": "Opus (all roles)",
+      "lastTouched": "2026-06-15"
     }
   ]
 }
