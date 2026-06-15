@@ -1,0 +1,18 @@
+{
+  "project": "shipsite",
+  "displayName": "Shipsite",
+  "cards": [
+    {
+      "id": "shipsite__business-model-spec",
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-14-business-model-positioning-design-v2.md"
+      },
+      "title": "Business-model & positioning spec",
+      "column": "done",
+      "phase": "v2 complete — market-audited & calibrated; v1->v2 changelog in private repo",
+      "nextAction": "Done — source of truth for the offer",
+      "model": "Opus (all roles)",
+      "lastTouched": "2026-06-15"
+    }
+  ]
+}
