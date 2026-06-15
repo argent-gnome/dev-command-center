@@ -126,8 +126,8 @@
       "id": "slice-3d",
       "links": {},
       "column": "verify",
-      "phase": "Two Opus reviews GREEN (spec COMPLIANT + code LGTM); running stage-7 merge-gate panel",
-      "nextAction": "Merge-gate panel → billing-blocked CI → user merge authorization",
+      "phase": "Merge-gate panel GO (0 crit / 0 should-fix / 3 nits, all known or ratified); opening PR",
+      "nextAction": "Confirm CI state → user merge authorization",
       "lastTouched": "2026-06-15"
     }
   ]
