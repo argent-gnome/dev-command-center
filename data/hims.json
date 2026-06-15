@@ -97,12 +97,13 @@
       "id": "hims__slice3c-wait-judgment",
       "links": {
         "spec": "docs/superpowers/specs/2026-06-15-slice3c-wait-judgment.md",
-        "plan": "docs/superpowers/plans/2026-06-15-slice3c-wait-judgment.md"
+        "plan": "docs/superpowers/plans/2026-06-15-slice3c-wait-judgment.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/9"
       },
       "title": "Slice 3c — under-3mo-wait → judgment entry",
       "column": "verify",
-      "phase": "Merge-gate GO (0 criticals); skipping 7½ (3b backlog stands); doc-keeper audit (04-surfaces should-fix)",
-      "nextAction": "Doc audit → push → CI → merge",
+      "phase": "Merge-gate GO; live-validated; docs reconciled; CI billing-blocked (infra); awaiting merge-through authorization",
+      "nextAction": "User: merge through (per S3/S3b precedent) or hold",
       "model": "all-Opus (profile opus)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3c-wait-judgment"
