@@ -18,6 +18,16 @@
       "lastTouched": "2026-06-15",
       "branch": "slice-1-schedule-list",
       "blockedOn": null
+    },
+    {
+      "id": "maintenance-mode__slice-2-write-path",
+      "links": {},
+      "title": "Slice 2 — Write path (odometer edit, mark-serviced, real clock)",
+      "column": "spec",
+      "phase": "Scoping Slice 2 (write path) — brainstorm",
+      "nextAction": "Scope: odometer edit + mark-serviced (+ add/remove?) → spec → mockup → plan → build",
+      "model": "Opus (all roles)",
+      "lastTouched": "2026-06-15"
     }
   ]
 }
