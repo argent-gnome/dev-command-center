@@ -48,9 +48,9 @@
       "id": "apex__slice-4a1-backfill",
       "links": {},
       "title": "Slice 4a.1 — backfill turns onto existing rides",
-      "column": "spec",
-      "phase": "lined up; design captured (reprocess archive CSVs via parseCSV + TurnSegmenter → additive turnsBlob/turnCount)",
-      "nextAction": "Decide lazy-on-open vs eager-on-launch; skip rides w/ missing archive; spec+plan then build",
+      "column": "done",
+      "phase": "MERGED (PR #3, bc71eb8) — merge-gate GO; merged through billing-blocked CI w/ local verification; should-fix applied (transient-read retry); installed to device",
+      "nextAction": "Open app → backfill fills existing rides (Jun-12 → 5 turns on the map); then 4b Turn Detail card",
       "model": "Opus (Fable suspended)",
       "lastTouched": "2026-06-15"
     }
