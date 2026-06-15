@@ -11,9 +11,9 @@
         "pr": "https://github.com/argent-gnome/maintenance-mode/pull/1"
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
-      "column": "verify",
-      "phase": "PR CI = GitHub Actions BILLING block (0 steps, instant-fail, no logs — infra, not code; same as apex/spanish-coach). Slice verified locally: 45 tests + lint + visual green",
-      "nextAction": "User: authorize merge-through-billing-blocked-CI on local verification, or hold",
+      "column": "done",
+      "phase": "MERGED to main (PR #1 squash 74c86b6); post-merge main verified green locally (26 core tests + build); retro written. CI billing-blocked (infra)",
+      "nextAction": "Slice 2 = write path (edit odometer / mark-serviced / add items). On-device install = user's optional step.",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15",
       "branch": "slice-1-schedule-list",
