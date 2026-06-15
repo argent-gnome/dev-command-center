@@ -9,9 +9,9 @@
         "mockup": "docs/mockups/main-screen.html"
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
-      "column": "spec",
-      "phase": "Main-screen mockup built + self-verified (both vehicles); opened for sign-off",
-      "nextAction": "User signs off mockup -> writing-plans -> build",
+      "column": "build",
+      "phase": "Mockup SIGNED OFF; writing implementation plan",
+      "nextAction": "Write plan (writing-plans) -> scaffold Xcode project + MaintenanceCore -> build read path TDD",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15"
     }
