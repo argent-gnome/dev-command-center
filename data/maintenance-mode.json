@@ -11,8 +11,8 @@
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "build",
-      "phase": "MaintenanceCore DONE (23/23 tests); building Task 4 SwiftData models + Seeder + fixtures",
-      "nextAction": "Task 4: models/seeder/fixtures + in-memory SeederTests on iPhone 17 OS=26.5",
+      "phase": "Task 4 DONE+verified (77 items seeded, 6 tests pass); MaintenanceListBuilder pulled forward; Task 5 = its tests",
+      "nextAction": "Task 5: MaintenanceListBuilderTests (severe-hide, grouping, urgency, last-service)",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15",
       "branch": "slice-1-schedule-list"
