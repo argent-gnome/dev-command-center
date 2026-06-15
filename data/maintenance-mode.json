@@ -6,14 +6,16 @@
       "id": "maintenance-mode__slice-1-schedule-list",
       "links": {
         "spec": "docs/superpowers/specs/2026-06-14-slice-1-schedule-list-design.md",
-        "mockup": "docs/mockups/main-screen.html"
+        "mockup": "docs/mockups/main-screen.html",
+        "plan": "docs/superpowers/plans/2026-06-15-slice-1-schedule-list.md"
       },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "build",
-      "phase": "Mockup SIGNED OFF; writing implementation plan",
-      "nextAction": "Write plan (writing-plans) -> scaffold Xcode project + MaintenanceCore -> build read path TDD",
+      "phase": "Plan written (8 tasks); starting subagent-driven build on branch slice-1-schedule-list",
+      "nextAction": "Task 1: scaffold XcodeGen project + MaintenanceCore (compiling)",
       "model": "Opus (all roles — opus profile)",
-      "lastTouched": "2026-06-15"
+      "lastTouched": "2026-06-15",
+      "branch": "slice-1-schedule-list"
     }
   ]
 }
