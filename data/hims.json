@@ -100,9 +100,9 @@
         "plan": "docs/superpowers/plans/2026-06-15-slice3c-wait-judgment.md"
       },
       "title": "Slice 3c — under-3mo-wait → judgment entry",
-      "column": "build",
-      "phase": "Plan-check PROCEED (0 must-fix); folding test-coverage nits; building on branch",
-      "nextAction": "Build Task 1 (compile-coupled core) + fixture + gate",
+      "column": "verify",
+      "phase": "Build complete (gates green, plan-check nits folded); two independent Opus reviews running",
+      "nextAction": "Reviews → merge-gate panel → CI",
       "model": "all-Opus (profile opus)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3c-wait-judgment"
