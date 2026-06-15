@@ -4,11 +4,13 @@
   "cards": [
     {
       "id": "maintenance-mode__slice-1-schedule-list",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-14-slice-1-schedule-list-design.md"
+      },
       "title": "Slice 1 — Maintenance schedule list (Bronco + CBR)",
       "column": "spec",
-      "phase": "Slice 1 design APPROVED (read path; mfr intervals + reserved custom-override slot); awaiting extraction to write the spec",
-      "nextAction": "On extraction completion: write spec (cited schedule) → self-review → user review → mockup → plan",
+      "phase": "Schedules extracted + verified + committed; Slice 1 spec written & self-reviewed; awaiting user spec review",
+      "nextAction": "User reviews spec → UI mockup sign-off → writing-plans",
       "model": "Opus (all roles — opus profile)",
       "lastTouched": "2026-06-15"
     }
