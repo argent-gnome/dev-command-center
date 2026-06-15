@@ -86,9 +86,9 @@
         "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/8"
       },
       "title": "Slice 3b — next-state judgment capture",
-      "column": "verify",
-      "phase": "Merge-gate GO; live-validated; CI billing-blocked (infra); docs+health reconciled; awaiting merge-through authorization",
-      "nextAction": "User: merge through (per Slice 3 precedent) or hold",
+      "column": "done",
+      "phase": "Merged to main (PR #8, squash 9d9064d); v0.11.0 flow (plan-check + merge-gate panel + health-sweep); CI billing-blocked → merged w/ local+live verification per user auth",
+      "nextAction": "Slice 3c (under-3mo-wait→judgment entry) / on-med-3-months / auth slice",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3b-nature-of-diagnosis"
