@@ -124,10 +124,12 @@
     },
     {
       "id": "slice-3d",
-      "links": {},
-      "column": "verify",
-      "phase": "Merge-gate panel GO (0 crit / 0 should-fix / 3 nits, all known or ratified); opening PR",
-      "nextAction": "Confirm CI state → user merge authorization",
+      "links": {
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/10"
+      },
+      "column": "done",
+      "phase": "Merged (PR #10 / b7303f0); post-merge main re-verified green",
+      "nextAction": "Next slice: intake discontinue edge / on-med-3-months / auth-org-context slice; sdlc-auditor pass over 7+ retros; top up Actions budget",
       "lastTouched": "2026-06-15"
     }
   ]
