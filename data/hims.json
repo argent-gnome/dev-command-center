@@ -65,12 +65,14 @@
     },
     {
       "id": "hims__slice3-event-capture",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-15-slice3-contact-hims-ame.md"
+      },
       "title": "Slice 3 — State-by-state event capture",
       "column": "spec",
-      "phase": "Stage-0 design spike: locking transition/persistence/primitive choices",
-      "nextAction": "GO/NO-GO + design decisions, then spec + mockup",
-      "model": "Opus build / Fable merge-gate",
+      "phase": "Spike GO; spec written; mockup for sign-off (all-Opus, Fable suspended)",
+      "nextAction": "Mockup sign-off, then plan",
+      "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15"
     }
   ]
