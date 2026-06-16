@@ -205,10 +205,11 @@
       "links": {},
       "title": "AMCD arc 2: hims-ame-review-package → awaiting-faa-decision (submit to AMCD; 14-day clock)",
       "column": "spec",
-      "phase": "Scoping — submit-to-AMCD: capture deferred-exam + package-received dates (promoted columns, mirrors 3d) → advance; lights up the existing clock.submission_14d; NO schema change/migration, engine untouched",
-      "nextAction": "Write spec → user review",
+      "phase": "Spec approved + mockup reused; plan written (2 tasks, no schema change); running stage-4¼ plan-check",
+      "nextAction": "Plan-check → build",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-16"
+      "lastTouched": "2026-06-16",
+      "branch": "slice-4b-submit-to-amcd"
     }
   ]
 }
