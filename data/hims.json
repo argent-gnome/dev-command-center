@@ -153,10 +153,11 @@
       },
       "title": "Intake discontinue edge: on-antidepressant → block-60-deferred",
       "column": "spec",
-      "phase": "Spec written (generalize discontinueFrom(fromState); reuse DiscontinueForm at intake; no new field/rule) — awaiting review",
-      "nextAction": "User spec review → plan",
+      "phase": "Spec approved (UI: gated on election=discontinue); plan written (2 tasks); running stage-4¼ plan-check",
+      "nextAction": "Plan-check → build",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-16"
+      "lastTouched": "2026-06-16",
+      "branch": "slice-3f-intake-discontinue"
     }
   ]
 }
