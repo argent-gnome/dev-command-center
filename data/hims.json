@@ -175,12 +175,13 @@
     {
       "id": "slice-3g",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-16-slice3g-continue-acceptability.md"
+        "spec": "docs/superpowers/specs/2026-06-16-slice3g-continue-acceptability.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/14"
       },
       "title": "Continue/acceptability fork: on-antidepressant → contact-hims-ame / not-acceptable (completes Path I)",
-      "column": "verify",
-      "phase": "Two Opus reviews GREEN (COMPLIANT + LGTM); spec/plan body reconciled; running stage-7 merge-gate panel",
-      "nextAction": "Merge-gate panel → CI → merge authorization",
+      "column": "done",
+      "phase": "Merged (PR #14 / 480a7d5); post-merge main re-verified green; DECISION PATH I COMPLETE — front door open (intake→contact)",
+      "nextAction": "Next: AMCD package arc (Path II endgame) / the auth-org-context slice; sdlc-auditor over 10+ retros; top up Actions budget",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-3g-continue-acceptability"
