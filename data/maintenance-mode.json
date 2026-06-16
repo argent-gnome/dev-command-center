@@ -39,8 +39,8 @@
       "links": {},
       "title": "Slice 3 — Custom-interval editing (swipe→Edit sheet; +BR-20 odo guard, friendly error)",
       "column": "build",
-      "phase": "Plan-check REVISE → folded into plan v2 (1 must-fix data-loss + advisories); subagent build starting",
-      "nextAction": "Subagent-driven build, Tasks 1–6",
+      "phase": "Build: Tasks 1–3 done+reverified (core/writer/editor); Task 4 (List+swipe, risky) next",
+      "nextAction": "Task 4 List conversion (hard gate) → Tasks 5–6 → merge-gate",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16"
     }
