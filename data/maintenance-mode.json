@@ -43,6 +43,16 @@
       "nextAction": "Slice 4 candidates: add/remove items · in-service-date · service-history",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16"
+    },
+    {
+      "id": "maintenance-mode__slice-4-history",
+      "links": {},
+      "title": "Slice 4 — Vehicle service history (toolbar→pushed log; swipe-delete + tap-edit)",
+      "column": "spec",
+      "phase": "Spec written + self-reviewed — awaiting user spec review",
+      "nextAction": "User reviews spec → mockup sign-off → plan",
+      "model": "Opus (all roles)",
+      "lastTouched": "2026-06-16"
     }
   ]
 }
