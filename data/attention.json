@@ -2,10 +2,10 @@
   "refreshedAt": "2026-06-16",
   "openAuditPRs": [],
   "pendingRetros": {
-    "count": 6,
+    "count": 0,
     "sinceAudit": "2026-06-16T16:40:16-04:00",
-    "oldest": "2026-06-15T18:56:31-04:00",
-    "oldestDays": 0,
+    "oldest": null,
+    "oldestDays": null,
     "dir": "docs/retros/"
   },
   "pluginUpdate": null,
