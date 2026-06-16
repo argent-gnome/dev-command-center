@@ -48,9 +48,9 @@
       "id": "maintenance-mode__slice-4-history",
       "links": {},
       "title": "Slice 4 — Vehicle service history (toolbar→pushed log; swipe-delete + tap-edit)",
-      "column": "plan",
-      "phase": "Plan written + self-reviewed (4 tasks) — plan-check next",
-      "nextAction": "plan-check → subagent build → merge-gate",
+      "column": "build",
+      "phase": "Plan-check PROCEED → plan v2; subagent build starting (4 tasks)",
+      "nextAction": "Subagent build Tasks 1–4 → merge-gate",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16"
     }
