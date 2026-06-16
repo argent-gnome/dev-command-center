@@ -204,9 +204,9 @@
       "id": "slice-4b",
       "links": {},
       "title": "AMCD arc 2: hims-ame-review-package → awaiting-faa-decision (submit to AMCD; 14-day clock)",
-      "column": "build",
-      "phase": "Plan-check PROCEED (0 must-fix); revisions folded (Fixture.state union +4 states, clock 14/15 boundary, validator == boundary); building Task 1 (transition)",
-      "nextAction": "Task 1 transition → Task 2 web",
+      "column": "verify",
+      "phase": "Build complete (2 tasks, gates green: schema 16/engine 26/db 28/assembler 4/web 97, build, engine+schema untouched); two independent Opus reviews running",
+      "nextAction": "Reviews → merge-gate panel → merge authorization",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-4b-submit-to-amcd"
