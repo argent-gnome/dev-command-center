@@ -64,6 +64,18 @@
       "branch": "slice-4b-turn-detail",
       "model": "Opus (Fable suspended)",
       "lastTouched": "2026-06-15"
+    },
+    {
+      "id": "apex__slice-3",
+      "title": "Slice 3 — persistence + map",
+      "column": "backlog",
+      "phase": "1 · scope",
+      "nextAction": "Write the Slice 3 plan (validate-then-proceed)",
+      "blockedOn": null,
+      "branch": null,
+      "model": "Opus build / Fable planning",
+      "lastTouched": "2026-06-11",
+      "links": {}
     }
   ]
 }

@@ -85,6 +85,18 @@
       "lastTouched": "2026-06-13",
       "branch": "slice-11-enrich-16-25",
       "blockedOn": null
+    },
+    {
+      "id": "spanish-coach__slice-7",
+      "title": "Slice 7 — conjugation-aware generation",
+      "column": "spec",
+      "phase": "2 · spec (user-review gate)",
+      "nextAction": "Approve the Slice 7 spec",
+      "blockedOn": null,
+      "branch": "slice-7-conjugation",
+      "model": "Opus build / Fable merge-gate",
+      "lastTouched": "2026-06-11",
+      "links": {}
     }
   ]
 }

@@ -158,6 +158,18 @@
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-3f-intake-discontinue"
+    },
+    {
+      "id": "hims__slice-1",
+      "title": "Slice 1 — first build on fixed foundation",
+      "column": "build",
+      "phase": "5 · build (multi-session)",
+      "nextAction": "Resolve submission_14d over-scoping flagged at checkpoint",
+      "blockedOn": null,
+      "branch": "slice-1",
+      "model": "Opus build / Fable merge-gate",
+      "lastTouched": "2026-06-11",
+      "links": {}
     }
   ]
 }
