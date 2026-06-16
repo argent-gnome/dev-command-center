@@ -202,11 +202,13 @@
     },
     {
       "id": "slice-4b",
-      "links": {},
+      "links": {
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/16"
+      },
       "title": "AMCD arc 2: hims-ame-review-package → awaiting-faa-decision (submit to AMCD; 14-day clock)",
-      "column": "verify",
-      "phase": "Two Opus reviews GREEN (COMPLIANT + LGTM, clock-anchor chain verified, 0 new defects); running stage-7 merge-gate panel",
-      "nextAction": "Merge-gate panel → demo-script update → merge authorization",
+      "column": "done",
+      "phase": "Merged (PR #16 / d976c9e); post-merge main re-verified green; submit-to-AMCD done, 14-day clock LIT; demo script updated",
+      "nextAction": "Slice 4c — the FAA decision (awaiting_faa_decision→faa_issues_si/denied + denied re-entry) = AMCD arc COMPLETE; then run deferred 7½ + sdlc-auditor",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-4b-submit-to-amcd"
