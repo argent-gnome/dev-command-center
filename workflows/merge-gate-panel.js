@@ -76,6 +76,15 @@ const reviews = (await parallel(LENSES.map(L => () =>
   ).then(r => ({ lens: L.key, findings: (r && r.findings) || [], outOfScope: (r && r.outOfScope) || [] }))
 ))).filter(Boolean)
 
+// Fail-CLOSED on infra failure: if fewer than a majority of lenses actually returned (an API-overload storm can
+// kill them), the panel did NOT review — never let that read as a clean GO. Report INCONCLUSIVE so the
+// orchestrator reruns the panel or falls back to a single merge-gate-reviewer.
+const quorum = Math.ceil(LENSES.length / 2)
+if (reviews.length < quorum) {
+  log(`merge-gate panel → INCONCLUSIVE: only ${reviews.length}/${LENSES.length} lenses ran — NOT a pass`)
+  return { verdict: 'INCONCLUSIVE', reason: `only ${reviews.length} of ${LENSES.length} lenses returned (likely API overload); rerun the panel or fall back to a single merge-gate-reviewer — do NOT treat as GO`, lensesRan: reviews.length, panel: { lenses: LENSES.map(l => l.key), refutersPerFinding: 3 } }
+}
+
 // Only critical/should-fix go to verification; nits are reported but never block.
 const candidates = reviews.flatMap(r =>
   r.findings
@@ -97,8 +106,9 @@ const verified = (await parallel(candidates.map(c => () =>
   )).then(votes => {
     const v = votes.filter(Boolean)
     const refutes = v.filter(x => x.refuted).length
-    // refuted if a majority of the refuters (>=2 of 3) reject it, OR all refuters errored (no signal → fail closed to NOT-confirmed)
-    return { ...c, refuted: v.length === 0 ? true : refutes >= 2, votes: v.length }
+    // Refute only on a real majority (>=2 of 3). If ALL refuters errored (no signal), KEEP the finding
+    // (refuted=false) — fail-CLOSED: an unverified critical blocks. A false NO-GO is safe; a false GO is not.
+    return { ...c, refuted: v.length === 0 ? false : refutes >= 2, votes: v.length }
   })
 ))).filter(Boolean)
 
