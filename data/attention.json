@@ -1,14 +1,24 @@
 {
   "refreshedAt": "2026-06-16",
-  "openAuditPRs": [],
+  "openAuditPRs": [
+    {
+      "number": 12,
+      "title": "sdlc-audit (2026-06-16): adherence guard + stage ledger; iOS UI-test guidance",
+      "url": "https://github.com/argent-gnome/dev-command-center/pull/12",
+      "ageDays": 0
+    }
+  ],
   "pendingRetros": {
-    "count": 0,
+    "count": 2,
     "sinceAudit": "2026-06-16T16:40:16-04:00",
-    "oldest": null,
-    "oldestDays": null,
+    "oldest": "2026-06-16T17:45:55-04:00",
+    "oldestDays": 0,
     "dir": "docs/retros/"
   },
-  "pluginUpdate": null,
+  "pluginUpdate": {
+    "from": "0.12.0",
+    "to": "0.13.0"
+  },
   "docDriftPatches": [],
   "blockedCards": [
     "HIMS Pilot Recert · Auth/session + per-org access hardening — Needs the auth/session slice"
