@@ -37,10 +37,10 @@
     {
       "id": "maintenance-mode__slice-3-editing",
       "links": {},
-      "title": "Slice 3 — Editing (scope TBD: add/remove · custom intervals · in-service date · history)",
+      "title": "Slice 3 — Custom-interval editing (swipe→Edit sheet; +BR-20 odo guard, friendly error)",
       "column": "spec",
-      "phase": "Scoping Slice 3 — brainstorm (decompose the editing bundle into a thin first cut)",
-      "nextAction": "Brainstorm: pick the thinnest valuable Slice-3 -> spec -> mockup -> plan -> build",
+      "phase": "Spec written + self-reviewed — awaiting user spec review",
+      "nextAction": "User reviews spec → mockup sign-off → writing-plans → build",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16"
     }
