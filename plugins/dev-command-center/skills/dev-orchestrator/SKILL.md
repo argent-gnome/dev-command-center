@@ -44,6 +44,15 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
 
 ## run — the procedure
 
+**Drive the whole loop, or don't drive.** The full stage sequence is only enforced when *this skill is
+actually conducting*. If you find yourself hand-composing the sub-skills (firing only `brainstorming` +
+`writing-plans` + `plan-check` + `merge-gate` by hand) without walking the table below end-to-end, **STOP and
+restart the slice under `dev-orchestrator`** — a partial hand-walk silently drops the stages that have no loud
+gate (4½ docs-author, 6 formal per-task dual-review, 7½ health-sweep, 9½ docs-audit), and nobody notices until
+the retro. (maintenance-mode S3 & S4 were hand-walked: each retro narrates an abbreviated "Full house SDLC"
+that omits 4½/6/7½/9½ — `maintenance-mode-slice-3-retro.md:9`, `maintenance-mode-slice-4-retro.md:9`.) The
+conductor enforces the sequence *only if it's driving*; if you didn't enter via this skill, you are not driving.
+
 1. **Read the board.** Load `projects.config.json` and the project's `data/<key>.json`. Identify the active
    card (in-flight slice), its `column`/`phase`, `nextAction`, and any `blockedOn`.
 2. **Reconcile the starting state & ready the repo** (the "resume cold after days away" promise, and the
@@ -109,10 +118,34 @@ surface "process vX is newer — `/plugin marketplace update`" if it flags. (`<h
    with the next action via board-update, and write the slice retro **to the project's own repo**
    (`<repoPath>/docs/retros/<key>-<slice>-retro.md` — only the hub's *own* retros live in the hub)
    (manual interventions · decisions · **plan deviations** · gate friction).
+   - **Stage ledger (reconcile gate — fail-closed).** Before writing the retro, account for **every** stage of
+     the loop table as exactly one of: **ran** · **skipped (with the one-line reason the skip rule below
+     allows)** · **n/a (rule says it doesn't apply this slice — e.g. mockup on a non-UI slice, stage-0 spike on
+     a non-novel slice)**. The retro's "How it was built" line **is** this ledger — write the *real* sequence,
+     not a generic "Full house SDLC" claim that papers over silent drops. The quiet stages that have no loud
+     gate — **4½ docs-author, 6 per-task dual-review, 7½ health-sweep, 9½ docs-audit** — are the ones that
+     vanish in a hand-walk; an **unaccounted** quiet stage (neither ran, nor skipped-with-an-allowed-reason,
+     nor n/a) is a **plan deviation** → surface it to the user (the never-cross-silently list), don't merge it
+     under a "full SDLC" label. The only legitimate skips are the ones the table itself sanctions (e.g. 7½ on a
+     small extension right after a recent whole-app sweep; mockup-reuse with sign-off); "I didn't get to it" is
+     a deviation, not a skip.
 
 ## Stack gates (by `config.stack` — enforce at stages 5 & 8)
 - **ios** — `swift test` · SwiftLint · `xcodebuild` build (+ a Release-build check when DEBUG-only code is
-  involved) · XCUITest against the synthetic harness · **the `xcodebuild` destination simulator must exist**
+  involved) · XCUITest against the synthetic harness · **XCUITest discriminators must be
+  virtualization-robust** — a `List` (the idiomatic home for `.swipeActions`) virtualizes its rows (~8
+  realized), so a discriminator that counts **realized** rows/pills silently lies once the data outgrows the
+  viewport. Assert against a **non-virtualized aggregate** (a header/summary count computed over the full
+  row set, behind its own a11y id) or **re-open a detail view and read back the persisted state** — never
+  count realized elements. This regressed *existing* tests in two places when a `LazyVStack` (realizes ~all
+  rows) became a `List` (`maintenance-mode-slice-3-retro.md:17`, `maintenance-mode-slice-3-retro.md:18`,
+  `maintenance-mode-slice-3-retro.md:21`) · **serialize UI suites — never run two `xcodebuild` UI runs
+  concurrently, nor a UI run alongside a heavy local workflow** (the simulator is host-load-sensitive;
+  starving it makes a clean suite read as `** TEST FAILED **` and masquerade as a real regression — the
+  API-bound merge-gate panel can overlap, but keep exactly ONE local UI suite at a time:
+  `maintenance-mode-slice-4-retro.md:18`). When diagnosing a UI-suite failure, **capture full output to a
+  log** — a heavily-`grep`-filtered background command hid the failure detail and a `grep retry` even matched
+  `existsNoRetry` (`maintenance-mode-slice-4-retro.md:18`) · **the `xcodebuild` destination simulator must exist**
   (`xcrun simctl list devices available`; derive the device from what's installed, never hardcode a device
   generation in the plan/test commands — verify at the readiness gate, step 2, not at test time; APEX's plan
   named an iPhone 16 the machine didn't have) · **CI must EXECUTE the app-target test bundle, not merely
