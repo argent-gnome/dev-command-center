@@ -38,9 +38,9 @@
       "id": "maintenance-mode__slice-3-editing",
       "links": {},
       "title": "Slice 3 — Custom-interval editing (swipe→Edit sheet; +BR-20 odo guard, friendly error)",
-      "column": "plan",
-      "phase": "Plan-check running (stage 4¼: 5 Opus lenses → refute-verify)",
-      "nextAction": "Fold must-fix amendments → subagent build",
+      "column": "build",
+      "phase": "Plan-check REVISE → folded into plan v2 (1 must-fix data-loss + advisories); subagent build starting",
+      "nextAction": "Subagent-driven build, Tasks 1–6",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16"
     }
