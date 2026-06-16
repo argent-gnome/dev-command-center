@@ -152,9 +152,9 @@
         "spec": "docs/superpowers/specs/2026-06-15-slice3f-intake-discontinue.md"
       },
       "title": "Intake discontinue edge: on-antidepressant → block-60-deferred",
-      "column": "spec",
-      "phase": "Spec approved (UI: gated on election=discontinue); plan written (2 tasks); running stage-4¼ plan-check",
-      "nextAction": "Plan-check → build",
+      "column": "build",
+      "phase": "Plan-check PROCEED (0 must-fix); revisions folded (invalidated-test conversion, extracted gate predicate, rename ripple); building Task 1 (generalize discontinueFrom)",
+      "nextAction": "Task 1 db+action → Task 2 web",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-3f-intake-discontinue"
