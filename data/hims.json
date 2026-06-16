@@ -188,11 +188,13 @@
     },
     {
       "id": "slice-4a",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-16-slice4a-collecting-materials.md"
+      },
       "title": "AMCD arc 1: collecting-materials → hims-ame-review-package (package-complete attestation)",
       "column": "spec",
-      "phase": "Scoping — mirrors 3e: package_complete attestation + value-aware gate + state-only advance; report-requirements modeling DEFERRED; engine untouched, no migration",
-      "nextAction": "Write spec → user review",
+      "phase": "Spec written (package-complete attestation + value-aware gate + state-only advance; report-requirements DEFERRED; mirrors 3e; +1 field+1 rule, engine untouched, no migration) — awaiting review",
+      "nextAction": "User spec review → plan",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16"
     }
