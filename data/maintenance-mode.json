@@ -22,12 +22,13 @@
     {
       "id": "maintenance-mode__slice-2-write-path",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-15-slice-2-write-path-design.md"
+        "spec": "docs/superpowers/specs/2026-06-15-slice-2-write-path-design.md",
+        "mockup": "docs/mockups/slice-2-write-path.html"
       },
       "title": "Slice 2 — Write path (odometer edit, mark-serviced, real clock)",
       "column": "spec",
-      "phase": "Scope approved; Slice 2 spec written + self-reviewed (BR-12..17, no migration); awaiting user spec review",
-      "nextAction": "User reviews spec -> iPhone-frame mockup (header editor + mark-serviced sheet) -> plan -> build",
+      "phase": "Slice 2 mockup built (3 iPhone frames: since-new list, mark-serviced sheet, odo/in-service editor); opened for sign-off",
+      "nextAction": "Sign off mockup (2 decisions: since-new→overdue display, row-tap=sheet) -> writing-plans -> build",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16",
       "branch": "slice-2-write-path"
