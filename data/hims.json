@@ -149,12 +149,13 @@
     {
       "id": "slice-3f",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-15-slice3f-intake-discontinue.md"
+        "spec": "docs/superpowers/specs/2026-06-15-slice3f-intake-discontinue.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/12"
       },
       "title": "Intake discontinue edge: on-antidepressant → block-60-deferred",
-      "column": "verify",
-      "phase": "Two Opus reviews GREEN (COMPLIANT + LGTM); review nit closed (election-independence test); running stage-7 merge-gate panel",
-      "nextAction": "Merge-gate panel → CI → merge authorization",
+      "column": "done",
+      "phase": "Merged (PR #12 / 8025edc); post-merge main re-verified green; off-meds Path-I arc reachable from the exam",
+      "nextAction": "Next: continue-path entry fork (conditionally_acceptable) / AMCD package arc / auth-org-context slice; sdlc-auditor over 9+ retros; top up Actions budget",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-3f-intake-discontinue"
