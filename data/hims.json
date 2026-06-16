@@ -174,11 +174,13 @@
     },
     {
       "id": "slice-3g",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-16-slice3g-continue-acceptability.md"
+      },
       "title": "Continue/acceptability fork: on-antidepressant → contact-hims-ame / not-acceptable (completes Path I)",
       "column": "spec",
-      "phase": "Scoping — mirrors 3b judgment + 3f election-gate; captured med_acceptability routes acceptable→contact_hims_ame / not_acceptable→terminal; engine untouched, no migration",
-      "nextAction": "Write spec → user review",
+      "phase": "Spec written (captured med_acceptability routes on_antidepressant→contact_hims_ame/not_acceptable; mirrors 3b+3f; +1 field no rule, engine untouched, no migration) — awaiting review",
+      "nextAction": "User spec review → plan",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16"
     }
