@@ -145,6 +145,16 @@
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-15",
       "branch": "slice-3e-regular-issuance"
+    },
+    {
+      "id": "slice-3f",
+      "links": {},
+      "title": "Intake discontinue edge: on-antidepressant → block-60-deferred",
+      "column": "spec",
+      "phase": "Scoping — generalize discontinueFromWait→discontinueFrom(fromState) (3c precedent), reuse DiscontinueForm at intake; no new field/rule, engine untouched",
+      "nextAction": "Write spec → user review",
+      "model": "all-Opus (Fable suspended)",
+      "lastTouched": "2026-06-16"
     }
   ]
 }
