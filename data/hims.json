@@ -193,10 +193,11 @@
       },
       "title": "AMCD arc 1: collecting-materials → hims-ame-review-package (package-complete attestation)",
       "column": "spec",
-      "phase": "Spec written (package-complete attestation + value-aware gate + state-only advance; report-requirements DEFERRED; mirrors 3e; +1 field+1 rule, engine untouched, no migration) — awaiting review",
-      "nextAction": "User spec review → plan",
+      "phase": "Spec approved + mockup reused; plan written (3 tasks); running stage-4¼ plan-check",
+      "nextAction": "Plan-check → build",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-16"
+      "lastTouched": "2026-06-16",
+      "branch": "slice-4a-collecting-materials"
     }
   ]
 }
