@@ -178,9 +178,9 @@
         "spec": "docs/superpowers/specs/2026-06-16-slice3g-continue-acceptability.md"
       },
       "title": "Continue/acceptability fork: on-antidepressant → contact-hims-ame / not-acceptable (completes Path I)",
-      "column": "spec",
-      "phase": "Spec approved + mockup reused; plan written (3 tasks); running stage-4¼ plan-check",
-      "nextAction": "Plan-check → build",
+      "column": "build",
+      "phase": "Plan-check PROCEED (0 must-fix); revisions folded (namespace→acceptability.*, distinct fn names, re-entry test, re-seed boundary); building Task 1 (schema field)",
+      "nextAction": "Task 1 schema → Task 2 transition → Task 3 web",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-3g-continue-acceptability"
