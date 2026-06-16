@@ -185,6 +185,16 @@
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-3g-continue-acceptability"
+    },
+    {
+      "id": "slice-4a",
+      "links": {},
+      "title": "AMCD arc 1: collecting-materials → hims-ame-review-package (package-complete attestation)",
+      "column": "spec",
+      "phase": "Scoping — mirrors 3e: package_complete attestation + value-aware gate + state-only advance; report-requirements modeling DEFERRED; engine untouched, no migration",
+      "nextAction": "Write spec → user review",
+      "model": "all-Opus (Fable suspended)",
+      "lastTouched": "2026-06-16"
     }
   ]
 }
