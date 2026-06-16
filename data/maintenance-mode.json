@@ -23,12 +23,13 @@
       "id": "maintenance-mode__slice-2-write-path",
       "links": {
         "spec": "docs/superpowers/specs/2026-06-15-slice-2-write-path-design.md",
-        "mockup": "docs/mockups/slice-2-write-path.html"
+        "mockup": "docs/mockups/slice-2-write-path.html",
+        "plan": "docs/superpowers/plans/2026-06-16-slice-2-write-path.md"
       },
       "title": "Slice 2 — Write path (odometer edit, mark-serviced, real clock)",
-      "column": "spec",
-      "phase": "Mockup SIGNED OFF; spec finalized (BR-12..18, in-service auto/set-once); writing implementation plan",
-      "nextAction": "writing-plans -> subagent-driven build (validator/writer/seeder/UI) -> merge-gate",
+      "column": "build",
+      "phase": "Plan written (5 tasks: core validator, writer+catalog seed, real clock+BR-18, sheets, XCUITest)",
+      "nextAction": "Plan review (optional) -> subagent-driven build -> merge-gate",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16",
       "branch": "slice-2-write-path"
