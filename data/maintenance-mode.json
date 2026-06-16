@@ -27,9 +27,9 @@
         "plan": "docs/superpowers/plans/2026-06-16-slice-2-write-path.md"
       },
       "title": "Slice 2 — Write path (odometer edit, mark-serviced, real clock)",
-      "column": "verify",
-      "phase": "Merge-gate GO (re-gate, correctly scoped); 2 fidelity nits fixed (italic since-new, copy); 67 tests green final-verified",
-      "nextAction": "User: push + merge per Slice-1 pattern, or hold",
+      "column": "done",
+      "phase": "MERGED to main (PR #2 squash ccc22c4); post-merge main green locally (37 core + build); retro written. CI billing-blocked (infra)",
+      "nextAction": "Slice 3 = add/remove items + custom-interval/in-service-date editing + service history. On-device install = user's optional step.",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16",
       "branch": "slice-2-write-path"
