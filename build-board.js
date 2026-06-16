@@ -6,8 +6,11 @@ const { renderBoard } = require('./board.render.js');
 const dir = __dirname;
 const cfg = JSON.parse(fs.readFileSync(path.join(dir, 'projects.config.json'), 'utf8'));
 const keys = Object.keys(cfg.projects || {});
-const files = keys.map(n =>
-  JSON.parse(fs.readFileSync(path.join(dir, 'data', n + '.json'), 'utf8')));
+const files = keys.map(n => {
+  const f = path.join(dir, 'data', n + '.json');
+  if (!fs.existsSync(f)) { console.warn('skip: no data file for ' + n); return null; }
+  return JSON.parse(fs.readFileSync(f, 'utf8'));
+}).filter(Boolean);
 const attention = JSON.parse(fs.readFileSync(path.join(dir, 'data', 'attention.json'), 'utf8'));
 
 const rendered = renderBoard(files, attention);

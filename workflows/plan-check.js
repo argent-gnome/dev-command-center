@@ -41,7 +41,7 @@ phase('Review')
 const reviews = (await parallel(LENSES.map(L => () =>
   agent(
     `You are reviewing an IMPLEMENTATION PLAN before any code is written, through the **${L.key}** lens, for slice "${a.sliceId || '?'}" of "${a.project || '?'}".\n\n` +
-    `Read the plan at "${a.planPath || '(newest under docs/superpowers/plans/)'}", the spec (${a.specGlobs || 'docs/superpowers/specs/'}), and enough of the EXISTING app under "${repo}" to judge fit.\n\n` +
+    `Read the plan at "${a.planPath || '(newest under docs/superpowers/plans/)'}", the spec (${a.specGlobs || 'docs/superpowers/specs/'}), and enough of the EXISTING app under "${repo}" to judge fit. Confine all reading to "${repo}" and its docs — the workspace holds OTHER repos; never read or critique them.\n\n` +
     `Critique ONLY this dimension:\n${L.focus}\n\n` +
     (a.stack ? `Stack: ${a.stack}. ` : '') +
     `For iOS, apply the swiftui-pro / swiftdata-pro / swift-concurrency-pro best-practice guidance where relevant.\n\n` +

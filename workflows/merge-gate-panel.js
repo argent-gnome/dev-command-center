@@ -36,6 +36,7 @@ const FINDINGS_SCHEMA = {
         },
       },
     },
+    outOfScope: { type: 'array', items: { type: 'string' } },
   },
 }
 
@@ -65,13 +66,14 @@ const reviews = (await parallel(LENSES.map(L => () =>
     `You are the merge-gate's **${L.key}** lens for slice "${a.sliceId || '?'}" of project "${a.project || '?'}".\n\n` +
     `Review the completed slice ONLY through this lens, and be REFUTE-BIASED — assume a critical is hiding and hunt for it:\n${L.focus}\n\n` +
     `Inspect the diff with \`${diffCmd}\` (run it), then read the changed files and the spec under "${repo}".\n` +
+    `**Stay strictly within this slice's scope** — only files inside "${repo}" that this diff touches. The workspace holds OTHER repos; never read or judge them. An issue OUTSIDE this slice/repo is NOT a finding here: if you spot one, put a one-line note in \`outOfScope\` (surfaced separately, NEVER blocks the merge).\n` +
     (a.specGlobs ? `Spec / source-of-truth: ${a.specGlobs}.\n` : '') +
     (a.stack ? `Stack: ${a.stack}.\n` : '') +
     (a.highStakes ? `HIGH-STAKES slice (${a.highStakes}) — the rigor floor applies; do NOT down-rate findings.\n` : '') +
     (a.notes ? `Context: ${a.notes}\n` : '') +
     `\nReturn findings for THIS lens only. Severity: critical = must BLOCK the merge; should-fix = real but non-blocking; nit = cosmetic. If the lens is clean, return an empty findings array.`,
     { label: `lens:${L.key}`, phase: 'Review', agentType: 'dev-command-center:merge-gate-reviewer', schema: FINDINGS_SCHEMA }
-  ).then(r => ({ lens: L.key, findings: (r && r.findings) || [] }))
+  ).then(r => ({ lens: L.key, findings: (r && r.findings) || [], outOfScope: (r && r.outOfScope) || [] }))
 ))).filter(Boolean)
 
 // Only critical/should-fix go to verification; nits are reported but never block.
@@ -79,6 +81,8 @@ const candidates = reviews.flatMap(r =>
   r.findings
     .filter(f => f.severity === 'critical' || f.severity === 'should-fix')
     .map((f, i) => ({ ...f, lens: r.lens, id: `${r.lens}-${i}` })))
+// Out-of-scope notes (real issues a lens spotted outside this slice/repo) — surfaced, never block the merge.
+const outOfScope = reviews.flatMap(r => (r.outOfScope || []).map(n => ({ lens: r.lens, note: n })))
 
 phase('Verify')
 // Three independent refuters per candidate; a candidate survives only if a MAJORITY did not refute it.
@@ -87,7 +91,7 @@ const verified = (await parallel(candidates.map(c => () =>
     agent(
       `Adversarially REFUTE this merge-gate finding. Default to refuted=true unless you become convinced it is a real, correctly-severity-rated issue.\n\n` +
       `Lens: ${c.lens}\nSeverity claimed: ${c.severity}\nTitle: ${c.title}\nLocation: ${c.file || '?'}${c.line ? ':' + c.line : ''}\nClaim: ${c.rationale}\nEvidence cited: ${c.evidence || '(none)'}\n\n` +
-      `Independently verify against the actual diff (\`${diffCmd}\`) and code under "${repo}". Is it real and correctly rated, or a false positive / over-rated?`,
+      `Independently verify against the actual diff (\`${diffCmd}\`) and code under "${repo}". Is it real and correctly rated, or a false positive / over-rated? **A finding about anything OUTSIDE "${repo}" or outside this slice's diff is automatically refuted=true (out of scope for this slice).**`,
       { label: `refute:${c.id}#${k}`, phase: 'Verify', agentType: 'dev-command-center:merge-gate-reviewer', schema: VERDICT_SCHEMA }
     )
   )).then(votes => {
@@ -110,5 +114,6 @@ return {
   criticals: criticals.map(c => ({ lens: c.lens, title: c.title, file: c.file, rationale: c.rationale, refuters: c.votes })),
   shouldFixes: shouldFixes.map(c => ({ lens: c.lens, title: c.title, file: c.file })),
   nits: reviews.flatMap(r => r.findings.filter(f => f.severity === 'nit').map(f => ({ lens: r.lens, title: f.title }))),
+  outOfScope,
   panel: { lenses: LENSES.map(l => l.key), candidates: candidates.length, refutersPerFinding: 3 },
 }

@@ -162,9 +162,12 @@ hims S3/S3b/S3c/S3d), each improvising the same workaround under ad-hoc authoriz
 ## onboard — the procedure
 For each project to onboard: ready the repo first (the readiness check in run-step 2 — CI gate set + docs
 scaffold), then dispatch the **`project-state-scanner`** agent with its `repoPath` + memory file → take the
-returned JSON cards → write `data/<key>.json` (bulk seed), **then commit + push the hub** so the status
-reaches Pages. For incremental single-card changes, use `board-update` instead. Re-run any time to reconcile
-the board with reality.
+returned JSON cards → **upsert them by id, never overwrite**: write the cards array to a temp file and run
+`node <hub>/board-update.js --project <key> --seed-file <file>` — it read-merges each card by id into
+`data/<key>.json` (preserving cards the scan didn't re-emit) and commits + pushes the hub. **Never bulk-write
+the data file directly:** `project-state-scanner` caps at ~1–3 cards, so a plain overwrite deletes slice
+history on a re-run (the onboard-databug retro — an 11-card board re-onboarded down to 1). For incremental
+single-card changes, use `board-update --slice` instead. Re-run any time to reconcile the board with reality.
 
 ## Gates — never cross silently
 STOP and get the user at: **spec review · mockup sign-off · live/device validation · CI red · any plan

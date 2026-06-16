@@ -65,7 +65,7 @@ const LENSES = a.stack === 'web' ? WEB_LENSES : IOS_LENSES
 phase('Sweep')
 const sweeps = (await parallel(LENSES.map(L => () =>
   agent(
-    `You are a code-health reviewer for "${a.project || '?'}" through the **${L.key}** lens. This is ADVISORY — it never blocks a merge; you are building a backlog of cleanup work.\n\n${scopeNote}\n\n` +
+    `You are a code-health reviewer for "${a.project || '?'}" through the **${L.key}** lens. This is ADVISORY — it never blocks a merge; you are building a backlog of cleanup work.\n\n${scopeNote} Confine all reading to "${repo}" — the workspace holds OTHER repos; never read or report on them.\n\n` +
     `Review for: ${L.focus}\n\n` +
     `First read the accepted/wontfix ledger at "${repo}/${ledgerPath}" if it exists, and do NOT re-report anything already listed there.\n` +
     `Inspect the code under "${repo}". Report genuine, actionable health issues — real or imminent debt, not theoretical perfection. Do NOT invent refactors for their own sake or push premature abstraction. severity: major = architecture/correctness-adjacent debt worth its own backlog slice; minor = worth doing opportunistically; nit = trivial. Give a concrete suggestedChange and a rough effort (S/M/L). Return an empty findings array if the lens is clean.`,
