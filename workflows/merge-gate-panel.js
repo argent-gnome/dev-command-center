@@ -9,7 +9,7 @@ export const meta = {
 
 // args (passed by the orchestrator at stage 7):
 //   { project, repoPath, baseRef='main', headRef='HEAD', sliceId, specGlobs, stack, highStakes, notes }
-const a = args || {}
+const a = (typeof args === 'string' ? JSON.parse(args) : args) || {}   // defensive: args can arrive JSON-stringified
 const repo = a.repoPath || '.'
 const base = a.baseRef || 'main'
 const head = a.headRef || 'HEAD'
