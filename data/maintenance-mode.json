@@ -27,9 +27,9 @@
         "plan": "docs/superpowers/plans/2026-06-16-slice-2-write-path.md"
       },
       "title": "Slice 2 — Write path (odometer edit, mark-serviced, real clock)",
-      "column": "build",
-      "phase": "Task 4 DONE+verified (sheets + wiring build green, 24 app + 37 core); building Task 5 XCUITests",
-      "nextAction": "Task 5: WritePathUITests (log->overdue-count drop, edit odometer->value, floor rejection) + re-anchor MainScreenUITests -> merge-gate",
+      "column": "verify",
+      "phase": "All 5 build tasks DONE+verified (67 tests: 37 core + 24 app + 6 UI green; BR-18 + write path sim-verified); running stage-7 merge-gate panel",
+      "nextAction": "Merge-gate -> address findings -> push + PR + merge (per Slice-1 precedent)",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16",
       "branch": "slice-2-write-path"
