@@ -33,6 +33,16 @@
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16",
       "branch": "slice-2-write-path"
+    },
+    {
+      "id": "maintenance-mode__slice-3-editing",
+      "links": {},
+      "title": "Slice 3 — Editing (scope TBD: add/remove · custom intervals · in-service date · history)",
+      "column": "spec",
+      "phase": "Scoping Slice 3 — brainstorm (decompose the editing bundle into a thin first cut)",
+      "nextAction": "Brainstorm: pick the thinnest valuable Slice-3 -> spec -> mockup -> plan -> build",
+      "model": "Opus (all roles)",
+      "lastTouched": "2026-06-16"
     }
   ]
 }
