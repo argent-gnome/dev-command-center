@@ -27,8 +27,8 @@
       },
       "title": "Slice 2 — Write path (odometer edit, mark-serviced, real clock)",
       "column": "spec",
-      "phase": "Slice 2 mockup built (3 iPhone frames: since-new list, mark-serviced sheet, odo/in-service editor); opened for sign-off",
-      "nextAction": "Sign off mockup (2 decisions: since-new→overdue display, row-tap=sheet) -> writing-plans -> build",
+      "phase": "Mockup SIGNED OFF; spec finalized (BR-12..18, in-service auto/set-once); writing implementation plan",
+      "nextAction": "writing-plans -> subagent-driven build (validator/writer/seeder/UI) -> merge-gate",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16",
       "branch": "slice-2-write-path"
