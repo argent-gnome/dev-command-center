@@ -38,9 +38,9 @@
       "id": "maintenance-mode__slice-3-editing",
       "links": {},
       "title": "Slice 3 — Custom-interval editing (swipe→Edit sheet; +BR-20 odo guard, friendly error)",
-      "column": "build",
-      "phase": "Build COMPLETE (6 tasks, all re-verified; 53 core + 31 app + 9 UI green); merge-gate panel running",
-      "nextAction": "Merge-gate GO → push PR → merge → reconcile",
+      "column": "done",
+      "phase": "MERGED (PR #3, d250087) — custom-interval editing; merge-gate GO (4 lenses clean)",
+      "nextAction": "Slice 4 candidates: add/remove items · in-service-date · service-history",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16"
     }
