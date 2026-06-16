@@ -179,10 +179,11 @@
       },
       "title": "Continue/acceptability fork: on-antidepressant → contact-hims-ame / not-acceptable (completes Path I)",
       "column": "spec",
-      "phase": "Spec written (captured med_acceptability routes on_antidepressant→contact_hims_ame/not_acceptable; mirrors 3b+3f; +1 field no rule, engine untouched, no migration) — awaiting review",
-      "nextAction": "User spec review → plan",
+      "phase": "Spec approved + mockup reused; plan written (3 tasks); running stage-4¼ plan-check",
+      "nextAction": "Plan-check → build",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-16"
+      "lastTouched": "2026-06-16",
+      "branch": "slice-3g-continue-acceptability"
     }
   ]
 }
