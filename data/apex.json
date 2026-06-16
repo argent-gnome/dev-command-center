@@ -68,9 +68,9 @@
     {
       "id": "apex__slice-3",
       "title": "Slice 3 — persistence + map",
-      "column": "backlog",
-      "phase": "1 · scope",
-      "nextAction": "Write the Slice 3 plan (validate-then-proceed)",
+      "column": "done",
+      "phase": "merged",
+      "nextAction": "-",
       "blockedOn": null,
       "branch": null,
       "model": "Opus build / Fable planning",

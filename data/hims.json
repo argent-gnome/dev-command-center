@@ -162,9 +162,9 @@
     {
       "id": "hims__slice-1",
       "title": "Slice 1 — first build on fixed foundation",
-      "column": "build",
-      "phase": "5 · build (multi-session)",
-      "nextAction": "Resolve submission_14d over-scoping flagged at checkpoint",
+      "column": "done",
+      "phase": "merged",
+      "nextAction": "-",
       "blockedOn": null,
       "branch": "slice-1",
       "model": "Opus build / Fable merge-gate",
