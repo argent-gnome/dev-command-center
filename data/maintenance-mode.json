@@ -49,8 +49,8 @@
       "links": {},
       "title": "Slice 4 — Vehicle service history (toolbar→pushed log; swipe-delete + tap-edit)",
       "column": "build",
-      "phase": "Build COMPLETE (4 tasks re-verified; 53 core + 40 app + 10 UI green); merge-gate panel running",
-      "nextAction": "Merge-gate GO → PR → merge → reconcile",
+      "phase": "Merge-gate GO (0 crit/0 should-fix); full-suite flake confirmed ENVIRONMENTAL (host contention, passes isolated/baseline) — clean re-run in progress",
+      "nextAction": "Clean suite green → PR → merge → reconcile",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16"
     }
