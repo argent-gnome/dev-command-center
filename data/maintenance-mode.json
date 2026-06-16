@@ -48,9 +48,9 @@
       "id": "maintenance-mode__slice-4-history",
       "links": {},
       "title": "Slice 4 — Vehicle service history (toolbar→pushed log; swipe-delete + tap-edit)",
-      "column": "build",
-      "phase": "Merge-gate GO (0 crit/0 should-fix); full-suite flake confirmed ENVIRONMENTAL (host contention, passes isolated/baseline) — clean re-run in progress",
-      "nextAction": "Clean suite green → PR → merge → reconcile",
+      "column": "done",
+      "phase": "MERGED (PR #4, f5770ab) — per-vehicle service history; merge-gate GO; full suite green (clean run)",
+      "nextAction": "Slice 5 candidates: add/remove items · in-service-date editing",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16"
     }
