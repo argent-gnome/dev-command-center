@@ -189,12 +189,13 @@
     {
       "id": "slice-4a",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-16-slice4a-collecting-materials.md"
+        "spec": "docs/superpowers/specs/2026-06-16-slice4a-collecting-materials.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/15"
       },
       "title": "AMCD arc 1: collecting-materials → hims-ame-review-package (package-complete attestation)",
-      "column": "verify",
-      "phase": "Two Opus reviews GREEN (COMPLIANT + LGTM, 0 new findings); running stage-7 merge-gate panel",
-      "nextAction": "Merge-gate panel → merge authorization",
+      "column": "done",
+      "phase": "Merged (PR #15 / 52421a4); post-merge main re-verified green; AMCD arc started (collecting → HIMS AME review); demo script updated",
+      "nextAction": "Next AMCD: hims_ame_review_package→awaiting_faa_decision (submit-to-AMCD, 14-day clock) / the real report-requirements / auth slice",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-4a-collecting-materials"
