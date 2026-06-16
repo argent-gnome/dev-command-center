@@ -28,8 +28,8 @@
       },
       "title": "Slice 2 — Write path (odometer edit, mark-serviced, real clock)",
       "column": "build",
-      "phase": "Task 1 core write-validator DONE+verified (37 core tests); building Task 2 writer + catalog seeder + Slice-1 test re-anchor",
-      "nextAction": "Task 2: MaintenanceWriter/Seeder/Vehicle accessor/delete Fixtures/re-anchor tests (grep-Fixtures gate)",
+      "phase": "Task 2 DONE+verified (24 app tests, exact 77/44/33 counts, -uiTestSeed launches clean - catalog-only since-new renders); real clock landed; building Task 3 BR-18 display",
+      "nextAction": "Task 3: BR-18 since-new display (overdue -> 'log last service' prompt; not-due -> positive + 'Since new')",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16",
       "branch": "slice-2-write-path"
