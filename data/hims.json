@@ -171,6 +171,16 @@
       "model": "Opus build / Fable merge-gate",
       "lastTouched": "2026-06-11",
       "links": {}
+    },
+    {
+      "id": "slice-3g",
+      "links": {},
+      "title": "Continue/acceptability fork: on-antidepressant → contact-hims-ame / not-acceptable (completes Path I)",
+      "column": "spec",
+      "phase": "Scoping — mirrors 3b judgment + 3f election-gate; captured med_acceptability routes acceptable→contact_hims_ame / not_acceptable→terminal; engine untouched, no migration",
+      "nextAction": "Write spec → user review",
+      "model": "all-Opus (Fable suspended)",
+      "lastTouched": "2026-06-16"
     }
   ]
 }
