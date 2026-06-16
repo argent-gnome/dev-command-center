@@ -38,9 +38,9 @@
       "id": "maintenance-mode__slice-3-editing",
       "links": {},
       "title": "Slice 3 — Custom-interval editing (swipe→Edit sheet; +BR-20 odo guard, friendly error)",
-      "column": "mockup",
-      "phase": "Mockup built (4 frames) — awaiting sign-off",
-      "nextAction": "Sign off mockup → writing-plans → build",
+      "column": "plan",
+      "phase": "Plan written + self-reviewed (6 tasks) — pre-build review next",
+      "nextAction": "Multi-agent plan review → subagent build",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16"
     }
