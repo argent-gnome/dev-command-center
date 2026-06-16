@@ -193,8 +193,8 @@
       },
       "title": "AMCD arc 1: collecting-materials → hims-ame-review-package (package-complete attestation)",
       "column": "verify",
-      "phase": "Build complete (3 tasks, gates green: schema 16/engine 26/db 26/assembler 4/web 88, build, engine+schema untouched); two independent Opus reviews running",
-      "nextAction": "Reviews → merge-gate panel → CI(removed) → merge authorization",
+      "phase": "Two Opus reviews GREEN (COMPLIANT + LGTM, 0 new findings); running stage-7 merge-gate panel",
+      "nextAction": "Merge-gate panel → merge authorization",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-4a-collecting-materials"
