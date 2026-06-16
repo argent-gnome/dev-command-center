@@ -28,8 +28,8 @@
       },
       "title": "Slice 2 — Write path (odometer edit, mark-serviced, real clock)",
       "column": "verify",
-      "phase": "Merge-gate MISFIRED (args-stringification -> wrong repoPath -> empty diff; fixed merge-gate-panel.js); re-running correctly scoped",
-      "nextAction": "Re-gate maintenance-mode slice-2 -> address findings -> push/PR/merge",
+      "phase": "Merge-gate GO (re-gate, correctly scoped); 2 fidelity nits fixed (italic since-new, copy); 67 tests green final-verified",
+      "nextAction": "User: push + merge per Slice-1 pattern, or hold",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16",
       "branch": "slice-2-write-path"
