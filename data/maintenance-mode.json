@@ -28,8 +28,8 @@
       },
       "title": "Slice 2 — Write path (odometer edit, mark-serviced, real clock)",
       "column": "build",
-      "phase": "Task 3 DONE+verified (BR-18 display matches mockup on device-sim); building Task 4 sheets + row/header wiring",
-      "nextAction": "Task 4: MarkServicedSheet + OdometerEditorSheet + RowData.itemID/modelItem + row-tap/header-button wiring",
+      "phase": "Task 4 DONE+verified (sheets + wiring build green, 24 app + 37 core); building Task 5 XCUITests",
+      "nextAction": "Task 5: WritePathUITests (log->overdue-count drop, edit odometer->value, floor rejection) + re-anchor MainScreenUITests -> merge-gate",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16",
       "branch": "slice-2-write-path"
