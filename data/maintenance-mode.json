@@ -49,8 +49,8 @@
       "links": {},
       "title": "Slice 4 — Vehicle service history (toolbar→pushed log; swipe-delete + tap-edit)",
       "column": "build",
-      "phase": "Plan-check PROCEED → plan v2; subagent build starting (4 tasks)",
-      "nextAction": "Subagent build Tasks 1–4 → merge-gate",
+      "phase": "Build COMPLETE (4 tasks re-verified; 53 core + 40 app + 10 UI green); merge-gate panel running",
+      "nextAction": "Merge-gate GO → PR → merge → reconcile",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-16"
     }
