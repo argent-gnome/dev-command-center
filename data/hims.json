@@ -205,8 +205,8 @@
       "links": {},
       "title": "AMCD arc 2: hims-ame-review-package → awaiting-faa-decision (submit to AMCD; 14-day clock)",
       "column": "verify",
-      "phase": "Build complete (2 tasks, gates green: schema 16/engine 26/db 28/assembler 4/web 97, build, engine+schema untouched); two independent Opus reviews running",
-      "nextAction": "Reviews → merge-gate panel → merge authorization",
+      "phase": "Two Opus reviews GREEN (COMPLIANT + LGTM, clock-anchor chain verified, 0 new defects); running stage-7 merge-gate panel",
+      "nextAction": "Merge-gate panel → demo-script update → merge authorization",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-4b-submit-to-amcd"
