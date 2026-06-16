@@ -153,8 +153,8 @@
       },
       "title": "Intake discontinue edge: on-antidepressant → block-60-deferred",
       "column": "verify",
-      "phase": "Build complete (2 tasks, gates green: schema 16/engine 26/db 20/assembler 4/web 62, build, engine+schema untouched); two independent Opus reviews running",
-      "nextAction": "Reviews → merge-gate panel → CI → merge authorization",
+      "phase": "Two Opus reviews GREEN (COMPLIANT + LGTM); review nit closed (election-independence test); running stage-7 merge-gate panel",
+      "nextAction": "Merge-gate panel → CI → merge authorization",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-3f-intake-discontinue"
