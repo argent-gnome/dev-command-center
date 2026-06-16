@@ -8,7 +8,8 @@ export const meta = {
 }
 
 // args (passed by the orchestrator at stage 4¼): { project, repoPath, planPath, specGlobs, stack, sliceId }
-const a = args || {}
+// Defensive parse: args can arrive JSON-stringified (same class of bug fixed in merge-gate-panel.js c97ea90).
+const a = (typeof args === 'string' ? JSON.parse(args) : args) || {}
 const repo = a.repoPath || '.'
 
 const FINDINGS_SCHEMA = {
