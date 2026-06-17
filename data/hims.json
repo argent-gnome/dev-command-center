@@ -233,9 +233,9 @@
         "spec": "docs/superpowers/specs/2026-06-17-slice5a-auth-foundation.md"
       },
       "title": "Auth foundation — login/session/route-protection (Supabase Auth)",
-      "column": "build",
-      "phase": "Plan-check REVISE → all must-fix folded (gitignore-secrets, root lint, requireUser wiring, 2 seed users); building (4 tasks)",
-      "nextAction": "Build Tasks 1-4 → reviews → merge-gate → live (needs local Supabase)",
+      "column": "verify",
+      "phase": "Build complete (4 commits, gates green: auth-redirect 7, web 111, build, secret-safety verified, SRC untouched); two Opus reviews running",
+      "nextAction": "Reviews → merge-gate panel → 7½ → live → ADR → demo → merge",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-17",
       "branch": "slice-5a-auth-foundation"
