@@ -226,6 +226,16 @@
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-17",
       "branch": "slice-4c-faa-decision"
+    },
+    {
+      "id": "slice-5a",
+      "links": {},
+      "title": "Auth foundation — login/session/route-protection (Supabase Auth)",
+      "column": "spec",
+      "phase": "Brainstormed: full-auth-first go-live epic decomposed into 5a (auth identity) / 5b (org-scoped data + RLS + audit actor) / 5c (prod hard-gate + deploy); single-org (MedVector), clean seam. 5a design approved (Supabase Auth, no mockup). Writing spec.",
+      "nextAction": "Write 5a spec → user review → plan → plan-check → build",
+      "model": "all-Opus (Fable suspended)",
+      "lastTouched": "2026-06-17"
     }
   ]
 }
