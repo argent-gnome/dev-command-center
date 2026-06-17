@@ -61,8 +61,8 @@
       },
       "title": "Slice 5 — Add/remove custom items (toolbar + form; swipe-Delete added rows)",
       "column": "spec",
-      "phase": "Spec written + self-reviewed — awaiting user spec review",
-      "nextAction": "User reviews spec → mockup sign-off → plan → plan-check → build",
+      "phase": "Spec approved → building mockup (stage 3)",
+      "nextAction": "Mockup sign-off → plan → plan-check → build",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-17"
     }
