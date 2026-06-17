@@ -234,8 +234,8 @@
       },
       "title": "Auth foundation — login/session/route-protection (Supabase Auth)",
       "column": "verify",
-      "phase": "Build complete (4 commits, gates green: auth-redirect 7, web 111, build, secret-safety verified, SRC untouched); two Opus reviews running",
-      "nextAction": "Reviews → merge-gate panel → 7½ → live → ADR → demo → merge",
+      "phase": "Two reviews GREEN (COMPLIANT + LGTM-no-bypass/no-leak); 3 nits folded; running merge-gate panel",
+      "nextAction": "Merge-gate → 7½ → live → ADR → demo → merge",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-17",
       "branch": "slice-5a-auth-foundation"
