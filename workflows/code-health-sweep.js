@@ -8,7 +8,8 @@ export const meta = {
 }
 
 // args: { project, repoPath, stack, sliceId, scope='whole-app'|'blast-radius', baseRef, headRef, ledgerPath }
-const a = args || {}
+// Defensive parse: args can arrive JSON-stringified (same class of bug fixed in merge-gate-panel.js c97ea90 / plan-check.js).
+const a = (typeof args === 'string' ? JSON.parse(args) : args) || {}
 const repo = a.repoPath || '.'
 const scope = a.scope || 'whole-app'
 const ledgerPath = a.ledgerPath || 'docs/health/accepted.md'
