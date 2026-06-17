@@ -8,7 +8,10 @@
     "oldestDays": null,
     "dir": "docs/retros/"
   },
-  "pluginUpdate": null,
+  "pluginUpdate": {
+    "from": "0.13.0",
+    "to": "0.16.0"
+  },
   "docDriftPatches": [],
   "blockedCards": [
     "HIMS Pilot Recert · Auth/session + per-org access hardening — Needs the auth/session slice"
