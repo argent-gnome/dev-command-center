@@ -97,9 +97,9 @@
         "plan": "docs/superpowers/plans/2026-06-17-combined-row.md"
       },
       "title": "Combined Inspect+Replace row (collapse a paired component into one list row)",
-      "column": "build",
-      "phase": "Plan-check 4¼ PROCEED (advisories folded); building (T1+T2 one unit)",
-      "nextAction": "build → merge-gate → device check → merge-auth",
+      "column": "verify",
+      "phase": "Built green (core 64/app 60/UI 14); BR-29 docs reconciled (4½); merge-gate (7) running",
+      "nextAction": "merge-gate GO → device check (paired component = one card) → merge-auth",
       "branch": "slice-combined-row",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-17"
