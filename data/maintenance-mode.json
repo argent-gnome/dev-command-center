@@ -92,11 +92,13 @@
     },
     {
       "id": "maintenance-mode__combined-row",
-      "links": {},
+      "links": {
+        "mockup": "docs/mockups/slice-combined-row.html"
+      },
       "title": "Combined Inspect+Replace row (collapse a paired component into one list row)",
       "column": "spec",
-      "phase": "Scoping/brainstorm + mockup",
-      "nextAction": "Mockup sign-off → spec → plan-check → build",
+      "phase": "Mockup signed off (Option A v2); spec written; writing plan",
+      "nextAction": "writing-plans → plan-check 4¼ → build",
       "branch": "slice-combined-row",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-17"
