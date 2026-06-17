@@ -74,8 +74,8 @@
       },
       "title": "Slice 6 — SwiftData migration safety (VersionedSchema + non-destructive fail-safe; drop dead whicheverFirst)",
       "column": "verify",
-      "phase": "Merge-gate: GO on code (3/4 lenses unanimous, no defect; 4th hung→killed). Nit folded. DEVICE migration gate next",
-      "nextAction": "Sim upgrade-in-place migration proxy (Slice-5→Slice-6, sentinel survives + whicheverFirst gone) → real-device confirm + merge-auth",
+      "phase": "DEVICE migration gate PASS (sim proxy: old whicheverFirst store + sentinel → V1, column dropped, odometer 88888 survived, RootView renders, no crash)",
+      "nextAction": "docs-audit (9½) → user merge-auth (+ optional real-device confirm) → merge → reconcile",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-17"
     }
