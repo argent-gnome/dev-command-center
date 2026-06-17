@@ -61,8 +61,8 @@
       },
       "title": "Slice 5 — Add/remove custom items (toolbar + form; swipe-Delete added rows)",
       "column": "verify",
-      "phase": "Build COMPLETE (5 tasks, each re-verified; full suite green alone: 62 core + 58 app/UI); merge-gate (7) running",
-      "nextAction": "Merge-gate GO → clean full-suite re-verify (alone) → device → docs-audit (9½) → merge",
+      "phase": "Merge-gate GO + should-fix folded (duplicate-name guard); full suite green ALONE (flaky delete-test hardened); docs-audit (9½) running",
+      "nextAction": "Docs-audit + merge authorization → merge → reconcile (11)",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-17"
     }
