@@ -1,15 +1,15 @@
 {
-  "refreshedAt": "2026-06-16",
+  "refreshedAt": "2026-06-17",
   "openAuditPRs": [
     {
       "number": 12,
       "title": "sdlc-audit (2026-06-16): adherence guard + stage ledger; iOS UI-test guidance",
       "url": "https://github.com/argent-gnome/dev-command-center/pull/12",
-      "ageDays": 0
+      "ageDays": 1
     }
   ],
   "pendingRetros": {
-    "count": 2,
+    "count": 3,
     "sinceAudit": "2026-06-16T16:40:16-04:00",
     "oldest": "2026-06-16T17:45:55-04:00",
     "oldestDays": 0,
