@@ -234,9 +234,9 @@
         "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/18"
       },
       "title": "Auth foundation — login/session/route-protection (Supabase Auth)",
-      "column": "live",
-      "phase": "Merge-gate GO; ADR+demo gate items closed; live-validated (307→/login, login renders, GoTrue sign-in works); secret-safety verified; PR #18 open",
-      "nextAction": "User merge authorization → 7½ blast-radius → reconcile",
+      "column": "done",
+      "phase": "Merged (PR #18 / 5848448); post-merge main green (web 111); auth wall live; secret-safety verified",
+      "nextAction": "Slice 5b — org-scoped data + RLS + audit actor (withDb role+GUC seam; activate existing RLS scaffolding; MedVector org/membership; recordedBy/changedBy; requireUser in actions). Connect Supabase MCP before 5b.",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-17",
       "branch": "slice-5a-auth-foundation"
