@@ -8,12 +8,22 @@ export const meta = {
 }
 
 // args (passed by the orchestrator at stage 7):
-//   { project, repoPath, baseRef='main', headRef='HEAD', sliceId, specGlobs, stack, highStakes, notes }
+//   { project, repoPath, baseRef='main', headRef='HEAD', sliceId, specGlobs, stack, highStakes, notes, ledgerPath }
 const a = (typeof args === 'string' ? JSON.parse(args) : args) || {}   // defensive: args can arrive JSON-stringified
 const repo = a.repoPath || '.'
 const base = a.baseRef || 'main'
 const head = a.headRef || 'HEAD'
 const diffCmd = `git -C "${repo}" diff ${base}...${head}`
+// The accepted/known-backlog ledger (same file the stage-7½ health-sweep reads). A finding already accepted and
+// ROUTED there is not a fresh should-fix — it re-surfaces on every slice that touches that surface (e.g. hims'
+// field_def-seed deploy gap, routed to the auth/migrations slice, was re-flagged S3e/S4a/S4c). Tell each lens to
+// DROP / down-rate-to-nit anything already on the ledger; a genuinely NEW aspect of a tracked item is still fair game.
+const ledgerPath = a.ledgerPath || 'docs/health/accepted.md'
+const ledgerNote =
+  `\n**Known-backlog ledger:** read "${repo}/${ledgerPath}" if it exists. A finding ALREADY listed/accepted there ` +
+  `(and routed to a future slice) is NOT a fresh should-fix — DROP it, or down-rate to a nit, so a known, deferred ` +
+  `item does not re-consume a should-fix slot every slice. A NEW aspect of a ledger item (not the already-logged one) ` +
+  `is still in scope.\n`
 
 const FINDINGS_SCHEMA = {
   type: 'object',
@@ -57,7 +67,7 @@ const LENSES = [
   { key: 'correctness', focus: 'Logic & algorithm correctness. Wrong results, broken invariants, off-by-one, state that diverges across the slice. Demand a DISCRIMINATING test for each spec rule — at least one input where the intended behavior and the nearest plausible-wrong implementation DISAGREE (non-monotone / boundary / divergent cases). A suite that only exercises inputs where right==wrong is a coverage gap, not coverage.' },
   { key: 'data-safety', focus: 'Regression & data safety. Destructive migrations or schema changes (SwiftData @Model / SQL), data loss against a POPULATED store, silently-destructive casts. A fresh CI DB or fresh install passing is NOT proof against a populated store; a @Model/schema change must be exercised against a previous-schema store.' },
   { key: 'spec-compliance', focus: 'Spec-rule compliance. Every change should cite the spec rule it satisfies; flag drift from the approved spec/mockup. High-stakes rules flagged in the spec are never down-rated (rigor floor).' },
-  { key: 'cross-seam', focus: 'Cross-task seams & gate compliance. Integration points BETWEEN the slice\'s tasks that no single-task review could see; stack-gate compliance — lint clean, the app-target tests actually RUN in CI (not merely build), the xcodebuild destination simulator exists.' },
+  { key: 'cross-seam', focus: 'Cross-task seams & gate compliance. Integration points BETWEEN the slice\'s tasks that no single-task review could see; stack-gate compliance — lint clean, the app-target tests actually RUN in CI (not merely build), the xcodebuild destination simulator exists. Also flag a STALE STAKEHOLDER DEMO SCRIPT (the seeded-fixture roster + scripted click-through) the slice falsified: a step that now clicks differently, a roster row at a state the slice removed, or a "what\'s not built" line naming a thing the slice built — should-fix, the reconcile backstop (it has caught this on consecutive slices).' },
 ]
 
 phase('Review')
@@ -67,6 +77,7 @@ const reviews = (await parallel(LENSES.map(L => () =>
     `Review the completed slice ONLY through this lens, and be REFUTE-BIASED — assume a critical is hiding and hunt for it:\n${L.focus}\n\n` +
     `Inspect the diff with \`${diffCmd}\` (run it), then read the changed files and the spec under "${repo}".\n` +
     `**Stay strictly within this slice's scope** — only files inside "${repo}" that this diff touches. The workspace holds OTHER repos; never read or judge them. An issue OUTSIDE this slice/repo is NOT a finding here: if you spot one, put a one-line note in \`outOfScope\` (surfaced separately, NEVER blocks the merge).\n` +
+    ledgerNote +
     (a.specGlobs ? `Spec / source-of-truth: ${a.specGlobs}.\n` : '') +
     (a.stack ? `Stack: ${a.stack}.\n` : '') +
     (a.highStakes ? `HIGH-STAKES slice (${a.highStakes}) — the rigor floor applies; do NOT down-rate findings.\n` : '') +
