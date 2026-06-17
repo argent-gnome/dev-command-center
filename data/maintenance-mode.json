@@ -56,13 +56,15 @@
     },
     {
       "id": "maintenance-mode__slice-5",
-      "links": {},
-      "title": "Slice 5 — scoping (add/remove items · in-service-date · schema-migration hardening)",
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-16-slice-5-add-remove-items-design.md"
+      },
+      "title": "Slice 5 — Add/remove custom items (toolbar + form; swipe-Delete added rows)",
       "column": "spec",
-      "phase": "Scoping Slice 5 — brainstorm (pick the thin cut)",
-      "nextAction": "Brainstorm → user picks cut → spec → mockup → plan-check → build (FULL loop incl 4½/6/7½/9½)",
+      "phase": "Spec written + self-reviewed — awaiting user spec review",
+      "nextAction": "User reviews spec → mockup sign-off → plan → plan-check → build",
       "model": "Opus (all roles)",
-      "lastTouched": "2026-06-16"
+      "lastTouched": "2026-06-17"
     }
   ]
 }
