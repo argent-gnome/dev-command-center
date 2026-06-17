@@ -229,13 +229,16 @@
     },
     {
       "id": "slice-5a",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-17-slice5a-auth-foundation.md"
+      },
       "title": "Auth foundation — login/session/route-protection (Supabase Auth)",
       "column": "spec",
-      "phase": "Brainstormed: full-auth-first go-live epic decomposed into 5a (auth identity) / 5b (org-scoped data + RLS + audit actor) / 5c (prod hard-gate + deploy); single-org (MedVector), clean seam. 5a design approved (Supabase Auth, no mockup). Writing spec.",
-      "nextAction": "Write 5a spec → user review → plan → plan-check → build",
+      "phase": "5a spec written + committed (Supabase Auth identity; data layer untouched; RLS→5b)",
+      "nextAction": "User reviews spec → plan → plan-check → build",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-17"
+      "lastTouched": "2026-06-17",
+      "branch": "slice-5a-auth-foundation"
     }
   ]
 }
