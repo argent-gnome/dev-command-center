@@ -215,13 +215,16 @@
     },
     {
       "id": "slice-4c",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-17-slice4c-faa-decision.md"
+      },
       "title": "AMCD arc 3: FAA decision + re-entry (completes the journey)",
       "column": "spec",
-      "phase": "Scoping — FAA decision routes awaiting→faa_issues_si/denied (mirrors 3b/3g) + capture denial reason + denied→contact_hims_ame re-entry; completes the AMCD arc / full journey",
-      "nextAction": "Write spec → user review",
+      "phase": "Spec approved + mockup reuse-approved; writing plan (3 tasks)",
+      "nextAction": "Plan → plan-check → build",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-17"
+      "lastTouched": "2026-06-17",
+      "branch": "slice-4c-faa-decision"
     }
   ]
 }
