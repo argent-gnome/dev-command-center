@@ -78,6 +78,16 @@
       "nextAction": "Slices 7 (Core SSOT) / 8 (a11y+perf); NEW: CSV export/share slice (per-vehicle data portability)",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-17"
+    },
+    {
+      "id": "maintenance-mode__action-picker",
+      "links": {
+        "mockup": "docs/mockups/slice-action-picker.html"
+      },
+      "column": "spec",
+      "phase": "Spec + signed-off mockup done; writing plan next",
+      "nextAction": "writing-plans (swiftui-pro Picker) → plan-check → build → device check",
+      "lastTouched": "2026-06-17"
     }
   ]
 }
