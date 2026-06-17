@@ -97,6 +97,17 @@
       "model": "Opus build / Fable merge-gate",
       "lastTouched": "2026-06-11",
       "links": {}
+    },
+    {
+      "id": "spanish-coach__slice-12-review-crash-fix",
+      "links": {},
+      "title": "Slice 12 — fix Review-Misses crash (pile-empties)",
+      "column": "verify",
+      "phase": "root cause found + fixed (currentItem traps on empty pile); engine repro RED→GREEN, Kit 111/111, live XCUITest passes",
+      "nextAction": "Opus merge-gate (engine regression), then merge",
+      "branch": "slice-12-review-crash-fix",
+      "model": "Opus (systematic-debugging + merge-gate)",
+      "lastTouched": "2026-06-17"
     }
   ]
 }
