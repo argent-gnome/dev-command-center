@@ -234,8 +234,8 @@
       },
       "title": "Auth foundation — login/session/route-protection (Supabase Auth)",
       "column": "spec",
-      "phase": "5a spec written + committed (Supabase Auth identity; data layer untouched; RLS→5b)",
-      "nextAction": "User reviews spec → plan → plan-check → build",
+      "phase": "Plan written (4 tasks); running stage-4¼ plan-check",
+      "nextAction": "Plan-check → build",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-17",
       "branch": "slice-5a-auth-foundation"
