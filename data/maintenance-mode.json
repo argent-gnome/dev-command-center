@@ -89,6 +89,17 @@
       "phase": "MERGED — PR #11 (eb07292): action picker on log/edit, flush=thorough tier, BR-28, ServiceAction shared w/ AddItemSheet. Installed to device.",
       "nextAction": "CSV export/share (B) OR combined inspect+replace row (C)",
       "lastTouched": "2026-06-17"
+    },
+    {
+      "id": "maintenance-mode__combined-row",
+      "links": {},
+      "title": "Combined Inspect+Replace row (collapse a paired component into one list row)",
+      "column": "spec",
+      "phase": "Scoping/brainstorm + mockup",
+      "nextAction": "Mockup sign-off → spec → plan-check → build",
+      "branch": "slice-combined-row",
+      "model": "opus (all roles)",
+      "lastTouched": "2026-06-17"
     }
   ]
 }
