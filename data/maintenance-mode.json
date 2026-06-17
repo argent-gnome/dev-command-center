@@ -61,8 +61,8 @@
       },
       "title": "Slice 5 — Add/remove custom items (toolbar + form; swipe-Delete added rows)",
       "column": "spec",
-      "phase": "Mockup built (4 frames) — awaiting sign-off",
-      "nextAction": "Sign off mockup → writing-plans → plan-check → build",
+      "phase": "Plan written + self-reviewed (5 tasks) → plan-check (4¼)",
+      "nextAction": "plan-check → docs-author (4½) → subagent build → merge-gate",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-17"
     }
