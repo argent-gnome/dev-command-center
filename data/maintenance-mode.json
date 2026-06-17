@@ -85,9 +85,9 @@
         "mockup": "docs/mockups/slice-action-picker.html",
         "plan": "docs/superpowers/plans/2026-06-17-action-picker.md"
       },
-      "column": "build",
-      "phase": "Plan-check 4¼: REVISE → folded (helper-name must-fix + 5 advisories). Building T1/T2/T3",
-      "nextAction": "subagent build → merge-gate → device install/check",
+      "column": "verify",
+      "phase": "Merge-gate GO; 3 should-fixes folded (docs BR-12/22/28 + 2 discriminating tests). Device install blocked — iPhone disconnected",
+      "nextAction": "User merge-auth → final suite check → merge; install to phone when reconnected",
       "lastTouched": "2026-06-17"
     }
   ]
