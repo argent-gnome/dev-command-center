@@ -230,12 +230,13 @@
     {
       "id": "slice-5a",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-17-slice5a-auth-foundation.md"
+        "spec": "docs/superpowers/specs/2026-06-17-slice5a-auth-foundation.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/18"
       },
       "title": "Auth foundation — login/session/route-protection (Supabase Auth)",
-      "column": "verify",
-      "phase": "Two reviews GREEN (COMPLIANT + LGTM-no-bypass/no-leak); 3 nits folded; running merge-gate panel",
-      "nextAction": "Merge-gate → 7½ → live → ADR → demo → merge",
+      "column": "live",
+      "phase": "Merge-gate GO; ADR+demo gate items closed; live-validated (307→/login, login renders, GoTrue sign-in works); secret-safety verified; PR #18 open",
+      "nextAction": "User merge authorization → 7½ blast-radius → reconcile",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-17",
       "branch": "slice-5a-auth-foundation"
