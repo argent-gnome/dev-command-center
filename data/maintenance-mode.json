@@ -98,8 +98,8 @@
       },
       "title": "Combined Inspect+Replace row (collapse a paired component into one list row)",
       "column": "build",
-      "phase": "Plan written + self-reviewed; plan-check (4¼) running",
-      "nextAction": "Fold plan-check → build T1+T2 → merge-gate → device check",
+      "phase": "Plan-check 4¼ PROCEED (advisories folded); building (T1+T2 one unit)",
+      "nextAction": "build → merge-gate → device check → merge-auth",
       "branch": "slice-combined-row",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-17"
