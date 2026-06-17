@@ -102,12 +102,13 @@
       "id": "spanish-coach__slice-12-review-crash-fix",
       "links": {},
       "title": "Slice 12 — fix Review-Misses crash (pile-empties)",
-      "column": "verify",
-      "phase": "root cause found + fixed (currentItem traps on empty pile); engine repro RED→GREEN, Kit 111/111, live XCUITest passes",
-      "nextAction": "Opus merge-gate (engine regression), then merge",
+      "column": "done",
+      "phase": "done · MERGED 2026-06-17 (PR #19, merge c702a9a)",
+      "nextAction": "Review-Misses crash fixed (currentItem no longer traps on empty pile); engine repro + live XCUITest + merge-gate APPROVE. Installing fixed build to device.",
       "branch": "slice-12-review-crash-fix",
       "model": "Opus (systematic-debugging + merge-gate)",
-      "lastTouched": "2026-06-17"
+      "lastTouched": "2026-06-17",
+      "blockedOn": null
     }
   ]
 }
