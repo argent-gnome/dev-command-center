@@ -68,11 +68,13 @@
     },
     {
       "id": "maintenance-mode__slice-6",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-17-slice-6-migration-safety-design.md"
+      },
       "title": "Slice 6 — SwiftData migration safety (VersionedSchema + non-destructive fail-safe; drop dead whicheverFirst)",
       "column": "spec",
-      "phase": "Scoping (brainstorm: drop-vs-wire whicheverFirst · V1→V2 migration · fail-safe behavior)",
-      "nextAction": "spec → plan → plan-check → build → DEVICE migration gate (populated store) → merge",
+      "phase": "Spec written + self-reviewed — awaiting user spec review",
+      "nextAction": "User reviews spec → plan (swiftdata-pro) → plan-check → build",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-17"
     }
