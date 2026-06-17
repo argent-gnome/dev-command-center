@@ -255,7 +255,7 @@ gates** — the loop, the stack gates, the merge-gate, and the verification doct
 Every few slices — or on demand, **not** per slice — dispatch the **`sdlc-auditor`** agent (active profile's model) over the
 retros accumulated since the last audit. It opens a **gated PR** proposing conductor/agent/flow changes, each
 citing the retro lines that justify it; it never commits to main. Review it alongside the reserved merge-gate,
-merge, bump the plugin `version`, and the next session's `/plugin marketplace update` pulls the improvement.
+merge, **then bump the plugin `version` (the merger bumps — the audit PR itself must NOT, or concurrent PRs race the number)**, and the next session's `/plugin marketplace update` pulls the improvement. **One audit at a time:** before dispatching the auditor, check for an already-open `sdlc-audit` PR (the pane lists them) — if one's open, review/merge THAT rather than opening a rival (sessions share one clone + `main`; concurrent audits race the watermark and version).
 Open `sdlc-audit` PRs + pending-retro counts ride the Needs-Attention pane (via `attention-sync`) with age
 badges, so a proposal can't rot unseen.
 
