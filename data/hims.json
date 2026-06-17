@@ -216,12 +216,13 @@
     {
       "id": "slice-4c",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-17-slice4c-faa-decision.md"
+        "spec": "docs/superpowers/specs/2026-06-17-slice4c-faa-decision.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/17"
       },
       "title": "AMCD arc 3: FAA decision + re-entry (completes the journey)",
-      "column": "verify",
-      "phase": "Two Opus reviews GREEN (COMPLIANT + LGTM, 0 defects, 139 tests); running stage-7 merge-gate panel",
-      "nextAction": "Merge-gate panel → demo update → 7½ + sdlc-auditor (arc done) → merge",
+      "column": "done",
+      "phase": "Merged (PR #17 / b18c2ec); post-merge main re-verified green; AMCD arc COMPLETE — full pilot journey end-to-end (intake → FAA SI/denied + re-entry)",
+      "nextAction": "Arc-end: run deferred 7½ whole-arc health-sweep + sdlc-auditor (13+ retros); then auth/org-context slice OR depth (report-requirements / interim-reports)",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-17",
       "branch": "slice-4c-faa-decision"
