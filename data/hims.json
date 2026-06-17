@@ -219,9 +219,9 @@
         "spec": "docs/superpowers/specs/2026-06-17-slice4c-faa-decision.md"
       },
       "title": "AMCD arc 3: FAA decision + re-entry (completes the journey)",
-      "column": "spec",
-      "phase": "Plan written (3 tasks); running stage-4¼ plan-check",
-      "nextAction": "Plan-check → build",
+      "column": "build",
+      "phase": "Plan-check PROCEED (0 must-fix); revisions folded (distinct names, page copy rewrite, trim+exact-value tests); building Task 1 (schema)",
+      "nextAction": "Task 1 schema → Task 2 transitions → Task 3 web",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-17",
       "branch": "slice-4c-faa-decision"
