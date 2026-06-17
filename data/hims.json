@@ -212,6 +212,16 @@
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-16",
       "branch": "slice-4b-submit-to-amcd"
+    },
+    {
+      "id": "slice-4c",
+      "links": {},
+      "title": "AMCD arc 3: FAA decision + re-entry (completes the journey)",
+      "column": "spec",
+      "phase": "Scoping — FAA decision routes awaiting→faa_issues_si/denied (mirrors 3b/3g) + capture denial reason + denied→contact_hims_ame re-entry; completes the AMCD arc / full journey",
+      "nextAction": "Write spec → user review",
+      "model": "all-Opus (Fable suspended)",
+      "lastTouched": "2026-06-17"
     }
   ]
 }
