@@ -220,8 +220,8 @@
       },
       "title": "AMCD arc 3: FAA decision + re-entry (completes the journey)",
       "column": "verify",
-      "phase": "Build complete (3 tasks, gates green: schema 16/engine 26/db 35/assembler 4/web 104, build, engine+schema untouched); two independent Opus reviews running",
-      "nextAction": "Reviews → merge-gate panel → 7½ + sdlc-auditor (arc done) → merge",
+      "phase": "Two Opus reviews GREEN (COMPLIANT + LGTM, 0 defects, 139 tests); running stage-7 merge-gate panel",
+      "nextAction": "Merge-gate panel → demo update → 7½ + sdlc-auditor (arc done) → merge",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-17",
       "branch": "slice-4c-faa-decision"
