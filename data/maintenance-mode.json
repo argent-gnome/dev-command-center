@@ -60,9 +60,9 @@
         "spec": "docs/superpowers/specs/2026-06-16-slice-5-add-remove-items-design.md"
       },
       "title": "Slice 5 — Add/remove custom items (toolbar + form; swipe-Delete added rows)",
-      "column": "verify",
-      "phase": "Merge-gate GO + should-fix folded (duplicate-name guard); full suite green ALONE (flaky delete-test hardened); docs-audit (9½) running",
-      "nextAction": "Docs-audit + merge authorization → merge → reconcile (11)",
+      "column": "done",
+      "phase": "MERGED (PR #5, 40254e8) — add/remove custom items; orchestrator-driven full loop; merge-gate GO (standalone guard folded)",
+      "nextAction": "in-service-date editing (small) OR SwiftData migration-safety hardening (health #1)",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-17"
     }
