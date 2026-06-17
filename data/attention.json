@@ -2,16 +2,13 @@
   "refreshedAt": "2026-06-17",
   "openAuditPRs": [],
   "pendingRetros": {
-    "count": 0,
+    "count": 2,
     "sinceAudit": "2026-06-17T10:01:13-04:00",
-    "oldest": null,
-    "oldestDays": null,
+    "oldest": "2026-06-17T16:30:33-04:00",
+    "oldestDays": 0,
     "dir": "docs/retros/"
   },
-  "pluginUpdate": {
-    "from": "0.13.0",
-    "to": "0.16.0"
-  },
+  "pluginUpdate": null,
   "docDriftPatches": [],
   "blockedCards": [
     "HIMS Pilot Recert · Auth/session + per-org access hardening — Needs the auth/session slice"
