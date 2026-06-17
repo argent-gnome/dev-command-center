@@ -73,9 +73,9 @@
         "plan": "docs/superpowers/plans/2026-06-17-slice-6-migration-safety.md"
       },
       "title": "Slice 6 — SwiftData migration safety (VersionedSchema + non-destructive fail-safe; drop dead whicheverFirst)",
-      "column": "spec",
-      "phase": "Plan written + self-reviewed; plan-check (4¼) running",
-      "nextAction": "Fold plan-check must-fix → docs-author → build → device migration gate",
+      "column": "build",
+      "phase": "Plan-check 4¼: REVISE → must-fix folded (non-destruction test) → sound. Docs-author (4½) + build next",
+      "nextAction": "doc-keeper author ADR-0012 → subagent build T1/T2 → merge-gate → DEVICE migration gate",
       "model": "Opus (all roles)",
       "lastTouched": "2026-06-17"
     }
