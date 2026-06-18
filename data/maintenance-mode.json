@@ -97,12 +97,12 @@
         "plan": "docs/superpowers/plans/2026-06-17-combined-row.md"
       },
       "title": "Combined Inspect+Replace row (collapse a paired component into one list row)",
-      "column": "verify",
-      "phase": "Built green (core 64/app 60/UI 14); BR-29 docs reconciled (4½); merge-gate (7) running",
-      "nextAction": "merge-gate GO → device check (paired component = one card) → merge-auth",
+      "column": "spec",
+      "phase": "Build diverged from mockup → user wants HOLISTIC row refresh (single+grouped clean language); re-mockup for sign-off",
+      "nextAction": "Mockup sign-off → update spec/plan (scope grew) → rebuild row language",
       "branch": "slice-combined-row",
       "model": "opus (all roles)",
-      "lastTouched": "2026-06-17"
+      "lastTouched": "2026-06-18"
     }
   ]
 }
