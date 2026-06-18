@@ -22,10 +22,11 @@
       },
       "title": "Slice 1 — hosted scanner + Supabase schema",
       "column": "build",
-      "phase": "building (Tasks 1-2: engine extraction + tests)",
-      "nextAction": "Supabase MCP auth → Tasks 3-6 (schema, function, cron)",
+      "phase": "Tasks 1-2 DONE+verified (engine extracted, 6 tests green)",
+      "nextAction": "user authorizes Supabase MCP → Tasks 3-6 (schema/function/cron)",
       "model": "opus (all roles)",
-      "lastTouched": "2026-06-18"
+      "lastTouched": "2026-06-18",
+      "blockedOn": "awaiting Supabase MCP OAuth"
     }
   ]
 }
