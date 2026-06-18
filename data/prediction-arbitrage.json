@@ -17,11 +17,13 @@
     },
     {
       "id": "slice-1-scanner",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/plans/2026-06-18-slice1-hosted-scanner.md"
+      },
       "title": "Slice 1 — hosted scanner + Supabase schema",
       "column": "spec",
-      "phase": "planning (writing-plans)",
-      "nextAction": "plan scanner+isolated schema+scheduled scan → build (data-flowing first)",
+      "phase": "plan written — awaiting review + Supabase creds",
+      "nextAction": "user reviews plan + provides CacheTrack Supabase access -> subagent-driven build",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
     }
