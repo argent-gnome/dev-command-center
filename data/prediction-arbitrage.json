@@ -14,6 +14,16 @@
       "branch": "main",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
+    },
+    {
+      "id": "slice-1-scanner",
+      "links": {},
+      "title": "Slice 1 — hosted scanner + Supabase schema",
+      "column": "spec",
+      "phase": "planning (writing-plans)",
+      "nextAction": "plan scanner+isolated schema+scheduled scan → build (data-flowing first)",
+      "model": "opus (all roles)",
+      "lastTouched": "2026-06-18"
     }
   ]
 }
