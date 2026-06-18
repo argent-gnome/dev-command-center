@@ -121,8 +121,8 @@
       "id": "data-model-restructure-a",
       "links": {},
       "column": "build",
-      "phase": "plan-check REVISE (8 must-fix) → revising plan",
-      "nextAction": "fold must-fix + key should-fix, re-verify, build",
+      "phase": "Task 1: new entities + AppSchemaV2 (build)",
+      "nextAction": "implement Task 1, review, then Task 2 migrator",
       "branch": "slice-data-model-a",
       "lastTouched": "2026-06-18"
     }
