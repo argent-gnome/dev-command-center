@@ -13,6 +13,7 @@
     "apex": { "displayName": "APEX (moto-ride-stats)", "repoPath": "/Users/jake-edwards/projects/moto-ride-stats", "stack": "ios", "topology": "single-session" },
     "hims": { "displayName": "HIMS Pilot Recert", "repoPath": "/Users/jake-edwards/projects/hims-pilot-recert", "stack": "web", "topology": "multi-session", "private": true },
     "shipsite": { "displayName": "Shipsite", "repoPath": "/Users/jake-edwards/projects/shipsite", "stack": "web", "topology": "multi-session", "private": true },
-    "maintenance-mode": { "displayName": "Maintenance Mode", "repoPath": "/Users/jake-edwards/projects/maintenance-mode", "stack": "ios", "topology": "single-session" }
+    "maintenance-mode": { "displayName": "Maintenance Mode", "repoPath": "/Users/jake-edwards/projects/maintenance-mode", "stack": "ios", "topology": "single-session" },
+    "prediction-arbitrage": { "displayName": "Prediction Arbitrage", "repoPath": "/Users/jake-edwards/projects/prediction-arbitrage", "stack": "web", "topology": "single-session", "private": true }
   }
 }
