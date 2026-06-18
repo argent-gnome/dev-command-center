@@ -121,8 +121,8 @@
       "id": "data-model-restructure-a",
       "links": {},
       "column": "build",
-      "phase": "Task 1: new entities + AppSchemaV2 (build)",
-      "nextAction": "implement Task 1, review, then Task 2 migrator",
+      "phase": "Task 3: read/write-path switch (big compile-coupled unit)",
+      "nextAction": "build Task 3, verify, then merge-gate",
       "branch": "slice-data-model-a",
       "lastTouched": "2026-06-18"
     }
