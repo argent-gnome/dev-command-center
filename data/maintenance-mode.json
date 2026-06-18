@@ -120,9 +120,9 @@
     {
       "id": "data-model-restructure-a",
       "links": {},
-      "column": "build",
-      "phase": "Task 3: read/write-path switch (big compile-coupled unit)",
-      "nextAction": "build Task 3, verify, then merge-gate",
+      "column": "verify",
+      "phase": "merge-gate panel (stage 7)",
+      "nextAction": "panel GO → device migration gate → merge",
       "branch": "slice-data-model-a",
       "lastTouched": "2026-06-18"
     }
