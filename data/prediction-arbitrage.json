@@ -8,9 +8,9 @@
         "spec": "docs/superpowers/specs/2026-06-18-prediction-arbitrage-v1-design.md"
       },
       "title": "Slice 0 — recon spike (GO/NO-GO)",
-      "column": "spec",
-      "phase": "spec APPROVED → grounding API + writing plan",
-      "nextAction": "research SGO API contract → writing-plans → build recon spike",
+      "column": "build",
+      "phase": "building recon spike (light/throwaway)",
+      "nextAction": "user gets free SGO Amateur API key → run recon → GO/NO-GO verdict",
       "branch": "main",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
