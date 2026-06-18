@@ -5,12 +5,12 @@
     {
       "id": "slice-0-recon",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-18-prediction-arbitrage-v1-design.md"
+        "spec": "docs/superpowers/specs/2026-06-18-slice0-recon-verdict.md"
       },
       "title": "Slice 0 — recon spike (GO/NO-GO)",
-      "column": "build",
-      "phase": "building recon spike (light/throwaway)",
-      "nextAction": "user gets free SGO Amateur API key → run recon → GO/NO-GO verdict",
+      "column": "done",
+      "phase": "GO/NO-GO verdict delivered: provisional NO-GO",
+      "nextAction": "USER DECIDES: direct-API coverage check vs pivot/stop — do NOT build Slice 1 yet",
       "branch": "main",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
