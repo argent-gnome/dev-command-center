@@ -93,13 +93,13 @@
     {
       "id": "maintenance-mode__combined-row",
       "links": {
-        "mockup": "docs/mockups/slice-combined-row.html",
+        "mockup": "docs/mockups/slice-row-refresh.html",
         "plan": "docs/superpowers/plans/2026-06-17-combined-row.md"
       },
-      "title": "Combined Inspect+Replace row (collapse a paired component into one list row)",
+      "title": "Row design refresh (universal card: title + per-action rows)",
       "column": "spec",
-      "phase": "Build diverged from mockup → user wants HOLISTIC row refresh (single+grouped clean language); re-mockup for sign-off",
-      "nextAction": "Mockup sign-off → update spec/plan (scope grew) → rebuild row language",
+      "phase": "Universal-card mockup signed off; row-refresh spec written; writing plan",
+      "nextAction": "writing-plans → plan-check → rebuild → merge-gate → device",
       "branch": "slice-combined-row",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
