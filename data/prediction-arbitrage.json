@@ -9,8 +9,8 @@
       },
       "title": "Slice 0 — recon spike (GO/NO-GO)",
       "column": "spec",
-      "phase": "v1 spec written — awaiting user review",
-      "nextAction": "user reviews spec → writing-plans → build recon spike",
+      "phase": "spec APPROVED → grounding API + writing plan",
+      "nextAction": "research SGO API contract → writing-plans → build recon spike",
       "branch": "main",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
