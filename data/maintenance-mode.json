@@ -94,12 +94,12 @@
       "id": "maintenance-mode__combined-row",
       "links": {
         "mockup": "docs/mockups/slice-row-refresh.html",
-        "plan": "docs/superpowers/plans/2026-06-17-combined-row.md"
+        "plan": "docs/superpowers/plans/2026-06-18-row-refresh.md"
       },
       "title": "Row design refresh (universal card: title + per-action rows)",
-      "column": "spec",
-      "phase": "Universal-card mockup signed off; row-refresh spec written; writing plan",
-      "nextAction": "writing-plans → plan-check → rebuild → merge-gate → device",
+      "column": "build",
+      "phase": "Row-refresh plan written; plan-check (4¼) running",
+      "nextAction": "fold plan-check → rebuild universal card → merge-gate → device",
       "branch": "slice-combined-row",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
