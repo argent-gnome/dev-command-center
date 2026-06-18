@@ -109,8 +109,8 @@
       "links": {},
       "title": "Data-model restructure (unique item + action-intervals) — Sub-slice A: schema+migration+backend",
       "column": "spec",
-      "phase": "Decomp A+B agreed; stage-0 migration spike running",
-      "nextAction": "spike GO/NO-GO → spec A → plan-check → build → DEVICE migration gate",
+      "phase": "Stage-0 spike GO (in-app data migration); scoping sub-slice A design",
+      "nextAction": "Design approval → spec A → plan-check → build → DEVICE migration gate",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
     }
