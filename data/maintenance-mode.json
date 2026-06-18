@@ -98,8 +98,8 @@
       },
       "title": "Row design refresh (universal card: title + per-action rows)",
       "column": "build",
-      "phase": "Row-refresh plan written; plan-check (4¼) running",
-      "nextAction": "fold plan-check → rebuild universal card → merge-gate → device",
+      "phase": "Plan-check 4¼ PROCEED (folded); rebuilding universal card (1 atomic unit)",
+      "nextAction": "rebuild → merge-gate → device check → merge-auth",
       "branch": "slice-combined-row",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
