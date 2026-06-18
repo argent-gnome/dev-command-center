@@ -98,8 +98,8 @@
       },
       "title": "Row design refresh (universal card: title + per-action rows)",
       "column": "verify",
-      "phase": "Universal card built green + visually verified vs mockup; docs reconciled; merge-gate (7) running",
-      "nextAction": "merge-gate GO → install to iPhone (device check) → merge-auth → reconcile + queue data-model slice",
+      "phase": "Merge-gate GO (folds done: sort-tiebreak + pruned superseded docs); installed to iPhone",
+      "nextAction": "User device-check confirm + merge-auth → merge → reconcile + queue data-model slice",
       "branch": "slice-combined-row",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
