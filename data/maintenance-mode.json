@@ -120,11 +120,12 @@
     {
       "id": "data-model-restructure-a",
       "links": {},
-      "column": "verify",
-      "phase": "merge-gate NO-GO (mixed-state cascade-delete) FIXED → re-gating",
-      "nextAction": "re-panel GO → device migration gate → merge",
+      "column": "live",
+      "phase": "code-complete + merge-gate-clean → DEVICE migration gate",
+      "nextAction": "user runs device migration gate; then merge + reconcile",
       "branch": "slice-data-model-a",
-      "lastTouched": "2026-06-18"
+      "lastTouched": "2026-06-18",
+      "blockedOn": "mandatory device migration gate needs the user's iPhone"
     }
   ]
 }
