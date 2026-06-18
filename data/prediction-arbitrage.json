@@ -1,0 +1,19 @@
+{
+  "project": "prediction-arbitrage",
+  "displayName": "Prediction Arbitrage",
+  "cards": [
+    {
+      "id": "slice-0-recon",
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-18-prediction-arbitrage-v1-design.md"
+      },
+      "title": "Slice 0 — recon spike (GO/NO-GO)",
+      "column": "spec",
+      "phase": "v1 spec written — awaiting user review",
+      "nextAction": "user reviews spec → writing-plans → build recon spike",
+      "branch": "main",
+      "model": "opus (all roles)",
+      "lastTouched": "2026-06-18"
+    }
+  ]
+}
