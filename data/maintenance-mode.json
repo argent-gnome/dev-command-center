@@ -97,9 +97,9 @@
         "plan": "docs/superpowers/plans/2026-06-18-row-refresh.md"
       },
       "title": "Row design refresh (universal card: title + per-action rows)",
-      "column": "build",
-      "phase": "Plan-check 4¼ PROCEED (folded); rebuilding universal card (1 atomic unit)",
-      "nextAction": "rebuild → merge-gate → device check → merge-auth",
+      "column": "verify",
+      "phase": "Universal card built green + visually verified vs mockup; docs reconciled; merge-gate (7) running",
+      "nextAction": "merge-gate GO → install to iPhone (device check) → merge-auth → reconcile + queue data-model slice",
       "branch": "slice-combined-row",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
