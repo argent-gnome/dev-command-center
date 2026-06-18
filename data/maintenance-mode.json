@@ -106,11 +106,13 @@
     },
     {
       "id": "maintenance-mode__data-model",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-18-data-model-restructure-a-design.md"
+      },
       "title": "Data-model restructure (unique item + action-intervals) — Sub-slice A: schema+migration+backend",
       "column": "spec",
-      "phase": "Stage-0 spike GO (in-app data migration); scoping sub-slice A design",
-      "nextAction": "Design approval → spec A → plan-check → build → DEVICE migration gate",
+      "phase": "Sub-slice A spec written (in-app migration approach); writing plan",
+      "nextAction": "writing-plans → plan-check → build → DEVICE migration gate",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
     }
