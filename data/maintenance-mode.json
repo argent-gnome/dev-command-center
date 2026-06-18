@@ -116,6 +116,15 @@
       "nextAction": "fold plan-check → build (entities→migrator→switch) → DEVICE migration gate → merge",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
+    },
+    {
+      "id": "data-model-restructure-a",
+      "links": {},
+      "column": "build",
+      "phase": "plan-check REVISE (8 must-fix) → revising plan",
+      "nextAction": "fold must-fix + key should-fix, re-verify, build",
+      "branch": "slice-data-model-a",
+      "lastTouched": "2026-06-18"
     }
   ]
 }
