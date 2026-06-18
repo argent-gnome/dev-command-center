@@ -97,9 +97,9 @@
         "plan": "docs/superpowers/plans/2026-06-18-row-refresh.md"
       },
       "title": "Row design refresh (universal card: title + per-action rows)",
-      "column": "verify",
-      "phase": "Merge-gate GO (folds done: sort-tiebreak + pruned superseded docs); installed to iPhone",
-      "nextAction": "User device-check confirm + merge-auth → merge → reconcile + queue data-model slice",
+      "column": "done",
+      "phase": "MERGED — PR #12 (fb02401): universal card (title header + per-action rows; dot, no chevron/pill; multi urgency-ordered+grayed). Visually verified; installed to device.",
+      "nextAction": "DATA-MODEL RESTRUCTURE slice (unique names / one-item-many-action-intervals + migration)",
       "branch": "slice-combined-row",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-18"
