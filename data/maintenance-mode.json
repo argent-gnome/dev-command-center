@@ -121,8 +121,8 @@
       "id": "data-model-restructure-a",
       "links": {},
       "column": "verify",
-      "phase": "merge-gate panel (stage 7)",
-      "nextAction": "panel GO → device migration gate → merge",
+      "phase": "merge-gate NO-GO (mixed-state cascade-delete) FIXED → re-gating",
+      "nextAction": "re-panel GO → device migration gate → merge",
       "branch": "slice-data-model-a",
       "lastTouched": "2026-06-18"
     }
