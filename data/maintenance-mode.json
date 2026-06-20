@@ -131,13 +131,16 @@
     },
     {
       "id": "data-model-restructure-b",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-20-data-model-restructure-b-design.md"
+      },
       "title": "Data-model restructure — Sub-slice B (add/edit/remove-an-action UX)",
       "column": "spec",
-      "phase": "stage 1 — scope (brainstorming)",
-      "nextAction": "scope the add-an-action-to-existing-item UX → spec → mockup",
+      "phase": "spec written — user review",
+      "nextAction": "user reviews spec → mockup",
       "model": "all-Opus (opus profile)",
-      "lastTouched": "2026-06-20"
+      "lastTouched": "2026-06-20",
+      "branch": "slice-data-model-b"
     }
   ]
 }
