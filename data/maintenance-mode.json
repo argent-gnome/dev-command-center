@@ -111,11 +111,11 @@
         "plan": "docs/superpowers/plans/2026-06-18-data-model-restructure-a.md"
       },
       "title": "Data-model restructure (unique item + action-intervals) — Sub-slice A: schema+migration+backend",
-      "column": "build",
-      "phase": "Sub-slice A plan written; plan-check (4¼) running",
-      "nextAction": "fold plan-check → build (entities→migrator→switch) → DEVICE migration gate → merge",
+      "column": "done",
+      "phase": "superseded by data-model-restructure-a (PR #13 merged)",
+      "nextAction": "see data-model-restructure-a card",
       "model": "opus (all roles)",
-      "lastTouched": "2026-06-18"
+      "lastTouched": "2026-06-20"
     },
     {
       "id": "data-model-restructure-a",
