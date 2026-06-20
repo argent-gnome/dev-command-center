@@ -150,9 +150,9 @@
         "spec": "docs/superpowers/specs/2026-06-20-legacy-entity-cleanup-design.md"
       },
       "title": "Legacy-entity cleanup (drop legacy MaintenanceItem + optional V2→canonical rename)",
-      "column": "build",
-      "phase": "plan-check folded → Task 1 (V3) build",
-      "nextAction": "build V3 → V4 → V5",
+      "column": "verify",
+      "phase": "4½ docs-author (ADR-0014) → merge-gate",
+      "nextAction": "docs → merge-gate → device gate",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20",
       "branch": "slice-data-model-cleanup"
