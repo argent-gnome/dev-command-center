@@ -247,9 +247,9 @@
         "spec": "docs/superpowers/specs/2026-06-20-slice5b-org-rls.md"
       },
       "title": "Org-scoped data + RLS + audit actor (go-live epic 2/3)",
-      "column": "spec",
-      "phase": "Plan written (5 tasks); running stage-4¼ plan-check",
-      "nextAction": "Plan-check → build",
+      "column": "build",
+      "phase": "Plan-check REVISE → all must-fix folded (test reconciliation, FK+seed-in-migration, requireOrg throws); building (6 tasks)",
+      "nextAction": "Build → reviews → merge-gate → live → merge",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-20",
       "branch": "slice-5b-org-rls"
