@@ -151,11 +151,12 @@
       },
       "title": "Legacy-entity cleanup (drop legacy MaintenanceItem + optional V2→canonical rename)",
       "column": "verify",
-      "phase": "4½ docs-author (ADR-0014) → merge-gate",
-      "nextAction": "docs → merge-gate → device gate",
+      "phase": "merge-gate GO + nits folded; device gate pending",
+      "nextAction": "user reconnects iPhone → device gate (V2→V5 walk) → merge",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20",
-      "branch": "slice-data-model-cleanup"
+      "branch": "slice-data-model-cleanup",
+      "blockedOn": "device gate needs the iPhone reachable (currently unavailable)"
     }
   ]
 }
