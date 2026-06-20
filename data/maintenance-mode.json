@@ -150,9 +150,9 @@
         "spec": "docs/superpowers/specs/2026-06-20-legacy-entity-cleanup-design.md"
       },
       "title": "Legacy-entity cleanup (drop legacy MaintenanceItem + optional V2→canonical rename)",
-      "column": "spec",
-      "phase": "stage 0 — follow-up spike (free the MaintenanceItem name in the real migration chain)",
-      "nextAction": "spike2 → plan",
+      "column": "build",
+      "phase": "stage 4 — writing plan",
+      "nextAction": "plan → plan-check → build",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20",
       "branch": "slice-data-model-cleanup"
