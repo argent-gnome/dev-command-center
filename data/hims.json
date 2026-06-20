@@ -240,6 +240,16 @@
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-17",
       "branch": "slice-5a-auth-foundation"
+    },
+    {
+      "id": "slice-5b",
+      "links": {},
+      "title": "Org-scoped data + RLS + audit actor (go-live epic 2/3)",
+      "column": "spec",
+      "phase": "Scoping: withDb role+GUC seam (app_user/SET app.org_id) retiring superuser bypass; org/membership (MedVector); activate existing policies.sql; audit actor; requireUser+org in actions. Supabase MCP connected (but 5b is local-Postgres; MCP=5c).",
+      "nextAction": "Brainstorm scope (split? org model? actor mechanism) → spec → user review",
+      "model": "all-Opus (Fable suspended)",
+      "lastTouched": "2026-06-20"
     }
   ]
 }
