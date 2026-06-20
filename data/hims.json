@@ -247,13 +247,13 @@
         "spec": "docs/superpowers/specs/2026-06-20-slice5b-org-rls.md"
       },
       "title": "Org-scoped data + RLS + audit actor (go-live epic 2/3)",
-      "column": "build",
-      "phase": "Build files DONE (typecheck/lint/build green, FK migration hand-edited); BLOCKED on local-DB cleanup — 145 int-test-garbage pilot_case rows (56 orphan org_ids) fail the new FK. Migration rolled back clean, no data lost.",
-      "nextAction": "User authorizes cleanup → migrate/rls/seed/tests/commits",
+      "column": "verify",
+      "phase": "Build complete + green (db 38/web 115, typecheck/lint/build, RLS isolation+actor tests pass; FK migration validated; secret-safe; engine/schema untouched). DB cleanup authorized+done. Two Opus reviews running.",
+      "nextAction": "Reviews → merge-gate panel → 7½ → live → ADR 0004 → merge",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-20",
       "branch": "slice-5b-org-rls",
-      "blockedOn": "Needs auth for a destructive local-DB cleanup (TRUNCATE/reseed) before db:migrate"
+      "blockedOn": null
     }
   ]
 }
