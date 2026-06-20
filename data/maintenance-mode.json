@@ -136,11 +136,12 @@
       },
       "title": "Data-model restructure — Sub-slice B (add/edit/remove-an-action UX)",
       "column": "verify",
-      "phase": "4½ docs-author (BR-31) → merge-gate",
-      "nextAction": "docs → merge-gate panel → device gate",
+      "phase": "merge-gate: code GO, device gate pending",
+      "nextAction": "user reconnects iPhone → device gate → merge",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20",
-      "branch": "slice-data-model-b"
+      "branch": "slice-data-model-b",
+      "blockedOn": "device gate needs the iPhone reachable (currently unavailable)"
     }
   ]
 }
