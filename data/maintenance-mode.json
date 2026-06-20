@@ -119,13 +119,15 @@
     },
     {
       "id": "data-model-restructure-a",
-      "links": {},
-      "column": "live",
-      "phase": "code-complete + merge-gate-clean → DEVICE migration gate",
-      "nextAction": "user runs device migration gate; then merge + reconcile",
+      "links": {
+        "pr": "https://github.com/argent-gnome/maintenance-mode/pull/13"
+      },
+      "column": "done",
+      "phase": "merged (PR #13) — device gate PASSED",
+      "nextAction": "sub-slice B (add/edit-an-action UX) or legacy-entity cleanup micro-slice",
       "branch": "slice-data-model-a",
-      "lastTouched": "2026-06-18",
-      "blockedOn": "mandatory device migration gate needs the user's iPhone"
+      "lastTouched": "2026-06-20",
+      "blockedOn": null
     }
   ]
 }
