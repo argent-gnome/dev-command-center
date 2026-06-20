@@ -149,8 +149,8 @@
       "links": {},
       "title": "Legacy-entity cleanup (drop legacy MaintenanceItem + optional V2→canonical rename)",
       "column": "spec",
-      "phase": "stage 1 — scope (brainstorming)",
-      "nextAction": "scope: rename-worth-the-risk? + spike decision",
+      "phase": "stage 0 — spike (V2→MaintenanceItem rename safety)",
+      "nextAction": "spike GO/NO-GO → spec or fall back to drop-only",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20"
     }
