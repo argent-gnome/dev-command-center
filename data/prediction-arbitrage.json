@@ -30,11 +30,13 @@
     },
     {
       "id": "slice-2-dashboard",
-      "links": {},
+      "links": {
+        "pr": "https://prediction-arbitrage-topaz.vercel.app/"
+      },
       "title": "Slice 2 — read-only dashboard",
-      "column": "verify",
-      "phase": "built, Focus layout, PIN gate, live-local on Odds data",
-      "nextAction": "Vercel deploy behind PIN 4197 (pending Vercel auth)",
+      "column": "done",
+      "phase": "LIVE on Vercel behind PIN 4197; verified PIN gate + live data",
+      "nextAction": "watch the week of data accumulate",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-20"
     },
