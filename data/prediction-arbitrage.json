@@ -49,6 +49,16 @@
       "nextAction": "cancel SGO trial; measure",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-20"
+    },
+    {
+      "id": "slice-4-audit",
+      "links": {},
+      "title": "Slice 4 — merge-gate audit + fixes",
+      "column": "done",
+      "phase": "audit GO (0 criticals); 7 should-fixes resolved/ledgered; fn v7 redeployed",
+      "nextAction": "measure the week of Odds API data; keep/cancel call",
+      "model": "opus (4-lens panel)",
+      "lastTouched": "2026-06-20"
     }
   ]
 }
