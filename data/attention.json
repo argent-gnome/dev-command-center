@@ -2,7 +2,7 @@
   "refreshedAt": "2026-06-20",
   "openAuditPRs": [],
   "pendingRetros": {
-    "count": 6,
+    "count": 7,
     "sinceAudit": "2026-06-17T10:01:13-04:00",
     "oldest": "2026-06-17T16:30:33-04:00",
     "oldestDays": 2,
@@ -11,7 +11,6 @@
   "pluginUpdate": null,
   "docDriftPatches": [],
   "blockedCards": [
-    "HIMS Pilot Recert · Auth/session + per-org access hardening — Needs the auth/session slice",
-    "Prediction Arbitrage · Slice 1 — hosted scanner + Supabase schema — SGO_API_KEY Edge secret not set (user action)"
+    "HIMS Pilot Recert · Auth/session + per-org access hardening — Needs the auth/session slice"
   ]
 }
