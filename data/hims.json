@@ -248,11 +248,12 @@
       },
       "title": "Org-scoped data + RLS + audit actor (go-live epic 2/3)",
       "column": "build",
-      "phase": "Plan-check REVISE → all must-fix folded (test reconciliation, FK+seed-in-migration, requireOrg throws); building (6 tasks)",
-      "nextAction": "Build → reviews → merge-gate → live → merge",
+      "phase": "Build files DONE (typecheck/lint/build green, FK migration hand-edited); BLOCKED on local-DB cleanup — 145 int-test-garbage pilot_case rows (56 orphan org_ids) fail the new FK. Migration rolled back clean, no data lost.",
+      "nextAction": "User authorizes cleanup → migrate/rls/seed/tests/commits",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-20",
-      "branch": "slice-5b-org-rls"
+      "branch": "slice-5b-org-rls",
+      "blockedOn": "Needs auth for a destructive local-DB cleanup (TRUNCATE/reseed) before db:migrate"
     }
   ]
 }
