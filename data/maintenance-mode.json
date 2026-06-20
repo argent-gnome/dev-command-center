@@ -136,8 +136,8 @@
       },
       "title": "Data-model restructure — Sub-slice B (add/edit/remove-an-action UX)",
       "column": "build",
-      "phase": "stage 4 — writing plan",
-      "nextAction": "plan → plan-check → build",
+      "phase": "stage 4¼ — plan-check running",
+      "nextAction": "fold must-fix → build 3 tasks",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20",
       "branch": "slice-data-model-b"
