@@ -128,6 +128,16 @@
       "branch": "slice-data-model-a",
       "lastTouched": "2026-06-20",
       "blockedOn": null
+    },
+    {
+      "id": "data-model-restructure-b",
+      "links": {},
+      "title": "Data-model restructure — Sub-slice B (add/edit/remove-an-action UX)",
+      "column": "spec",
+      "phase": "stage 1 — scope (brainstorming)",
+      "nextAction": "scope the add-an-action-to-existing-item UX → spec → mockup",
+      "model": "all-Opus (opus profile)",
+      "lastTouched": "2026-06-20"
     }
   ]
 }
