@@ -243,13 +243,16 @@
     },
     {
       "id": "slice-5b",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-20-slice5b-org-rls.md"
+      },
       "title": "Org-scoped data + RLS + audit actor (go-live epic 2/3)",
       "column": "spec",
-      "phase": "Scoping: withDb role+GUC seam (app_user/SET app.org_id) retiring superuser bypass; org/membership (MedVector); activate existing policies.sql; audit actor; requireUser+org in actions. Supabase MCP connected (but 5b is local-Postgres; MCP=5c).",
-      "nextAction": "Brainstorm scope (split? org model? actor mechanism) → spec → user review",
+      "phase": "Design approved (split decided; org+membership tables; GUC-default actor); spec written + committed",
+      "nextAction": "User reviews spec → plan → plan-check → build",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-20"
+      "lastTouched": "2026-06-20",
+      "branch": "slice-5b-org-rls"
     }
   ]
 }
