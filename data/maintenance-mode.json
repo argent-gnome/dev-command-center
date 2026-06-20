@@ -135,9 +135,9 @@
         "spec": "docs/superpowers/specs/2026-06-20-data-model-restructure-b-design.md"
       },
       "title": "Data-model restructure — Sub-slice B (add/edit/remove-an-action UX)",
-      "column": "spec",
-      "phase": "spec written — user review",
-      "nextAction": "user reviews spec → mockup",
+      "column": "build",
+      "phase": "stage 4 — writing plan",
+      "nextAction": "plan → plan-check → build",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20",
       "branch": "slice-data-model-b"
