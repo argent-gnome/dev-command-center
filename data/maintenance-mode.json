@@ -143,6 +143,16 @@
       "lastTouched": "2026-06-20",
       "branch": "slice-data-model-b",
       "blockedOn": null
+    },
+    {
+      "id": "data-model-cleanup",
+      "links": {},
+      "title": "Legacy-entity cleanup (drop legacy MaintenanceItem + optional V2→canonical rename)",
+      "column": "spec",
+      "phase": "stage 1 — scope (brainstorming)",
+      "nextAction": "scope: rename-worth-the-risk? + spike decision",
+      "model": "all-Opus (opus profile)",
+      "lastTouched": "2026-06-20"
     }
   ]
 }
