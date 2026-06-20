@@ -151,8 +151,8 @@
       },
       "title": "Legacy-entity cleanup (drop legacy MaintenanceItem + optional V2→canonical rename)",
       "column": "spec",
-      "phase": "spike GO → spec written, user review",
-      "nextAction": "user reviews spec → plan",
+      "phase": "stage 0 — follow-up spike (free the MaintenanceItem name in the real migration chain)",
+      "nextAction": "spike2 → plan",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20",
       "branch": "slice-data-model-cleanup"
