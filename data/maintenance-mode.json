@@ -151,8 +151,8 @@
       },
       "title": "Legacy-entity cleanup (drop legacy MaintenanceItem + optional V2→canonical rename)",
       "column": "build",
-      "phase": "stage 4¼ — plan-check running",
-      "nextAction": "fold must-fix → build V3/V4/V5",
+      "phase": "plan-check folded → Task 1 (V3) build",
+      "nextAction": "build V3 → V4 → V5",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20",
       "branch": "slice-data-model-cleanup"
