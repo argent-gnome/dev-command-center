@@ -27,6 +27,16 @@
       "model": "opus (all roles)",
       "lastTouched": "2026-06-20",
       "blockedOn": null
+    },
+    {
+      "id": "slice-2-dashboard",
+      "links": {},
+      "title": "Slice 2 — read-only dashboard",
+      "column": "verify",
+      "phase": "built + builds clean; mockup approved; dispersions de-conflated",
+      "nextAction": "wire live data (service-role key) -> run/deploy",
+      "model": "opus (all roles)",
+      "lastTouched": "2026-06-20"
     }
   ]
 }
