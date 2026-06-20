@@ -132,16 +132,17 @@
     {
       "id": "data-model-restructure-b",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-20-data-model-restructure-b-design.md"
+        "spec": "docs/superpowers/specs/2026-06-20-data-model-restructure-b-design.md",
+        "pr": "https://github.com/argent-gnome/maintenance-mode/pull/14"
       },
       "title": "Data-model restructure — Sub-slice B (add/edit/remove-an-action UX)",
-      "column": "verify",
-      "phase": "merge-gate: code GO, device gate pending",
-      "nextAction": "user reconnects iPhone → device gate → merge",
+      "column": "done",
+      "phase": "merged (PR #14) — device gate PASSED",
+      "nextAction": "legacy-entity cleanup micro-slice, or CSV export / in-service-date editing",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20",
       "branch": "slice-data-model-b",
-      "blockedOn": "device gate needs the iPhone reachable (currently unavailable)"
+      "blockedOn": null
     }
   ]
 }
