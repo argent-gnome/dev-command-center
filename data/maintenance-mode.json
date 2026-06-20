@@ -135,9 +135,9 @@
         "spec": "docs/superpowers/specs/2026-06-20-data-model-restructure-b-design.md"
       },
       "title": "Data-model restructure — Sub-slice B (add/edit/remove-an-action UX)",
-      "column": "build",
-      "phase": "plan-check folded → Task 1 build",
-      "nextAction": "build Task 1 (field+addItem) → 2 (writer) → 3 (UI)",
+      "column": "verify",
+      "phase": "4½ docs-author (BR-31) → merge-gate",
+      "nextAction": "docs → merge-gate panel → device gate",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-20",
       "branch": "slice-data-model-b"
