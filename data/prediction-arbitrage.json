@@ -33,8 +33,8 @@
       "links": {},
       "title": "Slice 2 — read-only dashboard",
       "column": "verify",
-      "phase": "built + builds clean; mockup approved; dispersions de-conflated",
-      "nextAction": "wire live data (service-role key) -> run/deploy",
+      "phase": "built, Focus layout, PIN gate, live-local on Odds data",
+      "nextAction": "Vercel deploy behind PIN 4197 (pending Vercel auth)",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-20"
     },
