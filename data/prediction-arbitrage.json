@@ -37,6 +37,16 @@
       "nextAction": "wire live data (service-role key) -> run/deploy",
       "model": "opus (all roles)",
       "lastTouched": "2026-06-20"
+    },
+    {
+      "id": "slice-3-oddsapi",
+      "links": {},
+      "title": "Slice 3 — migrate to The Odds API",
+      "column": "verify",
+      "phase": "engine migrated + deployed v4; cron */30; verified local (11 tests, realistic arbs)",
+      "nextAction": "user sets ODDS_API_KEY secret + cancels SGO; then live",
+      "model": "opus (all roles)",
+      "lastTouched": "2026-06-20"
     }
   ]
 }
