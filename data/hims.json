@@ -248,8 +248,8 @@
       },
       "title": "Org-scoped data + RLS + audit actor (go-live epic 2/3)",
       "column": "spec",
-      "phase": "Design approved (split decided; org+membership tables; GUC-default actor); spec written + committed",
-      "nextAction": "User reviews spec → plan → plan-check → build",
+      "phase": "Plan written (5 tasks); running stage-4¼ plan-check",
+      "nextAction": "Plan-check → build",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-20",
       "branch": "slice-5b-org-rls"
