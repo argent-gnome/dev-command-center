@@ -161,13 +161,16 @@
     },
     {
       "id": "data-model-prune",
-      "links": {},
+      "links": {
+        "spec": "docs/superpowers/specs/2026-06-21-prune-schema-versions-design.md"
+      },
       "title": "Prune old schema versions (delete inert Legacy/V2 scaffolding)",
       "column": "spec",
-      "phase": "stage 0 — spike (V5 store opens under a pruned plan?)",
-      "nextAction": "spike GO/NO-GO → spec or NO-GO",
+      "phase": "spike GO → spec written, user review",
+      "nextAction": "user reviews spec → plan",
       "model": "all-Opus (opus profile)",
-      "lastTouched": "2026-06-21"
+      "lastTouched": "2026-06-21",
+      "branch": "slice-data-model-prune"
     }
   ]
 }
