@@ -248,9 +248,9 @@
         "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/19"
       },
       "title": "Org-scoped data + RLS + audit actor (go-live epic 2/3)",
-      "column": "live",
-      "phase": "Merge-gate GO; all 5 should-fixes folded; live-validated (org-scoping via seam: MedVector 20/foreign 0; wall serves); ADR 0004 + ADR 0001 reconcile + demo updated; PR #19 open",
-      "nextAction": "User merge authorization → reconcile (retro/memory/board) + 7½ health-sweep",
+      "column": "done",
+      "phase": "Merged (PR #19 / a0d16f4); post-merge main green (db 38/web 115); RLS isolation ENFORCED, ADR-0001 superuser bypass retired, audit actor live",
+      "nextAction": "5c (prod hard-gate + hosted Supabase/Vercel deploy → Dr. Stokes live URL; real APP_DB_PASSWORD; connect Supabase MCP) OR small 5b-cleanup (5a auth-backlog + conn pooling)",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-21",
       "branch": "slice-5b-org-rls",
