@@ -166,8 +166,8 @@
       },
       "title": "Prune old schema versions (delete inert Legacy/V2 scaffolding)",
       "column": "build",
-      "phase": "stage 4¼ — plan-check running",
-      "nextAction": "fold must-fix → build the prune",
+      "phase": "plan-check PROCEED (folded) → build",
+      "nextAction": "build the prune → merge-gate → device gate",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-21",
       "branch": "slice-data-model-prune"
