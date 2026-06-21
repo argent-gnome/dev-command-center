@@ -262,9 +262,9 @@
         "spec": "docs/superpowers/specs/2026-06-21-slice5c-deploy.md"
       },
       "title": "Production hard-gate + hosted deploy (go-live epic 3/3)",
-      "column": "spec",
-      "phase": "Plan written (Task 1 code + Part B deploy runbook); running stage-4¼ plan-check",
-      "nextAction": "Plan-check → build Part A → merge → gated deploy",
+      "column": "build",
+      "phase": "Plan-check PROCEED; folded (conservative REAL_PHI guard, DIRECT-conn DDL, db:migrate/db:rls seams only, seed env handling); building Part A (the hard-gate)",
+      "nextAction": "Build+merge Part A → gated deploy (Part B)",
       "branch": "slice-5c-deploy",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-21"
