@@ -165,9 +165,9 @@
         "spec": "docs/superpowers/specs/2026-06-21-prune-schema-versions-design.md"
       },
       "title": "Prune old schema versions (delete inert Legacy/V2 scaffolding)",
-      "column": "build",
-      "phase": "plan-check PROCEED (folded) → build",
-      "nextAction": "build the prune → merge-gate → device gate",
+      "column": "verify",
+      "phase": "4½ docs-author → merge-gate",
+      "nextAction": "docs → merge-gate → device gate",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-21",
       "branch": "slice-data-model-prune"
