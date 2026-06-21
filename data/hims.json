@@ -255,6 +255,17 @@
       "lastTouched": "2026-06-21",
       "branch": "slice-5b-org-rls",
       "blockedOn": null
+    },
+    {
+      "id": "slice-5c",
+      "links": {},
+      "title": "Production hard-gate + hosted deploy (go-live epic 3/3)",
+      "column": "spec",
+      "phase": "Design approved: ALLOW_DEV_TOOLS+REAL_PHI hard-gate (code, merges) THEN MCP-driven hosted deploy (Supabase free + Vercel, pooler, fixtures-only) gating the 2 irreversible steps. Writing spec.",
+      "nextAction": "Spec → user review → plan-check → build hard-gate → gated deploy",
+      "branch": "slice-5c-deploy",
+      "model": "all-Opus (Fable suspended)",
+      "lastTouched": "2026-06-21"
     }
   ]
 }
