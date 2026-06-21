@@ -264,11 +264,12 @@
       },
       "title": "Production hard-gate + hosted deploy (go-live epic 3/3)",
       "column": "live",
-      "phase": "Part A merge-gate GO + folds in; PR #20 open (web 125, build green). Awaiting merge auth → then Part B deploy ops",
-      "nextAction": "User merge auth (Part A) → ⛔ create Supabase → migrate/rls/seed → ⛔ Vercel deploy → smoke-test",
+      "phase": "Part A merged (ad0fe90); Part B BLOCKED at B1 — Supabase org hit its 2-free-project cap (list shows only cash-track; the 2nd slot is a paused/ghost/other-org project). No project created.",
+      "nextAction": "User frees a Supabase slot or upgrades → retry create → migrate/rls/seed → ⛔ Vercel deploy",
       "branch": "slice-5c-deploy",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-21"
+      "lastTouched": "2026-06-21",
+      "blockedOn": "Supabase 2-free-project limit — user must free a slot (pause/delete) or upgrade to Pro"
     }
   ]
 }
