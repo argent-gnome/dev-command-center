@@ -259,12 +259,13 @@
     {
       "id": "slice-5c",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-21-slice5c-deploy.md"
+        "spec": "docs/superpowers/specs/2026-06-21-slice5c-deploy.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/20"
       },
       "title": "Production hard-gate + hosted deploy (go-live epic 3/3)",
-      "column": "verify",
-      "phase": "Part A review LGTM (safety traced: reset = AND of flag+not-PHI+not-HIPAA, cannot wipe real data; 6 checks pass); running merge-gate panel",
-      "nextAction": "Merge-gate → merge Part A → gated deploy (Part B)",
+      "column": "live",
+      "phase": "Part A merge-gate GO + folds in; PR #20 open (web 125, build green). Awaiting merge auth → then Part B deploy ops",
+      "nextAction": "User merge auth (Part A) → ⛔ create Supabase → migrate/rls/seed → ⛔ Vercel deploy → smoke-test",
       "branch": "slice-5c-deploy",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-21"
