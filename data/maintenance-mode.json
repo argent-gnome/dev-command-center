@@ -147,16 +147,17 @@
     {
       "id": "data-model-cleanup",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-20-legacy-entity-cleanup-design.md"
+        "spec": "docs/superpowers/specs/2026-06-20-legacy-entity-cleanup-design.md",
+        "pr": "https://github.com/argent-gnome/maintenance-mode/pull/15"
       },
       "title": "Legacy-entity cleanup (drop legacy MaintenanceItem + optional V2→canonical rename)",
-      "column": "verify",
-      "phase": "merge-gate GO + nits folded; device gate pending",
-      "nextAction": "user reconnects iPhone → device gate (V2→V5 walk) → merge",
+      "column": "done",
+      "phase": "merged (PR #15) — device gate PASSED (V2→V5)",
+      "nextAction": "prune-old-schema-versions slice (true final cleanup), or CSV export / in-service-date editing; sdlc-auditor overdue (8 retros)",
       "model": "all-Opus (opus profile)",
-      "lastTouched": "2026-06-20",
+      "lastTouched": "2026-06-21",
       "branch": "slice-data-model-cleanup",
-      "blockedOn": "device gate needs the iPhone reachable (currently unavailable)"
+      "blockedOn": null
     }
   ]
 }
