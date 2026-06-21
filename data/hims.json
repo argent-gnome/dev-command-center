@@ -244,14 +244,15 @@
     {
       "id": "slice-5b",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-20-slice5b-org-rls.md"
+        "spec": "docs/superpowers/specs/2026-06-20-slice5b-org-rls.md",
+        "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/19"
       },
       "title": "Org-scoped data + RLS + audit actor (go-live epic 2/3)",
-      "column": "verify",
-      "phase": "Two Opus reviews GREEN — COMPLIANT + LGTM; security review ran 6 live cross-org attacks, ALL BLOCKED. Running merge-gate panel (highStakes + ledger).",
-      "nextAction": "Merge-gate → 7½ → live → ADR 0004 → demo → merge",
+      "column": "live",
+      "phase": "Merge-gate GO; all 5 should-fixes folded; live-validated (org-scoping via seam: MedVector 20/foreign 0; wall serves); ADR 0004 + ADR 0001 reconcile + demo updated; PR #19 open",
+      "nextAction": "User merge authorization → reconcile (retro/memory/board) + 7½ health-sweep",
       "model": "all-Opus (Fable suspended)",
-      "lastTouched": "2026-06-20",
+      "lastTouched": "2026-06-21",
       "branch": "slice-5b-org-rls",
       "blockedOn": null
     }
