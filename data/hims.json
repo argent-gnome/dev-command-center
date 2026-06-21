@@ -263,8 +263,8 @@
       },
       "title": "Production hard-gate + hosted deploy (go-live epic 3/3)",
       "column": "spec",
-      "phase": "Design approved (3 forks + recs); spec written + committed",
-      "nextAction": "User reviews spec → plan → plan-check → build Part A → gated deploy",
+      "phase": "Plan written (Task 1 code + Part B deploy runbook); running stage-4¼ plan-check",
+      "nextAction": "Plan-check → build Part A → merge → gated deploy",
       "branch": "slice-5c-deploy",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-21"
