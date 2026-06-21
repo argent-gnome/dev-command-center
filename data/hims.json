@@ -263,13 +263,13 @@
         "pr": "https://github.com/argent-gnome/hims-pilot-recert/pull/20"
       },
       "title": "Production hard-gate + hosted deploy (go-live epic 3/3)",
-      "column": "live",
-      "phase": "Part A merged (ad0fe90); Part B BLOCKED at B1 — Supabase org hit its 2-free-project cap (list shows only cash-track; the 2nd slot is a paused/ghost/other-org project). No project created.",
-      "nextAction": "User frees a Supabase slot or upgrades → retry create → migrate/rls/seed → ⛔ Vercel deploy",
+      "column": "verify",
+      "phase": "Part A (dev-tools hard-gate) MERGED (PR #20/ad0fe90, post-merge green); retro+memory reconciled. Part B (hosted deploy) PAUSED by user at B1 — Supabase org at 2-free-project cap.",
+      "nextAction": "When ready: free a Supabase slot (delete 2nd project) or upgrade Pro → resume Part B (⛔create→migrate/rls/seed→⛔Vercel→smoke-test)",
       "branch": "slice-5c-deploy",
       "model": "all-Opus (Fable suspended)",
       "lastTouched": "2026-06-21",
-      "blockedOn": "Supabase 2-free-project limit — user must free a slot (pause/delete) or upgrade to Pro"
+      "blockedOn": "Supabase 2-free-project limit; user holding (resume = free a slot/upgrade → run the Part B runbook in the 5c plan)"
     }
   ]
 }
