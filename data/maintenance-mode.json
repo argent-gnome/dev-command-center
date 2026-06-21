@@ -162,15 +162,17 @@
     {
       "id": "data-model-prune",
       "links": {
-        "spec": "docs/superpowers/specs/2026-06-21-prune-schema-versions-design.md"
+        "spec": "docs/superpowers/specs/2026-06-21-prune-schema-versions-design.md",
+        "pr": "https://github.com/argent-gnome/maintenance-mode/pull/16"
       },
       "title": "Prune old schema versions (delete inert Legacy/V2 scaffolding)",
-      "column": "verify",
-      "phase": "4½ docs-author → merge-gate",
-      "nextAction": "docs → merge-gate → device gate",
+      "column": "done",
+      "phase": "merged (PR #16) — device gate PASSED; DATA-MODEL ARC COMPLETE",
+      "nextAction": "sdlc-auditor (9 retros, overdue), or CSV export / in-service-date editing / cleanup Slices 7-8",
       "model": "all-Opus (opus profile)",
       "lastTouched": "2026-06-21",
-      "branch": "slice-data-model-prune"
+      "branch": "slice-data-model-prune",
+      "blockedOn": null
     }
   ]
 }
